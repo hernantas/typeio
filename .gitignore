@@ -1,0 +1,15 @@
+# Dependency directories
+node_modules/
+
+# Yarn 2
+.yarn/*
+!.yarn/patches
+!.yarn/releases
+!.yarn/plugins
+!.yarn/sdks
+!.yarn/versions
+.pnp.*
+
+# TypeScript build
+*.tsbuildinfo
+dist/
