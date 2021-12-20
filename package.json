@@ -3,5 +3,6 @@
   "description": "Typescript-first schema declaration and validation library",
   "repository": "https://github.com/hernantas/type-io.git",
   "author": "Zulfikar Raditya Hernanta <hernantas@gmail.com>",
-  "license": "MIT"
+  "license": "MIT",
+  "packageManager": "yarn@3.1.1"
 }
