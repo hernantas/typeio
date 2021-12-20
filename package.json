@@ -5,6 +5,9 @@
   "author": "Zulfikar Raditya Hernanta <hernantas@gmail.com>",
   "license": "MIT",
   "packageManager": "yarn@3.1.1",
+  "workspaces": [
+    "packages/*"
+  ],
   "devDependencies": {
     "typescript": "^4.5.4"
   }
