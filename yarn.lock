@@ -5,6 +5,12 @@ __metadata:
   version: 5
   cacheKey: 8
 
+"@type-io/type@workspace:packages/type-io-type":
+  version: 0.0.0-use.local
+  resolution: "@type-io/type@workspace:packages/type-io-type"
+  languageName: unknown
+  linkType: soft
+
 "type-io@workspace:.":
   version: 0.0.0-use.local
   resolution: "type-io@workspace:."
