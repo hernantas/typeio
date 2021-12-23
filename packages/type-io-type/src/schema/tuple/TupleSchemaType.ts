@@ -1,4 +1,3 @@
-import { TupleType } from '../../alias'
-import { SchemaMap } from '../base'
+import { AnySchema } from '../base'
 
-export type TupleSchemaType = SchemaMap<TupleType>
+export type TupleSchemaType = [AnySchema, ...AnySchema[]]
