@@ -1,3 +1,3 @@
 import { BaseSchema } from './BaseSchema'
 
-export type AnySchema = BaseSchema<any, any>
+export type AnySchema = BaseSchema<unknown>
