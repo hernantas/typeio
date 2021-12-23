@@ -1,6 +1,7 @@
 export * from './array'
 export * from './base'
 export * from './ctor'
+export * from './intersect'
 export * from './literal'
 export * from './object'
 export * from './tuple'
