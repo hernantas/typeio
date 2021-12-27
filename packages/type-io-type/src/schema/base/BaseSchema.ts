@@ -13,6 +13,12 @@ export abstract class BaseSchema<T, D extends BaseSchemaDefinition = BaseSchemaD
     this.definition = definition
   }
 
+  abstract parse (input: unknown): T
+
+  async parseAsync (input: unknown): Promise<T> {
+    return this.parse(input)
+  }
+
   assemble (definition: D): this {
     const Constructor = this.constructor as ConstructorType<this>
     return new Constructor(definition)
