@@ -1,5 +1,6 @@
 export * from './array'
 export * from './base'
+export * from './boolean'
 export * from './ctor'
 export * from './intersect'
 export * from './literal'
