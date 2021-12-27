@@ -1,28 +1,30 @@
-import { ObjectPropertyMap } from '.'
-import { ObjectType } from '../../alias'
-import { BaseSchema, SchemaMap } from '../base'
+import { BaseSchema, TypeOf, TypeOfMap } from '../base'
+import { ObjectPropertyMap } from './ObjectPropertyMap'
 import { ObjectSchemaDefinition } from './ObjectSchemaDefinition'
+import { ObjectSchemaType } from './ObjectSchemaType'
 
-export class ObjectSchema<T extends ObjectType> extends BaseSchema<T, ObjectSchemaDefinition<T>> {
-  static create <T extends ObjectType> (properties: SchemaMap<T>): ObjectSchema<T> {
+export class ObjectSchema<T extends ObjectSchemaType> extends BaseSchema<TypeOfMap<T>, ObjectSchemaDefinition<T>> {
+  static create <T extends ObjectSchemaType> (properties: T): ObjectSchema<T> {
     return new ObjectSchema({ properties })
   }
 
-  get properties (): SchemaMap<T> {
+  get properties (): T {
     return this.definition.properties
   }
 
-  parse (input: unknown): T {
+  parse (input: unknown): TypeOfMap<T> {
     if (typeof input !== 'object') {
       throw new Error('Input type is not an object')
     }
 
-    const result: Partial<T> = {}
+    const result: Partial<TypeOfMap<T>> = {}
     Object.keys(this.definition.properties).forEach(key => {
       const tKey = key as keyof T
-      const value = (input as ObjectPropertyMap<T>)[tKey]
-      result[tKey] = this.definition.properties[tKey].parse(value)
+      const schema = this.definition.properties[tKey]
+      if (schema !== undefined) {
+        result[tKey] = schema.parse((input as ObjectPropertyMap<T>)[tKey]) as TypeOf<this>[keyof T]
+      }
     })
-    return result as T
+    return result as TypeOfMap<T>
   }
 }
