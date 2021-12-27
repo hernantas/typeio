@@ -4,5 +4,5 @@ export interface ArraySchemaDefinition<T extends AnySchema> extends BaseSchemaDe
   /**
    * Inner type
    */
-  type: T
+  readonly type: T
 }
