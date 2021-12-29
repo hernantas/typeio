@@ -1,5 +1,8 @@
 {
   "name": "@type-io/type",
   "description": "Typescript-first schema declaration and validation library",
-  "version": "0.1.0"
+  "version": "0.1.0",
+  "dependencies": {
+    "reflect-metadata": "^0.1.13"
+  }
 }

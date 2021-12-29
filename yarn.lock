@@ -97,6 +97,8 @@ __metadata:
 "@type-io/type@workspace:packages/type-io-type":
   version: 0.0.0-use.local
   resolution: "@type-io/type@workspace:packages/type-io-type"
+  dependencies:
+    reflect-metadata: ^0.1.13
   languageName: unknown
   linkType: soft
 
@@ -1845,6 +1847,13 @@ __metadata:
   version: 16.13.1
   resolution: "react-is@npm:16.13.1"
   checksum: f7a19ac3496de32ca9ae12aa030f00f14a3d45374f1ceca0af707c831b2a6098ef0d6bdae51bd437b0a306d7f01d4677fcc8de7c0d331eb47ad0f46130e53c5f
+  languageName: node
+  linkType: hard
+
+"reflect-metadata@npm:^0.1.13":
+  version: 0.1.13
+  resolution: "reflect-metadata@npm:0.1.13"
+  checksum: 798d379a7b6f6455501145419505c97dd11cbc23857a386add2b9ef15963ccf15a48d9d15507afe01d4cd74116df8a213247200bac00320bd7c11ddeaa5e8fb4
   languageName: node
   linkType: hard
 
