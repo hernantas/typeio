@@ -6,4 +6,8 @@ export class ConstructorSchema<T> extends BaseSchema<T, ConstructorSchemaDefinit
   static create <T> (constructor: ConstructorType<T>): ConstructorSchema<T> {
     return new ConstructorSchema({ constructor })
   }
+
+  parse (_input: unknown): T {
+    throw new Error('Method not implemented.')
+  }
 }

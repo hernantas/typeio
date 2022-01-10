@@ -8,6 +8,10 @@ export class IntersectSchema<T extends TupleSchemaType> extends BaseSchema<Inter
     return new IntersectSchema({ items })
   }
 
+  parse (_input: unknown): IntersectMap<TypeOfMap<T>> {
+    throw new Error('Method not implemented.')
+  }
+
   get items (): T {
     return this.definition.items
   }
