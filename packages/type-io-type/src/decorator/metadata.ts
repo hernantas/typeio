@@ -48,5 +48,5 @@ export function setMetadata<T, K extends keyof T> (
   property: K,
   schema: AnySchema
 ): void {
-  Reflect.defineMetadata(METADATA_KEY_STORAGE, schema, target, property as string)
+  Reflect.defineMetadata(METADATA_KEY_STORAGE, schema, target.prototype, property as string)
 }
