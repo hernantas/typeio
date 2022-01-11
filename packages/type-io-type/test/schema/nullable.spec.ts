@@ -11,6 +11,8 @@ describe('Schema: NullSchema', () => {
   t.testLiteralBoolean(schema).invalid()
   t.testNull(schema).valid()
   t.testNumber(schema).invalid()
+  t.testObject(schema).invalid()
+  t.testDeepObject(schema).invalid()
   t.testString(schema).valid()
   t.testUndefined(schema).invalid()
 })

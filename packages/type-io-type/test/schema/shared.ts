@@ -83,6 +83,59 @@ export function testNumber (schema: AnySchema, label = 'Parse number'): TestOpti
   }
 }
 
+export function testObject (schema: AnySchema, label = 'Parse object'): TestOption {
+  const values = [
+    {
+      _string: '',
+      _number: 0,
+      _boolean: false
+    },
+    {
+      _string: '',
+      _number: 0,
+      _boolean: false,
+      _excess: 'THIS IS EXCESS PROPERTY'
+    }
+  ]
+  return {
+    valid: () => it(label, () => {
+      for (const value of values) {
+        const parsed = schema.parse(value)
+        expect(parsed).to.have.property('_string', value._string)
+        expect(parsed).to.have.property('_number', value._number)
+        expect(parsed).to.have.property('_boolean', value._boolean)
+        expect(parsed).to.not.have.property('_excess')
+      }
+    }),
+    invalid: () => it(label, () => createTest(schema, values, 'THROW'))
+  }
+}
+
+export function testDeepObject (schema: AnySchema, label = 'Parse deep object'): TestOption {
+  const value = {
+    _string: '',
+    _number: 0,
+    _boolean: false,
+    _nested: {
+      _string: '',
+      _number: 0,
+      _boolean: false
+    }
+  }
+  return {
+    valid: () => it(label, () => {
+      const parsed = schema.parse(value)
+      expect(parsed).to.have.property('_string', value._string)
+      expect(parsed).to.have.property('_number', value._number)
+      expect(parsed).to.have.property('_boolean', value._boolean)
+      expect(parsed).to.have.nested.property('_nested._string', value._nested._string)
+      expect(parsed).to.have.nested.property('_nested._number', value._nested._number)
+      expect(parsed).to.have.nested.property('_nested._boolean', value._nested._boolean)
+    }),
+    invalid: () => it(label, () => createTest(schema, [value], 'THROW'))
+  }
+}
+
 export function testString (schema: AnySchema, label = 'Parse string'): TestOption {
   const values = ['', 'String', '0', 'true', 'false', 'null', 'undefined']
   return {
