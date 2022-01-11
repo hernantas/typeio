@@ -1,10 +1,10 @@
 import { BaseSchema, TypeOfMap } from '../base'
-import { TupleSchemaType } from '../tuple'
 import { UnionMap } from './UnionMap'
 import { UnionSchemaDefinition } from './UnionSchemaDefinition'
+import { UnionSchemaType } from './UnionSchemaType'
 
-export class UnionSchema<T extends TupleSchemaType> extends BaseSchema<UnionMap<TypeOfMap<T>>, UnionSchemaDefinition<T>> {
-  static create <T extends TupleSchemaType> (items: T): UnionSchema<T> {
+export class UnionSchema<T extends UnionSchemaType> extends BaseSchema<UnionMap<TypeOfMap<T>>, UnionSchemaDefinition<T>> {
+  static create <T extends UnionSchemaType> (items: T): UnionSchema<T> {
     return new UnionSchema({ items })
   }
 

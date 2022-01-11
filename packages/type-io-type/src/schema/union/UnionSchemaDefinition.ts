@@ -1,6 +1,6 @@
-import { BaseSchemaDefinition } from '..'
-import { TupleSchemaType } from '../tuple'
+import { BaseSchemaDefinition } from '../base'
+import { UnionSchemaType } from './UnionSchemaType'
 
-export interface UnionSchemaDefinition<T extends TupleSchemaType> extends BaseSchemaDefinition {
+export interface UnionSchemaDefinition<T extends UnionSchemaType> extends BaseSchemaDefinition {
   readonly items: T
 }
