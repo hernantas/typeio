@@ -6,92 +6,64 @@ interface TestOption {
   invalid: () => void
 }
 
+type TestMode =
+  | 'EQUAL'
+  | 'THROW'
+  | 'DEEP_EQUAL'
+
+function createTest (
+  schema: AnySchema,
+  values: unknown[],
+  mode: TestMode = 'EQUAL'
+): void {
+  for (const value of values) {
+    switch (mode) {
+      case 'EQUAL': expect(schema.parse(value)).to.be.equal(value); break
+      case 'DEEP_EQUAL': expect(schema.parse(value)).to.be.deep.equal(value); break
+      case 'THROW': expect(() => schema.parse(value)).to.throw(); break
+    }
+  }
+}
+
 export function testString (schema: AnySchema): TestOption {
   const label = 'Parse string'
+  const values = ['', 'String', '0', 'true', 'false', 'null', 'undefined']
   return {
-    valid () {
-      it(label, () => {
-        expect(schema.parse('')).to.be.equal('')
-        expect(schema.parse('S')).to.be.equal('S')
-        expect(schema.parse('String')).to.be.equal('String')
-      })
-    },
-    invalid () {
-      it(label, () => {
-        expect(() => schema.parse('')).to.throw()
-        expect(() => schema.parse('S')).to.throw()
-        expect(() => schema.parse('String')).to.throw()
-      })
-    }
+    valid: () => it(label, () => createTest(schema, values)),
+    invalid: () => it(label, () => createTest(schema, values, 'THROW'))
   }
 }
 
 export function testNumber (schema: AnySchema): TestOption {
   const label = 'Parse number'
+  const values = [0, 80, 8080]
   return {
-    valid () {
-      it(label, () => {
-        expect(schema.parse(0)).to.be.equal(0)
-        expect(schema.parse(80)).to.be.equal(80)
-        expect(schema.parse(8080)).to.be.equal(8080)
-      })
-    },
-    invalid () {
-      it(label, () => {
-        expect(() => schema.parse(0)).to.throw()
-        expect(() => schema.parse(80)).to.throw()
-        expect(() => schema.parse(8080)).to.throw()
-      })
-    }
+    valid: () => it(label, () => createTest(schema, values)),
+    invalid: () => it(label, () => createTest(schema, values, 'THROW'))
   }
 }
 
 export function testBoolean (schema: AnySchema): TestOption {
   const label = 'Parse boolean'
+  const values = [true, false]
   return {
-    valid () {
-      it(label, () => {
-        expect(schema.parse(true)).to.be.equal(true)
-        expect(schema.parse(false)).to.equal(false)
-      })
-    },
-    invalid () {
-      it(label, () => {
-        expect(() => schema.parse(true)).to.throw()
-        expect(() => schema.parse(false)).to.throw()
-      })
-    }
+    valid: () => it(label, () => createTest(schema, values)),
+    invalid: () => it(label, () => createTest(schema, values, 'THROW'))
   }
 }
 
 export function testNull (schema: AnySchema): TestOption {
   const label = 'Parse null'
   return {
-    valid () {
-      it(label, () => {
-        expect(schema.parse(null)).to.be.equal(null)
-      })
-    },
-    invalid () {
-      it(label, () => {
-        expect(() => schema.parse(null)).to.throw()
-      })
-    }
+    valid: () => it(label, () => createTest(schema, [null])),
+    invalid: () => it(label, () => createTest(schema, [null], 'THROW'))
   }
 }
 
 export function testUndefined (schema: AnySchema): TestOption {
   const label = 'Parse undefined'
   return {
-    valid () {
-      it(label, () => {
-        expect(schema.parse(undefined)).to.be.equal(undefined)
-      })
-    },
-    invalid () {
-      it(label, () => {
-        expect(() => schema.parse(undefined)).to.throw()
-      })
-    }
+    valid: () => it(label, () => createTest(schema, [undefined])),
+    invalid: () => it(label, () => createTest(schema, [undefined], 'THROW'))
   }
 }
