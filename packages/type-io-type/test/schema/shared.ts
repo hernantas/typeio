@@ -48,6 +48,31 @@ export function testBoolean (schema: AnySchema): TestOption {
   }
 }
 
+export function testLiteralString (schema: AnySchema): TestOption {
+  const label = 'Parse literal (string)'
+  const values = ['literal']
+  return {
+    valid: () => it(label, () => createTest(schema, values)),
+    invalid: () => it(label, () => createTest(schema, values, 'THROW'))
+  }
+}
+export function testLiteralNumber (schema: AnySchema): TestOption {
+  const label = 'Parse literal (number)'
+  const values = [0]
+  return {
+    valid: () => it(label, () => createTest(schema, values)),
+    invalid: () => it(label, () => createTest(schema, values, 'THROW'))
+  }
+}
+export function testLiteralBoolean (schema: AnySchema): TestOption {
+  const label = 'Parse literal (boolean)'
+  const values = [true]
+  return {
+    valid: () => it(label, () => createTest(schema, values)),
+    invalid: () => it(label, () => createTest(schema, values, 'THROW'))
+  }
+}
+
 export function testNull (schema: AnySchema): TestOption {
   const label = 'Parse null'
   return {
