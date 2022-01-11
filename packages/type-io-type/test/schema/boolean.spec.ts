@@ -1,16 +1,16 @@
 import { BooleanSchema } from '../../src'
-import { testArray, testBoolean, testLiteralBoolean, testLiteralNumber, testLiteralString, testNull, testNumber, testString, testUndefined } from './shared'
+import * as t from './shared'
 
 describe('Schema: BooleanSchema', () => {
   const schema = BooleanSchema.create()
 
-  testArray(schema).invalid()
-  testBoolean(schema).valid()
-  testLiteralString(schema).invalid()
-  testLiteralNumber(schema).invalid()
-  testLiteralBoolean(schema).valid()
-  testNull(schema).invalid()
-  testNumber(schema).invalid()
-  testString(schema).invalid()
-  testUndefined(schema).invalid()
+  t.testArray(schema).invalid()
+  t.testBoolean(schema).valid()
+  t.testLiteralString(schema).invalid()
+  t.testLiteralNumber(schema).invalid()
+  t.testLiteralBoolean(schema).valid()
+  t.testNull(schema).invalid()
+  t.testNumber(schema).invalid()
+  t.testString(schema).invalid()
+  t.testUndefined(schema).invalid()
 })

@@ -1,16 +1,16 @@
 import { StringSchema } from '../../src'
-import { testArray, testBoolean, testLiteralBoolean, testLiteralNumber, testLiteralString, testNull, testNumber, testString, testUndefined } from './shared'
+import * as t from './shared'
 
 describe('Schema: StringSchema', () => {
   const schema = StringSchema.create()
 
-  testArray(schema).invalid()
-  testBoolean(schema).invalid()
-  testLiteralString(schema).valid()
-  testLiteralNumber(schema).invalid()
-  testLiteralBoolean(schema).invalid()
-  testNull(schema).invalid()
-  testNumber(schema).invalid()
-  testString(schema).valid()
-  testUndefined(schema).invalid()
+  t.testArray(schema).invalid()
+  t.testBoolean(schema).invalid()
+  t.testLiteralString(schema).valid()
+  t.testLiteralNumber(schema).invalid()
+  t.testLiteralBoolean(schema).invalid()
+  t.testNull(schema).invalid()
+  t.testNumber(schema).invalid()
+  t.testString(schema).valid()
+  t.testUndefined(schema).invalid()
 })

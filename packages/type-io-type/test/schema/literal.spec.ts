@@ -1,14 +1,16 @@
 import { LiteralSchema } from '../../src'
-import { testArray, testBoolean, testLiteralString, testNull, testNumber, testString, testUndefined } from './shared'
+import * as t from './shared'
 
 describe('Schema: ArraySchema', () => {
   const schema = LiteralSchema.create('literal')
 
-  testArray(schema).invalid()
-  testBoolean(schema).invalid()
-  testLiteralString(schema).valid()
-  testNull(schema).invalid()
-  testNumber(schema).invalid()
-  testString(schema).invalid()
-  testUndefined(schema).invalid()
+  t.testArray(schema).invalid()
+  t.testBoolean(schema).invalid()
+  t.testLiteralString(schema).valid()
+  t.testLiteralNumber(schema).invalid()
+  t.testLiteralBoolean(schema).invalid()
+  t.testNull(schema).invalid()
+  t.testNumber(schema).invalid()
+  t.testString(schema).invalid()
+  t.testUndefined(schema).invalid()
 })
