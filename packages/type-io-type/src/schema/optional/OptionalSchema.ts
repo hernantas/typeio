@@ -6,7 +6,7 @@ export class OptionalSchema<T extends AnySchema> extends BaseSchema<TypeOf<T> | 
     return new OptionalSchema({ type })
   }
 
-  parse (input: unknown): TypeOf<T> | undefined {
-    return input !== undefined ? this.definition.type.parse(input) : undefined
+  is (input: unknown): input is TypeOf<T> | undefined {
+    return this.definition.type.is(input) || input === undefined
   }
 }

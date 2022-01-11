@@ -5,7 +5,7 @@ export class UnknownSchema extends BaseSchema<unknown> {
     return new UnknownSchema({})
   }
 
-  parse (input: unknown): unknown {
-    return input
+  is (_input: unknown): _input is unknown {
+    return true
   }
 }

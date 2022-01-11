@@ -5,10 +5,7 @@ export class StringSchema extends BaseSchema<string> {
     return new StringSchema({})
   }
 
-  parse (input: unknown): string {
-    if (typeof input !== 'string') {
-      throw new Error('Input is not a string')
-    }
-    return input
+  is (input: unknown): input is string {
+    return typeof input === 'string'
   }
 }

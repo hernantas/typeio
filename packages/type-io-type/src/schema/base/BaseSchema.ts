@@ -1,5 +1,5 @@
-import { BaseSchemaDefinition } from './BaseSchemaDefinition'
 import { ConstructorType } from '../../alias'
+import { BaseSchemaDefinition } from './BaseSchemaDefinition'
 
 export abstract class BaseSchema<T, D extends BaseSchemaDefinition = BaseSchemaDefinition> {
   /**
@@ -13,7 +13,14 @@ export abstract class BaseSchema<T, D extends BaseSchemaDefinition = BaseSchemaD
     this.definition = definition
   }
 
-  abstract parse (input: unknown): T
+  abstract is (input: unknown): input is T
+
+  parse (input: unknown): T {
+    if (this.is(input)) {
+      return input
+    }
+    throw new Error('Parse error')
+  }
 
   async parseAsync (input: unknown): Promise<T> {
     return this.parse(input)

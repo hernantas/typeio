@@ -11,11 +11,19 @@ export class TupleSchema<T extends TupleSchemaType> extends BaseSchema<TypeOfMap
     return this.definition.items
   }
 
-  parse (input: unknown): TypeOfMap<T> {
-    if (!Array.isArray(input)) {
-      throw new Error('Input is not an array')
-    }
+  is (input: unknown): input is TypeOfMap<T> {
+    return Array.isArray(input) && this
+      .definition
+      .items
+      .map((schema, index) => schema.is(input[index]))
+      .filter(b => !b)
+      .length === 0
+  }
 
+  override parse (input: unknown): TypeOfMap<T> {
+    if (!Array.isArray(input)) {
+      throw new Error('Parse error')
+    }
     return this
       .definition
       .items

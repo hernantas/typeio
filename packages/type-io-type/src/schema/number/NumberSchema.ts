@@ -5,10 +5,7 @@ export class NumberSchema extends BaseSchema<number> {
     return new NumberSchema({})
   }
 
-  parse (input: unknown): number {
-    if (typeof input !== 'number') {
-      throw new Error('Input is not a number')
-    }
-    return input
+  is (input: unknown): input is number {
+    return typeof input === 'number'
   }
 }

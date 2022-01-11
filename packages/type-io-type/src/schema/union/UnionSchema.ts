@@ -12,13 +12,10 @@ export class UnionSchema<T extends UnionSchemaType> extends BaseSchema<UnionMap<
     return this.definition.items
   }
 
-  parse (input: unknown): UnionMap<TypeOfMap<T>> {
-    for (let i = 0; i < this.definition.items.length; i++) {
-      try {
-        return this.definition.items[i]?.parse(input) as TypeOfMap<T>[typeof i]
-      } catch (err) {}
+  is (input: unknown): input is UnionMap<TypeOfMap<T>> {
+    for (const schema of this.definition.items) {
+      if (schema.is(input)) return true
     }
-
-    throw new Error(`No parser can parse the value, only "${this.definition.items.join('|')}" can be parsed`)
+    return false
   }
 }

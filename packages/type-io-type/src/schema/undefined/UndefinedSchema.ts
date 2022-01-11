@@ -5,10 +5,7 @@ export class UndefinedSchema extends BaseSchema<undefined> {
     return new UndefinedSchema({})
   }
 
-  parse (input: unknown): undefined {
-    if (input !== undefined) {
-      throw new Error('Cannot parse input that\'s not undefined')
-    }
-    return undefined
+  is (input: unknown): input is undefined {
+    return typeof input === 'undefined'
   }
 }

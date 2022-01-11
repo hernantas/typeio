@@ -10,10 +10,7 @@ export class ArraySchema<T extends AnySchema> extends BaseSchema<Array<TypeOf<T>
     return this.definition.type
   }
 
-  parse (input: unknown): Array<TypeOf<T>> {
-    if (!Array.isArray(input)) {
-      throw new Error('Input type must be an array')
-    }
-    return input.map(val => this.definition.type.parse(val))
+  is (input: unknown): input is Array<TypeOf<T>> {
+    return Array.isArray(input) && input.map(v => this.definition.type.is(v)).length === input.length
   }
 }

@@ -5,10 +5,7 @@ export class BooleanSchema extends BaseSchema<boolean> {
     return new BooleanSchema({})
   }
 
-  parse (input: unknown): boolean {
-    if (typeof input !== 'boolean') {
-      throw new Error('Input is not a boolean')
-    }
-    return input
+  is (input: unknown): input is boolean {
+    return typeof input === 'boolean'
   }
 }

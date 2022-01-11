@@ -7,10 +7,7 @@ export class LiteralSchema<T extends LiteralType> extends BaseSchema<T, LiteralS
     return new LiteralSchema({ value })
   }
 
-  parse (input: unknown): T {
-    if (input !== this.definition.value) {
-      throw new Error(`Literal value is not equal "${this.definition.value.toString()}"`)
-    }
-    return this.definition.value
+  is (input: unknown): input is T {
+    return input === this.definition.value
   }
 }

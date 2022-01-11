@@ -8,11 +8,11 @@ export class IntersectSchema<T extends IntersectSchemaType> extends BaseSchema<I
     return new IntersectSchema({ items })
   }
 
-  parse (_input: unknown): IntersectMap<TypeOfMap<T>> {
-    throw new Error('Method not implemented.')
-  }
-
   get items (): T {
     return this.definition.items
+  }
+
+  is (input: unknown): input is IntersectMap<TypeOfMap<T>> {
+    throw new Error('Method not implemented.')
   }
 }
