@@ -25,8 +25,7 @@ function createTest (
   }
 }
 
-export function testArray (schema: AnySchema): TestOption {
-  const label = 'Parse array'
+export function testArray (schema: AnySchema, label = 'Parse array'): TestOption {
   const values = [
     [],
     ['First', 'Second', 'Third'],
@@ -39,8 +38,7 @@ export function testArray (schema: AnySchema): TestOption {
   }
 }
 
-export function testBoolean (schema: AnySchema): TestOption {
-  const label = 'Parse boolean'
+export function testBoolean (schema: AnySchema, label = 'Parse boolean'): TestOption {
   const values = [true, false]
   return {
     valid: () => it(label, () => createTest(schema, values)),
@@ -48,24 +46,21 @@ export function testBoolean (schema: AnySchema): TestOption {
   }
 }
 
-export function testLiteralString (schema: AnySchema): TestOption {
-  const label = 'Parse literal (string)'
+export function testLiteralString (schema: AnySchema, label = 'Parse literal (string)'): TestOption {
   const values = ['literal']
   return {
     valid: () => it(label, () => createTest(schema, values)),
     invalid: () => it(label, () => createTest(schema, values, 'THROW'))
   }
 }
-export function testLiteralNumber (schema: AnySchema): TestOption {
-  const label = 'Parse literal (number)'
+export function testLiteralNumber (schema: AnySchema, label = 'Parse literal (number)'): TestOption {
   const values = [0]
   return {
     valid: () => it(label, () => createTest(schema, values)),
     invalid: () => it(label, () => createTest(schema, values, 'THROW'))
   }
 }
-export function testLiteralBoolean (schema: AnySchema): TestOption {
-  const label = 'Parse literal (boolean)'
+export function testLiteralBoolean (schema: AnySchema, label = 'Parse literal (boolean)'): TestOption {
   const values = [true]
   return {
     valid: () => it(label, () => createTest(schema, values)),
@@ -73,16 +68,14 @@ export function testLiteralBoolean (schema: AnySchema): TestOption {
   }
 }
 
-export function testNull (schema: AnySchema): TestOption {
-  const label = 'Parse null'
+export function testNull (schema: AnySchema, label = 'Parse null'): TestOption {
   return {
     valid: () => it(label, () => createTest(schema, [null])),
     invalid: () => it(label, () => createTest(schema, [null], 'THROW'))
   }
 }
 
-export function testNumber (schema: AnySchema): TestOption {
-  const label = 'Parse number'
+export function testNumber (schema: AnySchema, label = 'Parse number'): TestOption {
   const values = [0, 80, 8080]
   return {
     valid: () => it(label, () => createTest(schema, values)),
@@ -90,8 +83,7 @@ export function testNumber (schema: AnySchema): TestOption {
   }
 }
 
-export function testString (schema: AnySchema): TestOption {
-  const label = 'Parse string'
+export function testString (schema: AnySchema, label = 'Parse string'): TestOption {
   const values = ['', 'String', '0', 'true', 'false', 'null', 'undefined']
   return {
     valid: () => it(label, () => createTest(schema, values)),
@@ -99,8 +91,7 @@ export function testString (schema: AnySchema): TestOption {
   }
 }
 
-export function testUndefined (schema: AnySchema): TestOption {
-  const label = 'Parse undefined'
+export function testUndefined (schema: AnySchema, label = 'Parse undefined'): TestOption {
   return {
     valid: () => it(label, () => createTest(schema, [undefined])),
     invalid: () => it(label, () => createTest(schema, [undefined], 'THROW'))
