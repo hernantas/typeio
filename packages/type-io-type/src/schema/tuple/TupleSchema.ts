@@ -16,10 +16,6 @@ export class TupleSchema<T extends TupleSchemaType> extends BaseSchema<TypeOfMap
       throw new Error('Input is not an array')
     }
 
-    if (input.length !== this.definition.items.length) {
-      throw new Error(`Input array do not have "${this.definition.items.length}" length`)
-    }
-
     return this
       .definition
       .items

@@ -10,11 +10,11 @@ export function createTest<T> (
   schema: AnySchema,
   label: string,
   values: T[],
-  fn: (test: Chai.Assertion, value: T) => void = (e, v) => e.to.be.equal(v),
+  fn: (test: Chai.Assertion, value: T, values: T[]) => void = (e, v) => e.to.be.equal(v),
   fnInvalid: (value: T) => void = v => expect(() => schema.parse(v)).to.throw()
 ): TestOption {
   return {
-    valid: () => it(label, () => values.forEach(value => fn(expect(schema.parse(value)), value))),
+    valid: () => it(label, () => values.forEach(value => fn(expect(schema.parse(value)), value, values))),
     invalid: () => it(label, () => values.forEach(value => fnInvalid(value)))
   }
 }
@@ -134,6 +134,18 @@ export function testString (schema: AnySchema, label = 'Parse string'): TestOpti
     schema,
     label,
     ['', 'String', '0', 'true', 'false', 'null', 'undefined']
+  )
+}
+
+export function testTuple (schema: AnySchema, label = 'Parse tuple'): TestOption {
+  return createTest(
+    schema,
+    label,
+    [
+      ['First', 'Second', 0, 80, true, false],
+      ['First', 'Second', 0, 80, true, false, 'THIS IS EXCESS VALUE']
+    ],
+    (e, _v, vs) => e.to.be.deep.equal(vs[0])
   )
 }
 
