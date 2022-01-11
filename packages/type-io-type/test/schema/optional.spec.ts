@@ -1,7 +1,7 @@
 import { OptionalSchema, StringSchema } from '../../src'
 import * as t from './shared'
 
-describe('Schema: StringSchema', () => {
+describe('Schema: OptionalSchema', () => {
   const schema = OptionalSchema.create(StringSchema.create())
 
   t.testArray(schema).invalid()
