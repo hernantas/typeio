@@ -1,12 +1,12 @@
-import { NumberSchema } from '../../src'
+import { ArraySchema, StringSchema } from '../../src'
 import { testArray, testBoolean, testNull, testNumber, testString, testUndefined } from './shared'
 
-describe('Schema: NumberSchema', () => {
-  const schema = NumberSchema.create()
+describe('Schema: ArraySchema', () => {
+  const schema = ArraySchema.create(StringSchema.create())
 
-  testArray(schema).invalid()
+  testArray(schema).valid()
   testString(schema).invalid()
-  testNumber(schema).valid()
+  testNumber(schema).invalid()
   testBoolean(schema).invalid()
   testNull(schema).invalid()
   testUndefined(schema).invalid()

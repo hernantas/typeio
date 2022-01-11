@@ -25,6 +25,20 @@ function createTest (
   }
 }
 
+export function testArray (schema: AnySchema): TestOption {
+  const label = 'Parse array'
+  const values = [
+    [],
+    ['First', 'Second', 'Third'],
+    ['true', 'true', 'false'],
+    ['0', '80', '8080']
+  ]
+  return {
+    valid: () => it(label, () => createTest(schema, values, 'DEEP_EQUAL')),
+    invalid: () => it(label, () => createTest(schema, values, 'THROW'))
+  }
+}
+
 export function testString (schema: AnySchema): TestOption {
   const label = 'Parse string'
   const values = ['', 'String', '0', 'true', 'false', 'null', 'undefined']
