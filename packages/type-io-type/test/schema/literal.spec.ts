@@ -1,7 +1,7 @@
 import { LiteralSchema } from '../../src'
 import * as t from './shared'
 
-describe('Schema: ArraySchema', () => {
+describe('Schema: LiteralSchema', () => {
   const schema = LiteralSchema.create('literal')
 
   t.testArray(schema).invalid()
