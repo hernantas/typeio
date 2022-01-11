@@ -1,10 +1,10 @@
 import { BaseSchema, TypeOfMap } from '../base'
-import { TupleSchemaType } from '../tuple'
 import { IntersectMap } from './IntersectMap'
 import { IntersectSchemaDefinition } from './IntersectSchemaDefinition'
+import { IntersectSchemaType } from './IntersectSchemaType'
 
-export class IntersectSchema<T extends TupleSchemaType> extends BaseSchema<IntersectMap<TypeOfMap<T>>, IntersectSchemaDefinition<T>> {
-  static create <T extends TupleSchemaType> (items: T): IntersectSchema<T> {
+export class IntersectSchema<T extends IntersectSchemaType> extends BaseSchema<IntersectMap<TypeOfMap<T>>, IntersectSchemaDefinition<T>> {
+  static create <T extends IntersectSchemaType> (items: T): IntersectSchema<T> {
     return new IntersectSchema({ items })
   }
 
