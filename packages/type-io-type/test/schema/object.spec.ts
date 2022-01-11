@@ -24,6 +24,7 @@ describe('Schema: ObjectSchema', () => {
     t.testNull(base).invalid()
     t.testNumber(base).invalid()
     t.testObject(base).valid()
+    // t.testDeepObject(base).invalid()
     t.testString(base).invalid()
     t.testUndefined(base).invalid()
   })

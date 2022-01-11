@@ -6,147 +6,141 @@ interface TestOption {
   invalid: () => void
 }
 
-type TestMode =
-  | 'EQUAL'
-  | 'THROW'
-  | 'DEEP_EQUAL'
-
-function createTest (
+export function createTest<T> (
   schema: AnySchema,
-  values: unknown[],
-  mode: TestMode = 'EQUAL'
-): void {
-  for (const value of values) {
-    switch (mode) {
-      case 'EQUAL': expect(schema.parse(value)).to.be.equal(value); break
-      case 'DEEP_EQUAL': expect(schema.parse(value)).to.be.deep.equal(value); break
-      case 'THROW': expect(() => schema.parse(value)).to.throw(); break
-    }
+  label: string,
+  values: T[],
+  fn: (test: Chai.Assertion, value: T) => void = (e, v) => e.to.be.equal(v),
+  fnInvalid: (value: T) => void = v => expect(() => schema.parse(v)).to.throw()
+): TestOption {
+  return {
+    valid: () => it(label, () => values.forEach(value => fn(expect(schema.parse(value)), value))),
+    invalid: () => it(label, () => values.forEach(value => fnInvalid(value)))
   }
 }
 
 export function testArray (schema: AnySchema, label = 'Parse array'): TestOption {
-  const values = [
-    [],
-    ['First', 'Second', 'Third'],
-    ['true', 'true', 'false'],
-    ['0', '80', '8080']
-  ]
-  return {
-    valid: () => it(label, () => createTest(schema, values, 'DEEP_EQUAL')),
-    invalid: () => it(label, () => createTest(schema, values, 'THROW'))
-  }
+  return createTest(
+    schema,
+    label,
+    [
+      [],
+      ['First', 'Second', 'Third'],
+      ['true', 'true', 'false'],
+      ['0', '80', '8080']
+    ],
+    (e, v) => e.to.be.deep.equal(v)
+  )
 }
 
 export function testBoolean (schema: AnySchema, label = 'Parse boolean'): TestOption {
-  const values = [true, false]
-  return {
-    valid: () => it(label, () => createTest(schema, values)),
-    invalid: () => it(label, () => createTest(schema, values, 'THROW'))
-  }
+  return createTest(
+    schema,
+    label,
+    [true, false]
+  )
 }
 
 export function testLiteralString (schema: AnySchema, label = 'Parse literal (string)'): TestOption {
-  const values = ['literal']
-  return {
-    valid: () => it(label, () => createTest(schema, values)),
-    invalid: () => it(label, () => createTest(schema, values, 'THROW'))
-  }
+  return createTest(
+    schema,
+    label,
+    ['literal']
+  )
 }
 export function testLiteralNumber (schema: AnySchema, label = 'Parse literal (number)'): TestOption {
-  const values = [0]
-  return {
-    valid: () => it(label, () => createTest(schema, values)),
-    invalid: () => it(label, () => createTest(schema, values, 'THROW'))
-  }
+  return createTest(
+    schema,
+    label,
+    [0]
+  )
 }
 export function testLiteralBoolean (schema: AnySchema, label = 'Parse literal (boolean)'): TestOption {
-  const values = [true]
-  return {
-    valid: () => it(label, () => createTest(schema, values)),
-    invalid: () => it(label, () => createTest(schema, values, 'THROW'))
-  }
+  return createTest(
+    schema,
+    label,
+    [true]
+  )
 }
 
 export function testNull (schema: AnySchema, label = 'Parse null'): TestOption {
-  return {
-    valid: () => it(label, () => createTest(schema, [null])),
-    invalid: () => it(label, () => createTest(schema, [null], 'THROW'))
-  }
+  return createTest(
+    schema,
+    label,
+    [null]
+  )
 }
 
 export function testNumber (schema: AnySchema, label = 'Parse number'): TestOption {
-  const values = [0, 80, 8080]
-  return {
-    valid: () => it(label, () => createTest(schema, values)),
-    invalid: () => it(label, () => createTest(schema, values, 'THROW'))
-  }
+  return createTest(
+    schema,
+    label,
+    [0, 80, 8080]
+  )
 }
 
 export function testObject (schema: AnySchema, label = 'Parse object'): TestOption {
-  const values = [
-    {
-      _string: '',
-      _number: 0,
-      _boolean: false
-    },
-    {
-      _string: '',
-      _number: 0,
-      _boolean: false,
-      _excess: 'THIS IS EXCESS PROPERTY'
-    }
-  ]
-  return {
-    valid: () => it(label, () => {
-      for (const value of values) {
-        const parsed = schema.parse(value)
-        expect(parsed).to.have.property('_string', value._string)
-        expect(parsed).to.have.property('_number', value._number)
-        expect(parsed).to.have.property('_boolean', value._boolean)
-        expect(parsed).to.not.have.property('_excess')
+  return createTest(
+    schema,
+    label,
+    [
+      {
+        _string: '',
+        _number: 0,
+        _boolean: false
+      },
+      {
+        _string: '',
+        _number: 0,
+        _boolean: false,
+        _excess: 'THIS IS EXCESS PROPERTY'
       }
-    }),
-    invalid: () => it(label, () => createTest(schema, values, 'THROW'))
-  }
+    ],
+    (e, v) => {
+      e.to.have.property('_string', v._string)
+      e.to.have.property('_number', v._number)
+      e.to.have.property('_boolean', v._boolean)
+    }
+  )
 }
 
 export function testDeepObject (schema: AnySchema, label = 'Parse deep object'): TestOption {
-  const value = {
-    _string: '',
-    _number: 0,
-    _boolean: false,
-    _nested: {
+  return createTest(
+    schema,
+    label,
+    [{
       _string: '',
       _number: 0,
-      _boolean: false
+      _boolean: false,
+      _nested: {
+        _string: '',
+        _number: 0,
+        _boolean: false
+      }
+    }],
+    (e, v) => {
+      e.to.have.property('_string', v._string)
+      e.to.have.property('_number', v._number)
+      e.to.have.property('_boolean', v._boolean)
+      e.to.have.nested.property('_nested._string', v._nested._string)
+      e.to.have.nested.property('_nested._number', v._nested._number)
+      e.to.have.nested.property('_nested._boolean', v._nested._boolean)
     }
-  }
-  return {
-    valid: () => it(label, () => {
-      const parsed = schema.parse(value)
-      expect(parsed).to.have.property('_string', value._string)
-      expect(parsed).to.have.property('_number', value._number)
-      expect(parsed).to.have.property('_boolean', value._boolean)
-      expect(parsed).to.have.nested.property('_nested._string', value._nested._string)
-      expect(parsed).to.have.nested.property('_nested._number', value._nested._number)
-      expect(parsed).to.have.nested.property('_nested._boolean', value._nested._boolean)
-    }),
-    invalid: () => it(label, () => createTest(schema, [value], 'THROW'))
-  }
+  )
 }
 
 export function testString (schema: AnySchema, label = 'Parse string'): TestOption {
-  const values = ['', 'String', '0', 'true', 'false', 'null', 'undefined']
-  return {
-    valid: () => it(label, () => createTest(schema, values)),
-    invalid: () => it(label, () => createTest(schema, values, 'THROW'))
-  }
+  return createTest(
+    schema,
+    label,
+    ['', 'String', '0', 'true', 'false', 'null', 'undefined']
+  )
 }
 
 export function testUndefined (schema: AnySchema, label = 'Parse undefined'): TestOption {
-  return {
-    valid: () => it(label, () => createTest(schema, [undefined])),
-    invalid: () => it(label, () => createTest(schema, [undefined], 'THROW'))
-  }
+  return createTest(
+    schema,
+    label,
+    [undefined]
+  )
 }
