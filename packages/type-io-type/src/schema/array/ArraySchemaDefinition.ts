@@ -1,6 +1,6 @@
-import { AnySchema, BaseSchemaDefinition } from '../base'
+import { AnySchema, BaseSchemaDefinition, TypeOf } from '../base'
 
-export interface ArraySchemaDefinition<T extends AnySchema> extends BaseSchemaDefinition {
+export interface ArraySchemaDefinition<T extends AnySchema> extends BaseSchemaDefinition<Array<TypeOf<T>>> {
   /**
    * Inner type
    */

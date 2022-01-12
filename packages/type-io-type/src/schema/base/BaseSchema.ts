@@ -1,7 +1,11 @@
 import { ConstructorType } from '../../alias'
 import { BaseSchemaDefinition } from './BaseSchemaDefinition'
+import { ValidationCheck } from './ValidationCheck'
+import { ValidationError } from './ValidationError'
+import { ValidationFunction } from './ValidationFunction'
+import { ValidationFunctionError } from './ValidationFunctionError'
 
-export abstract class BaseSchema<T, D extends BaseSchemaDefinition = BaseSchemaDefinition> {
+export abstract class BaseSchema<T, D extends BaseSchemaDefinition<T> = BaseSchemaDefinition<T>> {
   /**
    * Ignore this. Used to prevent typescript infer the type to `unknown`
    */
@@ -11,6 +15,10 @@ export abstract class BaseSchema<T, D extends BaseSchemaDefinition = BaseSchemaD
 
   constructor (definition: D) {
     this.definition = definition
+  }
+
+  get checks (): Array<ValidationCheck<T>> {
+    return this.definition.checks ?? []
   }
 
   abstract is (input: unknown): input is T
@@ -26,9 +34,44 @@ export abstract class BaseSchema<T, D extends BaseSchemaDefinition = BaseSchemaD
     return this.parse(input)
   }
 
+  validate (input: T): ValidationError[] {
+    return this.checks.filter(c => !c.check(input)).map(c => {
+      const error: ValidationError = {
+        kind: c.kind,
+        message: c.message
+      }
+      return error
+    })
+  }
+
   assemble (definition: D): this {
     const Constructor = this.constructor as ConstructorType<this>
-    return new Constructor(definition)
+    return new Constructor({ ...definition })
+  }
+
+  /**
+   * Add validation check
+   *
+   * @param check Callback function to validate the value
+   * @param error Optional message to be included when validation failed
+   * @returns A new instance with additional check
+   */
+  check (check: ValidationFunction<T>, error?: string | ValidationFunctionError): this {
+    const newCheck: ValidationCheck<T> = typeof error === 'string'
+      ? {
+          check,
+          kind: 'VALIDATION_ERROR',
+          message: error
+        }
+      : {
+          check,
+          kind: (error !== undefined ? error.kind : 'VALIDATION_ERROR'),
+          message: error?.message
+        }
+    return this.assemble({
+      ...this.definition,
+      checks: this.checks.concat(newCheck)
+    })
   }
 
   label (value: string): this {
