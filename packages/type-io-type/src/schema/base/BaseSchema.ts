@@ -44,7 +44,7 @@ export abstract class BaseSchema<T, D extends BaseSchemaDefinition<T> = BaseSche
     })
   }
 
-  assemble (definition: D): this {
+  newInstance (definition: D): this {
     const Constructor = this.constructor as ConstructorType<this>
     return new Constructor({ ...definition })
   }
@@ -68,14 +68,14 @@ export abstract class BaseSchema<T, D extends BaseSchemaDefinition<T> = BaseSche
           kind: (error !== undefined ? error.kind : 'VALIDATION_ERROR'),
           message: error?.message
         }
-    return this.assemble({
+    return this.newInstance({
       ...this.definition,
       checks: this.checks.concat(newCheck)
     })
   }
 
   label (value: string): this {
-    return this.assemble({
+    return this.newInstance({
       ...this.definition,
       label: value
     })
