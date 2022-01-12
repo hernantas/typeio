@@ -13,4 +13,16 @@ export class ArraySchema<T extends AnySchema> extends BaseSchema<Array<TypeOf<T>
   is (input: unknown): input is Array<TypeOf<T>> {
     return Array.isArray(input) && input.map(v => this.definition.type.is(v)).length === input.length
   }
+
+  min (value: number): this {
+    return this.check(v => v.length >= value, { kind: 'ARRAY_LENGTH_MIN' })
+  }
+
+  max (value: number): this {
+    return this.check(v => v.length <= value, { kind: 'ARRAY_LENGTH_MAX' })
+  }
+
+  length (value: number): this {
+    return this.check(v => v.length === value, { kind: 'ARRAY_LENGTH' })
+  }
 }
