@@ -46,7 +46,7 @@ export abstract class BaseSchema<T, D extends BaseSchemaDefinition<T> = BaseSche
 
   newInstance (definition: D): this {
     const Constructor = this.constructor as ConstructorType<this>
-    return new Constructor({ ...definition })
+    return new Constructor(definition)
   }
 
   /**
