@@ -10,26 +10,26 @@ export class NumberSchema extends BaseSchema<number> {
   }
 
   min (value: number): this {
-    return this.check(v => v >= value, { kind: 'NUMBER_MIN' })
+    return this.addRule(v => v >= value, { kind: 'NUMBER_MIN' })
   }
 
   max (value: number): this {
-    return this.check(v => v <= value, { kind: 'NUMBER_MAX' })
+    return this.addRule(v => v <= value, { kind: 'NUMBER_MAX' })
   }
 
   greater (value: number): this {
-    return this.check(v => v > value, { kind: 'NUMBER_GREATER' })
+    return this.addRule(v => v > value, { kind: 'NUMBER_GREATER' })
   }
 
   less (value: number): this {
-    return this.check(v => v < value, { kind: 'NUMBER_LESS' })
+    return this.addRule(v => v < value, { kind: 'NUMBER_LESS' })
   }
 
   positive (): this {
-    return this.check(v => v > 0, { kind: 'NUMBER_POSITIVE' })
+    return this.addRule(v => v > 0, { kind: 'NUMBER_POSITIVE' })
   }
 
   negative (): this {
-    return this.check(v => v < 0, { kind: 'NUMBER_NEGATIVE' })
+    return this.addRule(v => v < 0, { kind: 'NUMBER_NEGATIVE' })
   }
 }

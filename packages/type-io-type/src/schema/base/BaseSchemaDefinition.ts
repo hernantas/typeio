@@ -6,5 +6,5 @@ export interface BaseSchemaDefinition<T> {
    */
   label?: string
 
-  checks?: Array<ValidationRule<T>>
+  rules?: Array<ValidationRule<T>>
 }

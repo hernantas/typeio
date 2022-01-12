@@ -17,8 +17,8 @@ export abstract class BaseSchema<T, D extends BaseSchemaDefinition<T> = BaseSche
     this.definition = definition
   }
 
-  get checks (): Array<ValidationRule<T>> {
-    return this.definition.checks ?? []
+  get rules (): Array<ValidationRule<T>> {
+    return this.definition.rules ?? []
   }
 
   abstract is (input: unknown): input is T
@@ -35,7 +35,7 @@ export abstract class BaseSchema<T, D extends BaseSchemaDefinition<T> = BaseSche
   }
 
   validate (input: T): ValidationError[] {
-    return this.checks.filter(c => !c.validate(input)).map(c => {
+    return this.rules.filter(c => !c.validate(input)).map(c => {
       const error: ValidationError = {
         kind: c.kind,
         message: c.message
@@ -50,27 +50,26 @@ export abstract class BaseSchema<T, D extends BaseSchemaDefinition<T> = BaseSche
   }
 
   /**
-   * Add validation check
+   * Add validation rule
    *
-   * @param check Callback function to validate the value
+   * @param validate Callback function to validate the value
    * @param error Optional message to be included when validation failed
-   * @returns A new instance with additional check
+   * @returns A new instance with additional rule
    */
-  check (check: ValidationFunction<T>, error?: string | ValidationFunctionError): this {
-    const newCheck: ValidationRule<T> = typeof error === 'string'
+  addRule (validate: ValidationFunction<T>, error?: string | ValidationFunctionError): this {
+    const funcError: ValidationFunctionError = (typeof error === 'string' || error === undefined)
       ? {
-          validate: check,
-          kind: 'VALIDATION_ERROR',
+          kind: 'VALIDATION',
           message: error
         }
-      : {
-          validate: check,
-          kind: (error !== undefined ? error.kind : 'VALIDATION_ERROR'),
-          message: error?.message
-        }
+      : error
     return this.newInstance({
       ...this.definition,
-      checks: this.checks.concat(newCheck)
+      rules: this.rules.concat({
+        validate,
+        kind: funcError.kind,
+        message: funcError.message
+      })
     })
   }
 
