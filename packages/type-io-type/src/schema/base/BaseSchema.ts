@@ -1,6 +1,6 @@
 import { ConstructorType } from '../../alias'
 import { BaseSchemaDefinition } from './BaseSchemaDefinition'
-import { ValidationCheck } from './ValidationCheck'
+import { ValidationRule } from './ValidationRule'
 import { ValidationError } from './ValidationError'
 import { ValidationFunction } from './ValidationFunction'
 import { ValidationFunctionError } from './ValidationFunctionError'
@@ -17,7 +17,7 @@ export abstract class BaseSchema<T, D extends BaseSchemaDefinition<T> = BaseSche
     this.definition = definition
   }
 
-  get checks (): Array<ValidationCheck<T>> {
+  get checks (): Array<ValidationRule<T>> {
     return this.definition.checks ?? []
   }
 
@@ -35,7 +35,7 @@ export abstract class BaseSchema<T, D extends BaseSchemaDefinition<T> = BaseSche
   }
 
   validate (input: T): ValidationError[] {
-    return this.checks.filter(c => !c.check(input)).map(c => {
+    return this.checks.filter(c => !c.validate(input)).map(c => {
       const error: ValidationError = {
         kind: c.kind,
         message: c.message
@@ -57,14 +57,14 @@ export abstract class BaseSchema<T, D extends BaseSchemaDefinition<T> = BaseSche
    * @returns A new instance with additional check
    */
   check (check: ValidationFunction<T>, error?: string | ValidationFunctionError): this {
-    const newCheck: ValidationCheck<T> = typeof error === 'string'
+    const newCheck: ValidationRule<T> = typeof error === 'string'
       ? {
-          check,
+          validate: check,
           kind: 'VALIDATION_ERROR',
           message: error
         }
       : {
-          check,
+          validate: check,
           kind: (error !== undefined ? error.kind : 'VALIDATION_ERROR'),
           message: error?.message
         }

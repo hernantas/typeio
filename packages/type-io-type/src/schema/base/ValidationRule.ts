@@ -1,7 +1,7 @@
 import { ValidationFunction } from './ValidationFunction'
 
-export interface ValidationCheck<T> {
-  check: ValidationFunction<T>
+export interface ValidationRule<T> {
+  validate: ValidationFunction<T>
   kind: string
   message?: string
 }

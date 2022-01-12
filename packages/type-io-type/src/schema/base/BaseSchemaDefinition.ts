@@ -1,4 +1,4 @@
-import { ValidationCheck } from './ValidationCheck'
+import { ValidationRule } from './ValidationRule'
 
 export interface BaseSchemaDefinition<T> {
   /**
@@ -6,5 +6,5 @@ export interface BaseSchemaDefinition<T> {
    */
   label?: string
 
-  checks?: Array<ValidationCheck<T>>
+  checks?: Array<ValidationRule<T>>
 }
