@@ -22,17 +22,6 @@ export abstract class BaseSchema<T, D extends BaseSchemaDefinition<T> = BaseSche
 
   abstract is (input: unknown): input is T
 
-  parse (input: unknown): T {
-    if (this.is(input)) {
-      return input
-    }
-    throw new Error('Parse error')
-  }
-
-  async parseAsync (input: unknown): Promise<T> {
-    return this.parse(input)
-  }
-
   validate (input: T): ValidationError[] {
     return this.rules.filter(c => !c.validate(input)).map(c => {
       const error: ValidationError = {

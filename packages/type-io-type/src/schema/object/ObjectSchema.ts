@@ -1,5 +1,4 @@
 import { BaseSchema } from '../base/BaseSchema'
-import { TypeOf } from '../base/TypeOf'
 import { TypeOfMap } from '../base/TypeOfMap'
 import { ObjectPropertyMap } from './ObjectPropertyMap'
 import { ObjectSchemaDefinition } from './ObjectSchemaDefinition'
@@ -27,22 +26,5 @@ export class ObjectSchema<T extends ObjectSchemaType> extends BaseSchema<TypeOfM
         })
         .filter(b => !b)
         .length === 0
-  }
-
-  override parse (input: unknown): TypeOfMap<T> {
-    if (typeof input !== 'object') {
-      throw new Error('Input type is not an object')
-    }
-
-    const result: Partial<TypeOfMap<T>> = {}
-    Object.keys(this.definition.properties)
-      .forEach(key => {
-        const tKey = key as keyof T
-        const schema = this.definition.properties[tKey]
-        if (schema !== undefined) {
-          result[tKey] = schema.parse((input as ObjectPropertyMap<T>)[tKey]) as TypeOf<this>[keyof T]
-        }
-      })
-    return result as TypeOfMap<T>
   }
 }

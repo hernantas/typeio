@@ -10,8 +10,4 @@ export class ConstructorSchema<T> extends BaseSchema<T, ConstructorSchemaDefinit
   is (input: unknown): input is T {
     return input instanceof this.definition.constructor
   }
-
-  override parse (_input: unknown): T {
-    throw new Error('Method not implemented.')
-  }
 }
