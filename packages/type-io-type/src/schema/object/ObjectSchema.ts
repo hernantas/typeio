@@ -15,7 +15,7 @@ export class ObjectSchema<T extends ObjectSchemaType> extends BaseSchema<TypeOfM
   }
 
   is (input: unknown): input is TypeOfMap<T> {
-    return typeof input !== 'object' &&
+    return typeof input === 'object' &&
       Object
         .keys(this.properties)
         .map(key => {
