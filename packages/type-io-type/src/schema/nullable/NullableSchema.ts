@@ -1,4 +1,6 @@
-import { AnySchema, BaseSchema, TypeOf } from '../base'
+import { AnySchema } from '../base/AnySchema'
+import { BaseSchema } from '../base/BaseSchema'
+import { TypeOf } from '../base/TypeOf'
 import { NullableSchemaDefinition } from './NullableSchemaDefinition'
 
 export class NullableSchema<T extends AnySchema> extends BaseSchema<TypeOf<T> | null, NullableSchemaDefinition<T>> {

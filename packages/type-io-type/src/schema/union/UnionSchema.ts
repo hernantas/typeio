@@ -1,4 +1,5 @@
-import { BaseSchema, TypeOfMap } from '../base'
+import { BaseSchema } from '../base/BaseSchema'
+import { TypeOfMap } from '../base/TypeOfMap'
 import { UnionMap } from './UnionMap'
 import { UnionSchemaDefinition } from './UnionSchemaDefinition'
 import { UnionSchemaType } from './UnionSchemaType'

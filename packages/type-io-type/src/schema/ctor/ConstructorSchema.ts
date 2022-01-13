@@ -1,5 +1,5 @@
-import { ConstructorType } from '../../alias'
-import { BaseSchema } from '../base'
+import { BaseSchema } from '../base/BaseSchema'
+import { ConstructorType } from '../../alias/ConstructorType'
 import { ConstructorSchemaDefinition } from './ConstructorSchemaDefinition'
 
 export class ConstructorSchema<T> extends BaseSchema<T, ConstructorSchemaDefinition<T>> {

@@ -1,9 +1,9 @@
-import { ConstructorType } from '../../alias'
+import { ConstructorType } from '../../alias/ConstructorType'
 import { BaseSchemaDefinition } from './BaseSchemaDefinition'
-import { ValidationRule } from './ValidationRule'
 import { ValidationError } from './ValidationError'
 import { ValidationFunction } from './ValidationFunction'
 import { ValidationFunctionError } from './ValidationFunctionError'
+import { ValidationRule } from './ValidationRule'
 
 export abstract class BaseSchema<T, D extends BaseSchemaDefinition<T> = BaseSchemaDefinition<T>> {
   /**

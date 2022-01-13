@@ -1,3 +1,3 @@
-import { UnionSchemaType } from '../union'
+import { UnionSchemaType } from '../union/UnionSchemaType'
 
 export type IntersectSchemaType = UnionSchemaType

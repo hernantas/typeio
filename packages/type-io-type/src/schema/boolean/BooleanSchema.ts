@@ -1,4 +1,4 @@
-import { BaseSchema } from '../base'
+import { BaseSchema } from '../base/BaseSchema'
 
 export class BooleanSchema extends BaseSchema<boolean> {
   static create (): BooleanSchema {

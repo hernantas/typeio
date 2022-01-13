@@ -1,4 +1,6 @@
-import { BaseSchema, TypeOf, TypeOfMap } from '../base'
+import { BaseSchema } from '../base/BaseSchema'
+import { TypeOf } from '../base/TypeOf'
+import { TypeOfMap } from '../base/TypeOfMap'
 import { ObjectPropertyMap } from './ObjectPropertyMap'
 import { ObjectSchemaDefinition } from './ObjectSchemaDefinition'
 import { ObjectSchemaType } from './ObjectSchemaType'

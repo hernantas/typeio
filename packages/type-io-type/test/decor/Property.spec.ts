@@ -1,5 +1,6 @@
 import { expect } from 'chai'
-import { ConstructorSchema, getMetadata, Property, StringSchema } from '../../src'
+import { ConstructorSchema, Property, StringSchema } from '../../src'
+import { getMetadata } from '../../src/decorator/metadata'
 
 class MyClass {
   @Property()

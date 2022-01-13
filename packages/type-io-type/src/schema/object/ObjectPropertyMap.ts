@@ -1,4 +1,4 @@
-import { ObjectType } from '../../alias'
+import { ObjectType } from '../../alias/ObjectType'
 
 /**
  * Map property of object with unknown value

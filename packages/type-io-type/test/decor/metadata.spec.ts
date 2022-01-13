@@ -1,5 +1,5 @@
 import { expect } from 'chai'
-import { getDesignType } from '../../src'
+import { getDesignType } from '../../src/decorator/metadata'
 
 function Prop (): PropertyDecorator {
   return () => {}

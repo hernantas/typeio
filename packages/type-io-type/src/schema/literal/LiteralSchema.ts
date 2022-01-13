@@ -1,5 +1,5 @@
-import { LiteralType } from '../../alias'
-import { BaseSchema } from '../base'
+import { LiteralType } from '../../alias/LiteralType'
+import { BaseSchema } from '../base/BaseSchema'
 import { LiteralSchemaDefinition } from './LiteralSchemaDefinition'
 
 export class LiteralSchema<T extends LiteralType> extends BaseSchema<T, LiteralSchemaDefinition<T>> {
