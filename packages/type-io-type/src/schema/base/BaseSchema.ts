@@ -2,7 +2,6 @@ import { ConstructorType } from '../../alias/ConstructorType'
 import { BaseSchemaDefinition } from './BaseSchemaDefinition'
 import { ValidationError } from './ValidationError'
 import { ValidationFunction } from './ValidationFunction'
-import { ValidationFunctionError } from './ValidationFunctionError'
 import { ValidationRule } from './ValidationRule'
 
 export abstract class BaseSchema<T, D extends BaseSchemaDefinition<T> = BaseSchemaDefinition<T>> {
@@ -56,8 +55,8 @@ export abstract class BaseSchema<T, D extends BaseSchemaDefinition<T> = BaseSche
    * @param error Optional message to be included when validation failed
    * @returns A new instance with additional rule
    */
-  addRule (validate: ValidationFunction<T>, error?: string | ValidationFunctionError): this {
-    const funcError: ValidationFunctionError = (typeof error === 'string' || error === undefined)
+  addRule (validate: ValidationFunction<T>, error?: string | ValidationError): this {
+    const funcError: ValidationError = (typeof error === 'string' || error === undefined)
       ? {
           kind: 'VALIDATION',
           message: error
