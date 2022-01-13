@@ -15,7 +15,7 @@ describe('Schema: ObjectSchema', () => {
     _nested: base
   })
 
-  describe('Object', () => {
+  describe('Simple Object Schema', () => {
     t.testArray(base).invalid()
     t.testBoolean(base).invalid()
     t.testLiteralString(base).invalid()
@@ -29,7 +29,7 @@ describe('Schema: ObjectSchema', () => {
     t.testUndefined(base).invalid()
   })
 
-  describe('Deep Object', () => {
+  describe('Nested Object Schema', () => {
     t.testArray(schema).invalid()
     t.testBoolean(schema).invalid()
     t.testLiteralString(schema).invalid()
