@@ -16,6 +16,7 @@ export class ObjectSchema<T extends ObjectSchemaType> extends BaseSchema<TypeOfM
 
   is (input: unknown): input is TypeOfMap<T> {
     return typeof input === 'object' &&
+      input !== null &&
       Object
         .keys(this.properties)
         .map(key => {
@@ -24,7 +25,7 @@ export class ObjectSchema<T extends ObjectSchemaType> extends BaseSchema<TypeOfM
           const schema = this.definition.properties[tKey]
           return schema !== undefined ? schema.is(tInput[tKey]) : false
         })
-        .filter(b => b)
+        .filter(b => !b)
         .length === 0
   }
 
