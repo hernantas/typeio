@@ -17,14 +17,14 @@ export class ArraySchema<T extends AnySchema> extends BaseSchema<Array<TypeOf<T>
   }
 
   min (value: number): this {
-    return this.addRule(v => v.length >= value, { kind: 'ARRAY_LENGTH_MIN' })
+    return this.check(v => v.length >= value, { kind: 'ARRAY_LENGTH_MIN' })
   }
 
   max (value: number): this {
-    return this.addRule(v => v.length <= value, { kind: 'ARRAY_LENGTH_MAX' })
+    return this.check(v => v.length <= value, { kind: 'ARRAY_LENGTH_MAX' })
   }
 
   length (value: number): this {
-    return this.addRule(v => v.length === value, { kind: 'ARRAY_LENGTH' })
+    return this.check(v => v.length === value, { kind: 'ARRAY_LENGTH' })
   }
 }

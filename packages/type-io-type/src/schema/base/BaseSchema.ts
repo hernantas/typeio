@@ -44,7 +44,7 @@ export abstract class BaseSchema<T, D extends BaseSchemaDefinition<T> = BaseSche
    * @param error Optional message to be included when validation failed
    * @returns A new instance with additional rule
    */
-  addRule (validate: ValidationFunction<T>, error?: string | ValidationError): this {
+  check (validate: ValidationFunction<T>, error?: string | ValidationError): this {
     const funcError: ValidationError = (typeof error === 'string' || error === undefined)
       ? {
           kind: 'VALIDATION',

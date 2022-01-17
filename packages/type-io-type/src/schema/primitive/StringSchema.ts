@@ -10,19 +10,19 @@ export class StringSchema extends BaseSchema<string> {
   }
 
   min (value: number): this {
-    return this.addRule(v => v.length >= value, { kind: 'STRING_MIN' })
+    return this.check(v => v.length >= value, { kind: 'STRING_MIN' })
   }
 
   max (value: number): this {
-    return this.addRule(v => v.length <= value, { kind: 'STRING_MAX' })
+    return this.check(v => v.length <= value, { kind: 'STRING_MAX' })
   }
 
   length (value: number): this {
-    return this.addRule(v => v.length === value, { kind: 'STRING_LENGTH' })
+    return this.check(v => v.length === value, { kind: 'STRING_LENGTH' })
   }
 
   pattern (pattern: RegExp): this {
-    return this.addRule(v => pattern.test(v), { kind: 'STRING_PATTERN' })
+    return this.check(v => pattern.test(v), { kind: 'STRING_PATTERN' })
   }
 
   alphanumeric (): this {
