@@ -1,5 +1,5 @@
 import { expect } from 'chai'
-import { ConstructorSchema, Property, StringSchema } from '../../src'
+import { TypeSchema, Property, StringSchema } from '../../src'
 import { getMetadata } from '../../src/decorator/metadata'
 
 class MyClass {
@@ -13,7 +13,7 @@ class MyClass {
 describe('Decorator: @Property', () => {
   it('Define property (default)', () => {
     const schema = getMetadata(MyClass, '_string')
-    expect(schema).to.be.instanceOf(ConstructorSchema)
+    expect(schema).to.be.instanceOf(TypeSchema)
   })
 
   it('Define property (defined)', () => {
