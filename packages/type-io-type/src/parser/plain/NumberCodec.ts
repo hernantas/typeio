@@ -4,7 +4,7 @@ import { Codec } from '../codec/Codec'
 export class NumberCodec implements Codec<number> {
   readonly type = NumberSchema
 
-  readonly base = NumberSchema.create()
+  readonly base = this.type.create()
 
   decode (value: unknown): number {
     if (this.base.is(value)) {

@@ -4,7 +4,7 @@ import { Codec } from '../codec/Codec'
 export class StringCodec implements Codec<string> {
   readonly type = StringSchema
 
-  readonly base = StringSchema.create()
+  readonly base = this.type.create()
 
   decode (value: unknown): string {
     if (this.base.is(value)) {
