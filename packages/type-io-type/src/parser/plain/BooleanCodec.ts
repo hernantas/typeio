@@ -2,12 +2,10 @@ import { BooleanSchema } from '../../schema/primitive/BooleanSchema'
 import { Codec } from '../codec/Codec'
 
 export class BooleanCodec implements Codec<boolean> {
-  readonly type = BooleanSchema
-
-  readonly base = this.type.create()
+  readonly schema = BooleanSchema.create()
 
   decode (value: unknown): boolean {
-    if (this.base.is(value)) {
+    if (this.schema.is(value)) {
       return value
     }
 

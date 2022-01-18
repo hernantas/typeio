@@ -1,4 +1,3 @@
-import { ConstructorType } from '../../alias/ConstructorType'
 import { BaseSchema } from '../../schema/base/BaseSchema'
 import { Decoder } from './Decoder'
 import { Encoder } from './Encoder'
@@ -7,5 +6,5 @@ export interface Codec<T = unknown, O = T, I = unknown> extends Decoder<T, I>, E
   /**
    * Supported schema type
    */
-  readonly type: ConstructorType<BaseSchema<T>>
+  readonly schema: BaseSchema<T>
 }

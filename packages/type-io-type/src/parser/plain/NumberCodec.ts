@@ -2,12 +2,10 @@ import { NumberSchema } from '../../schema/primitive/NumberSchema'
 import { Codec } from '../codec/Codec'
 
 export class NumberCodec implements Codec<number> {
-  readonly type = NumberSchema
-
-  readonly base = this.type.create()
+  readonly schema = NumberSchema.create()
 
   decode (value: unknown): number {
-    if (this.base.is(value)) {
+    if (this.schema.is(value)) {
       return value
     }
 
