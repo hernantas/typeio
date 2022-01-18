@@ -1,8 +1,14 @@
+import { expect } from 'chai'
 import { OptionalSchema, StringSchema } from '../../src'
 import * as t from './shared'
 
 describe('Schema: OptionalSchema', () => {
   const schema = OptionalSchema.create(StringSchema.create())
+
+  it('Name compare', () => {
+    const comparator = OptionalSchema.create(StringSchema.create())
+    expect(schema.name).to.be.equal(comparator.name)
+  })
 
   t.testArray(schema).invalid()
   t.testBoolean(schema).invalid()

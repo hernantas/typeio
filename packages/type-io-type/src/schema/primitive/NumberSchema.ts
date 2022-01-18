@@ -2,7 +2,7 @@ import { BaseSchema } from '../base/BaseSchema'
 
 export class NumberSchema extends BaseSchema<number> {
   static create (): NumberSchema {
-    return new NumberSchema({})
+    return new NumberSchema('number', {})
   }
 
   is (input: unknown): input is number {

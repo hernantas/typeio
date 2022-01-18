@@ -1,7 +1,18 @@
+import { expect } from 'chai'
 import { LiteralSchema } from '../../src'
 import * as t from './shared'
 
 describe('Schema: LiteralSchema', () => {
+  it('Name compare', () => {
+    const stringLiteral = LiteralSchema.create('literal')
+    const numberLiteral = LiteralSchema.create(0)
+    const booleanLiteral = LiteralSchema.create(true)
+
+    expect(stringLiteral.name).to.be.not.equal(numberLiteral.name)
+    expect(stringLiteral.name).to.be.not.equal(booleanLiteral.name)
+    expect(numberLiteral.name).to.be.not.equal(booleanLiteral.name)
+  })
+
   describe('Literal (string)', () => {
     const schema = LiteralSchema.create('literal')
     t.testArray(schema).invalid()

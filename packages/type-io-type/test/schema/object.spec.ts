@@ -1,3 +1,4 @@
+import { expect } from 'chai'
 import { BooleanSchema, NumberSchema, ObjectSchema, StringSchema } from '../../src'
 import * as t from './shared'
 
@@ -13,6 +14,11 @@ describe('Schema: ObjectSchema', () => {
     _number: NumberSchema.create(),
     _boolean: BooleanSchema.create(),
     _nested: base
+  })
+
+  it('Name compare', () => {
+    expect(base.name).to.be.not.equal(schema.name)
+    expect(base.name).to.be.equal(schema.properties._nested.name)
   })
 
   describe('Simple Object Schema', () => {

@@ -1,8 +1,14 @@
+import { expect } from 'chai'
 import { UndefinedSchema } from '../../src'
 import * as t from './shared'
 
 describe('Schema: UndefinedSchema', () => {
   const schema = UndefinedSchema.create()
+
+  it('Name compare', () => {
+    const comparator = UndefinedSchema.create()
+    expect(schema.name).to.be.equal(comparator.name)
+  })
 
   t.testArray(schema).invalid()
   t.testBoolean(schema).invalid()

@@ -1,3 +1,4 @@
+import { expect } from 'chai'
 import { BooleanSchema, NumberSchema, StringSchema, UnionSchema } from '../../src'
 import * as t from './shared'
 
@@ -7,6 +8,15 @@ describe('Schema: UnionSchema', () => {
     NumberSchema.create(),
     BooleanSchema.create()
   ])
+
+  it('Name compare', () => {
+    const comparator = UnionSchema.create([
+      StringSchema.create(),
+      NumberSchema.create(),
+      BooleanSchema.create()
+    ])
+    expect(schema.name).to.be.equal(comparator.name)
+  })
 
   t.testArray(schema).invalid()
   t.testBoolean(schema).valid()

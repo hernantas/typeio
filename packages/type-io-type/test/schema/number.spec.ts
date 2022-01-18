@@ -5,6 +5,11 @@ import * as t from './shared'
 describe('Schema: NumberSchema', () => {
   const schema = NumberSchema.create()
 
+  it('Name compare', () => {
+    const comparator = NumberSchema.create()
+    expect(schema.name).to.be.equal(comparator.name)
+  })
+
   t.testArray(schema).invalid()
   t.testBoolean(schema).invalid()
   t.testLiteralString(schema).invalid()

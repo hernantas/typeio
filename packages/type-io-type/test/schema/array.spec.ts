@@ -5,6 +5,11 @@ import * as t from './shared'
 describe('Schema: ArraySchema', () => {
   const schema = ArraySchema.create(StringSchema.create())
 
+  it('Name compare', () => {
+    const comparator = ArraySchema.create(StringSchema.create())
+    expect(schema.name).to.be.equal(comparator.name)
+  })
+
   t.testArray(schema).valid()
   t.testBoolean(schema).invalid()
   t.testLiteralString(schema).invalid()

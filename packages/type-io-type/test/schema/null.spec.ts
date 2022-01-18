@@ -1,8 +1,14 @@
+import { expect } from 'chai'
 import { NullSchema } from '../../src'
 import * as t from './shared'
 
 describe('Schema: NullSchema', () => {
   const schema = NullSchema.create()
+
+  it('Name compare', () => {
+    const comparator = NullSchema.create()
+    expect(schema.name).to.be.equal(comparator.name)
+  })
 
   t.testArray(schema).invalid()
   t.testBoolean(schema).invalid()
