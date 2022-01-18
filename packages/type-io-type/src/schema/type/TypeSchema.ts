@@ -4,10 +4,10 @@ import { TypeSchemaDefinition } from './TypeSchemaDefinition'
 
 export class TypeSchema<T> extends BaseSchema<T, TypeSchemaDefinition<T>> {
   static create <T> (constructor: ConstructorType<T>): TypeSchema<T> {
-    return new TypeSchema({ constructor })
+    return new TypeSchema({ type: constructor })
   }
 
   is (input: unknown): input is T {
-    return input instanceof this.definition.constructor
+    return input instanceof this.definition.type
   }
 }
