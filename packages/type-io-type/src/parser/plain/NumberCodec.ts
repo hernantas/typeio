@@ -10,7 +10,7 @@ export class NumberCodec implements Codec<number> {
     }
 
     const result = Number(value)
-    if (Number.isNaN(result)) {
+    if (!Number.isNaN(result)) {
       return result
     }
 
