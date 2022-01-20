@@ -1,1 +1,1 @@
-export type ValidationFunction<T> = (input: T) => boolean
+export type ValidationFunction<T = unknown> = (input: T) => boolean

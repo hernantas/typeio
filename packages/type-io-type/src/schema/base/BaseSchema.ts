@@ -4,7 +4,7 @@ import { ValidationError } from './ValidationError'
 import { ValidationFunction } from './ValidationFunction'
 import { ValidationRule } from './ValidationRule'
 
-export abstract class BaseSchema<T, D extends BaseSchemaDefinition<T> = BaseSchemaDefinition<T>> {
+export abstract class BaseSchema<T, D extends BaseSchemaDefinition = BaseSchemaDefinition> {
   /**
    * Ignore this. Used to prevent typescript infer the type to `unknown`
    */
@@ -22,17 +22,17 @@ export abstract class BaseSchema<T, D extends BaseSchemaDefinition<T> = BaseSche
     this.definition = definition
   }
 
-  get rules (): Array<ValidationRule<T>> {
+  get rules (): ValidationRule[] {
     return this.definition.rules ?? []
   }
 
   abstract is (input: unknown): input is T
 
   validate (input: T): ValidationError[] {
-    return this.rules.filter(c => !c.validate(input)).map(c => {
+    return this.rules.filter(r => !r.validate(input)).map(r => {
       const error: ValidationError = {
-        kind: c.kind,
-        message: c.message
+        kind: r.kind,
+        message: r.message
       }
       return error
     })
