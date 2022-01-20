@@ -1,6 +1,7 @@
 export * from './decorator/Property'
 export * from './parser/codec/AnyCodec'
 export * from './parser/codec/Codec'
+export * from './parser/codec/DefaultCodec'
 export * from './schema/array/ArraySchema'
 export * from './schema/array/ArraySchemaDefinition'
 export * from './schema/base/AnySchema'
