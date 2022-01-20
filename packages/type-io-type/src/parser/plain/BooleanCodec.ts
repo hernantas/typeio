@@ -1,7 +1,7 @@
 import { BooleanSchema } from '../../schema/primitive/BooleanSchema'
 import { Codec } from '../codec/Codec'
 
-export class BooleanCodec implements Codec<boolean> {
+export class BooleanCodec implements Codec<BooleanSchema> {
   readonly schema = BooleanSchema.create()
 
   decode (value: unknown): boolean {

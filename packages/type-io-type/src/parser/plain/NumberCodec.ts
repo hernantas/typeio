@@ -1,7 +1,7 @@
 import { NumberSchema } from '../../schema/primitive/NumberSchema'
 import { Codec } from '../codec/Codec'
 
-export class NumberCodec implements Codec<number> {
+export class NumberCodec implements Codec<NumberSchema> {
   readonly schema = NumberSchema.create()
 
   decode (value: unknown): number {
