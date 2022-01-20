@@ -1,10 +1,13 @@
-import { BaseSchema } from '../../schema/base/BaseSchema'
+import { AnySchema } from '../../schema/base/AnySchema'
+import { TypeOf } from '../../schema/base/TypeOf'
 import { Decoder } from './Decoder'
 import { Encoder } from './Encoder'
 
-export interface Codec<T = unknown, O = T, I = unknown> extends Decoder<T, I>, Encoder<T, O> {
+export interface Codec<T extends AnySchema = AnySchema, O = TypeOf<T>, I = unknown> extends
+  Decoder<TypeOf<T>, I>,
+  Encoder<TypeOf<T>, O> {
   /**
    * Supported schema type
    */
-  readonly schema: BaseSchema<T>
+  readonly schema: T
 }
