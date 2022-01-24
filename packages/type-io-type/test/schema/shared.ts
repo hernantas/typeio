@@ -1,28 +1,25 @@
 import { expect } from 'chai'
 import { AnySchema } from '../../src'
-
-interface TestOption {
-  valid: () => void
-  invalid: () => void
-}
+import { createSuite } from '../shared/createSuite'
+import { TestSuite } from '../shared/TestSuite'
 
 export function createTest<T> (
-  schema: AnySchema,
   label: string,
-  values: T[],
-  fn: (value: T) => void = v => expect(schema.is(v)).to.be.equal(true),
-  fnInvalid: (value: T) => void = v => expect(schema.is(v)).to.be.equal(false)
-): TestOption {
-  return {
-    valid: () => it(label, () => values.forEach(value => fn(value))),
-    invalid: () => it(label, () => values.forEach(value => fnInvalid(value)))
-  }
+  schema: AnySchema,
+  values: T[]
+): TestSuite {
+  return createSuite(
+    label,
+    values,
+    value => expect(schema.is(value)).to.be.equal(true),
+    value => expect(schema.is(value)).to.be.equal(false)
+  )
 }
 
-export function testArray (schema: AnySchema, label = 'Type check array'): TestOption {
+export function testArray (schema: AnySchema, label = 'Type check array'): TestSuite {
   return createTest(
-    schema,
     label,
+    schema,
     [
       [],
       ['First', 'Second', 'Third'],
@@ -32,56 +29,56 @@ export function testArray (schema: AnySchema, label = 'Type check array'): TestO
   )
 }
 
-export function testBoolean (schema: AnySchema, label = 'Type check boolean'): TestOption {
+export function testBoolean (schema: AnySchema, label = 'Type check boolean'): TestSuite {
   return createTest(
-    schema,
     label,
+    schema,
     [true, false]
   )
 }
 
-export function testLiteralString (schema: AnySchema, label = 'Type check literal (string)'): TestOption {
+export function testLiteralString (schema: AnySchema, label = 'Type check literal (string)'): TestSuite {
   return createTest(
-    schema,
     label,
+    schema,
     ['literal']
   )
 }
-export function testLiteralNumber (schema: AnySchema, label = 'Type check literal (number)'): TestOption {
+export function testLiteralNumber (schema: AnySchema, label = 'Type check literal (number)'): TestSuite {
   return createTest(
-    schema,
     label,
+    schema,
     [0]
   )
 }
-export function testLiteralBoolean (schema: AnySchema, label = 'Type check literal (boolean)'): TestOption {
+export function testLiteralBoolean (schema: AnySchema, label = 'Type check literal (boolean)'): TestSuite {
   return createTest(
-    schema,
     label,
+    schema,
     [true]
   )
 }
 
-export function testNull (schema: AnySchema, label = 'Type check null'): TestOption {
+export function testNull (schema: AnySchema, label = 'Type check null'): TestSuite {
   return createTest(
-    schema,
     label,
+    schema,
     [null]
   )
 }
 
-export function testNumber (schema: AnySchema, label = 'Type check number'): TestOption {
+export function testNumber (schema: AnySchema, label = 'Type check number'): TestSuite {
   return createTest(
-    schema,
     label,
+    schema,
     [0, 80, 8080]
   )
 }
 
-export function testObject (schema: AnySchema, label = 'Type check object'): TestOption {
+export function testObject (schema: AnySchema, label = 'Type check object'): TestSuite {
   return createTest(
-    schema,
     label,
+    schema,
     [
       {
         _string: '',
@@ -98,10 +95,10 @@ export function testObject (schema: AnySchema, label = 'Type check object'): Tes
   )
 }
 
-export function testDeepObject (schema: AnySchema, label = 'Type check deep object'): TestOption {
+export function testDeepObject (schema: AnySchema, label = 'Type check deep object'): TestSuite {
   return createTest(
-    schema,
     label,
+    schema,
     [{
       _string: '',
       _number: 0,
@@ -115,18 +112,18 @@ export function testDeepObject (schema: AnySchema, label = 'Type check deep obje
   )
 }
 
-export function testString (schema: AnySchema, label = 'Type check string'): TestOption {
+export function testString (schema: AnySchema, label = 'Type check string'): TestSuite {
   return createTest(
-    schema,
     label,
+    schema,
     ['', 'String', '0', 'true', 'false', 'null', 'undefined']
   )
 }
 
-export function testTuple (schema: AnySchema, label = 'Type check tuple'): TestOption {
+export function testTuple (schema: AnySchema, label = 'Type check tuple'): TestSuite {
   return createTest(
-    schema,
     label,
+    schema,
     [
       ['First', 'Second', 0, 80, true, false],
       ['First', 'Second', 0, 80, true, false, 'THIS IS EXCESS VALUE']
@@ -134,10 +131,10 @@ export function testTuple (schema: AnySchema, label = 'Type check tuple'): TestO
   )
 }
 
-export function testUndefined (schema: AnySchema, label = 'Type check undefined'): TestOption {
+export function testUndefined (schema: AnySchema, label = 'Type check undefined'): TestSuite {
   return createTest(
-    schema,
     label,
+    schema,
     [undefined]
   )
 }
