@@ -1,7 +1,7 @@
-import { ArraySchema } from '../schema/array/ArraySchema'
-import { TypeOf } from '../schema/base/TypeOf'
-import { AnyCodec } from './AnyCodec'
-import { Codec } from './Codec'
+import { ArraySchema } from '../../schema/array/ArraySchema'
+import { TypeOf } from '../../schema/base/TypeOf'
+import { AnyCodec } from '../AnyCodec'
+import { Codec } from '../Codec'
 
 export class ArrayCodec<T extends AnyCodec> implements Codec<ArraySchema<T['schema']>> {
   readonly schema: ArraySchema<T['schema']>

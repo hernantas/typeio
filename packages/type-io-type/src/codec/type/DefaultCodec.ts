@@ -1,6 +1,6 @@
-import { AnySchema } from '../schema/base/AnySchema'
-import { TypeOf } from '../schema/base/TypeOf'
-import { Codec } from './Codec'
+import { AnySchema } from '../../schema/base/AnySchema'
+import { TypeOf } from '../../schema/base/TypeOf'
+import { Codec } from '../Codec'
 
 /**
  * Fallback codec. If codec is not found for particular schema, use its own schema
