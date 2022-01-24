@@ -28,3 +28,22 @@ export function createDecodeTest<T, U = T> (
     (v) => expect(() => codec.decode(v)).to.throw()
   )
 }
+
+export const labelCodec = {
+  array: 'From array',
+  tuple: 'From tuple',
+  literal: {
+    string: 'From literal (string)',
+    number: 'From literal (number)',
+    boolean: 'From literal (boolean)'
+  },
+  object: {
+    simple: 'From object (simple)',
+    nested: 'From object (nested)'
+  },
+  boolean: 'From boolean',
+  number: 'From number',
+  string: 'From string',
+  null: 'From null',
+  undefined: 'From undefined'
+}
