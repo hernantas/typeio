@@ -1,3 +1,3 @@
-import { AnySchema } from '../base/AnySchema'
+import { AnySchema } from '../AnySchema'
 
 export type UnionSchemaType = [AnySchema, AnySchema, ...AnySchema[]]

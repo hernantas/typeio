@@ -1,8 +1,8 @@
-import { BaseSchema } from '../base/BaseSchema'
-import { TypeOfMap } from '../base/TypeOfMap'
-import { ObjectPropertyMap } from './ObjectPropertyMap'
-import { ObjectSchemaDefinition } from './ObjectSchemaDefinition'
-import { ObjectSchemaType } from './ObjectSchemaType'
+import { BaseSchema } from './BaseSchema'
+import { TypeOfMap } from './base/TypeOfMap'
+import { ObjectPropertyMap } from './object/ObjectPropertyMap'
+import { ObjectSchemaDefinition } from './object/ObjectSchemaDefinition'
+import { ObjectSchemaType } from './object/ObjectSchemaType'
 
 export class ObjectSchema<T extends ObjectSchemaType> extends BaseSchema<TypeOfMap<T>, ObjectSchemaDefinition<T>> {
   static create <T extends ObjectSchemaType> (properties: T): ObjectSchema<T> {

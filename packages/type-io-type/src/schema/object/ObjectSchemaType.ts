@@ -1,4 +1,4 @@
-import { AnySchema } from '../base/AnySchema'
+import { AnySchema } from '../AnySchema'
 
 export interface ObjectSchemaType {
   [key: string | number | symbol]: AnySchema

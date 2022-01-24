@@ -1,7 +1,7 @@
 import 'reflect-metadata'
 import { ConstructorType } from '../alias/ConstructorType'
-import { AnySchema } from '../schema/base/AnySchema'
-import { TypeSchema } from '../schema/type/TypeSchema'
+import { AnySchema } from '../schema/AnySchema'
+import { TypeSchema } from '../schema/TypeSchema'
 import { getDesignType, setMetadata } from './metadata'
 
 export function Property (schema?: AnySchema): PropertyDecorator {

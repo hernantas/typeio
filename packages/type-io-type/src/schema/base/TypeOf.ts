@@ -1,4 +1,4 @@
-import { AnySchema } from './AnySchema'
+import { AnySchema } from '../AnySchema'
 
 /**
  * Utility type to get `Schema` type

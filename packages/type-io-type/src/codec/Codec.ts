@@ -1,4 +1,4 @@
-import { AnySchema } from '../schema/base/AnySchema'
+import { AnySchema } from '../schema/AnySchema'
 import { TypeOf } from '../schema/base/TypeOf'
 import { Decoder } from './Decoder'
 import { Encoder } from './Encoder'

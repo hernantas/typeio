@@ -1,7 +1,7 @@
 import 'reflect-metadata'
 import { ConstructorType } from '../alias/ConstructorType'
-import { AnySchema } from '../schema/base/AnySchema'
-import { BaseSchema } from '../schema/base/BaseSchema'
+import { AnySchema } from '../schema/AnySchema'
+import { BaseSchema } from '../schema/BaseSchema'
 
 /**
  * Key used in typescript decoration to type

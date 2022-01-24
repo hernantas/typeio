@@ -1,7 +1,7 @@
-import { AnySchema } from '../base/AnySchema'
-import { BaseSchema } from '../base/BaseSchema'
-import { TypeOf } from '../base/TypeOf'
-import { OptionalSchemaDefinition } from './OptionalSchemaDefinition'
+import { AnySchema } from './AnySchema'
+import { BaseSchema } from './BaseSchema'
+import { TypeOf } from './base/TypeOf'
+import { OptionalSchemaDefinition } from './optional/OptionalSchemaDefinition'
 
 export class OptionalSchema<T extends AnySchema> extends BaseSchema<TypeOf<T> | undefined, OptionalSchemaDefinition<T>> {
   static create <T extends AnySchema> (type: T): OptionalSchema<T> {

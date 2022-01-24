@@ -1,4 +1,4 @@
-import { AnySchema } from './AnySchema'
+import { AnySchema } from '../AnySchema'
 import { TypeOf } from './TypeOf'
 
 export type TypeOfMap<T> = {

@@ -1,8 +1,8 @@
-import { BaseSchema } from '../base/BaseSchema'
-import { TypeOfMap } from '../base/TypeOfMap'
-import { IntersectMap } from './IntersectMap'
-import { IntersectSchemaDefinition } from './IntersectSchemaDefinition'
-import { IntersectSchemaType } from './IntersectSchemaType'
+import { BaseSchema } from './BaseSchema'
+import { TypeOfMap } from './base/TypeOfMap'
+import { IntersectMap } from './intersect/IntersectMap'
+import { IntersectSchemaDefinition } from './intersect/IntersectSchemaDefinition'
+import { IntersectSchemaType } from './intersect/IntersectSchemaType'
 
 export class IntersectSchema<T extends IntersectSchemaType>
   extends BaseSchema<IntersectMap<TypeOfMap<T>>, IntersectSchemaDefinition<T>> {

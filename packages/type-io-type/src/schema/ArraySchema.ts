@@ -1,7 +1,7 @@
-import { AnySchema } from '../base/AnySchema'
-import { BaseSchema } from '../base/BaseSchema'
-import { TypeOf } from '../base/TypeOf'
-import { ArraySchemaDefinition } from './ArraySchemaDefinition'
+import { AnySchema } from './AnySchema'
+import { BaseSchema } from './BaseSchema'
+import { TypeOf } from './base/TypeOf'
+import { ArraySchemaDefinition } from './array/ArraySchemaDefinition'
 
 export class ArraySchema<T extends AnySchema> extends BaseSchema<Array<TypeOf<T>>, ArraySchemaDefinition<T>> {
   static create <T extends AnySchema> (type: T): ArraySchema<T> {

@@ -1,4 +1,4 @@
-import { BaseSchema } from '../base/BaseSchema'
+import { BaseSchema } from '../BaseSchema'
 
 export class NullSchema extends BaseSchema<null> {
   static create (): NullSchema {
