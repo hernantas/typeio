@@ -1,4 +1,4 @@
-import { ValidationRule } from '../base/ValidationRule'
+import { ValidationRule } from '../validation/ValidationRule'
 
 export interface BaseSchemaDefinition {
   /**

@@ -1,8 +1,8 @@
 import { Extendable } from '../Extendable'
 import { BaseSchemaDefinition } from './definition/BaseSchemaDefinition'
-import { ValidationError } from './base/ValidationError'
-import { ValidationFunction } from './base/ValidationFunction'
-import { ValidationRule } from './base/ValidationRule'
+import { ValidationError } from './validation/ValidationError'
+import { ValidationFunction } from './validation/ValidationFunction'
+import { ValidationRule } from './validation/ValidationRule'
 
 export abstract class BaseSchema<T, D extends BaseSchemaDefinition = BaseSchemaDefinition> extends Extendable<D> {
   /**

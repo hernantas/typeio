@@ -1,3 +1,3 @@
-import { ValidationError } from '../../schema/base/ValidationError'
+import { ValidationError } from '../../schema/validation/ValidationError'
 
 export type ParseError = ValidationError
