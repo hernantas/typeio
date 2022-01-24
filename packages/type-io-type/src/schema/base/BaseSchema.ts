@@ -10,16 +10,14 @@ export abstract class BaseSchema<T, D extends BaseSchemaDefinition = BaseSchemaD
    */
   readonly _type!: T
 
-  /**
-   * Schema unique name. Must be unique for to describe {@link BaseSchema._type}
-   */
-  readonly name: string
-
   readonly definition: D
 
-  constructor (name: string, definition: D) {
-    this.name = name
+  constructor (definition: D) {
     this.definition = definition
+  }
+
+  get name (): string {
+    return this.definition.name
   }
 
   get rules (): ValidationRule[] {
@@ -40,7 +38,7 @@ export abstract class BaseSchema<T, D extends BaseSchemaDefinition = BaseSchemaD
 
   newInstance (definition: D): this {
     const Constructor = this.constructor as ConstructorType<this>
-    return new Constructor(this.name, definition)
+    return new Constructor(definition)
   }
 
   /**

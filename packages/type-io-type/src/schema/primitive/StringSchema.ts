@@ -2,7 +2,7 @@ import { BaseSchema } from '../base/BaseSchema'
 
 export class StringSchema extends BaseSchema<string> {
   static create (): StringSchema {
-    return new StringSchema('string', {})
+    return new StringSchema({ name: 'string' })
   }
 
   is (input: unknown): input is string {

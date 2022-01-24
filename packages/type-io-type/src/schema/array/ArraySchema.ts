@@ -5,7 +5,7 @@ import { ArraySchemaDefinition } from './ArraySchemaDefinition'
 
 export class ArraySchema<T extends AnySchema> extends BaseSchema<Array<TypeOf<T>>, ArraySchemaDefinition<T>> {
   static create <T extends AnySchema> (type: T): ArraySchema<T> {
-    return new ArraySchema(`Array<${type.name}>`, { type })
+    return new ArraySchema({ name: `Array<${type.name}>`, type })
   }
 
   get type (): T {

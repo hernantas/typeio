@@ -2,7 +2,7 @@ import { BaseSchema } from '../base/BaseSchema'
 
 export class UndefinedSchema extends BaseSchema<undefined> {
   static create (): UndefinedSchema {
-    return new UndefinedSchema('undefined', {})
+    return new UndefinedSchema({ name: 'undefined' })
   }
 
   is (input: unknown): input is undefined {

@@ -6,7 +6,7 @@ import { UnionSchemaType } from './UnionSchemaType'
 
 export class UnionSchema<T extends UnionSchemaType> extends BaseSchema<UnionMap<TypeOfMap<T>>, UnionSchemaDefinition<T>> {
   static create <T extends UnionSchemaType> (items: T): UnionSchema<T> {
-    return new UnionSchema(items.map(v => v.name).join(' | '), { items })
+    return new UnionSchema({ name: items.map(v => v.name).join(' | '), items })
   }
 
   get items (): T {

@@ -5,7 +5,7 @@ import { NullableSchemaDefinition } from './NullableSchemaDefinition'
 
 export class NullableSchema<T extends AnySchema> extends BaseSchema<TypeOf<T> | null, NullableSchemaDefinition<T>> {
   static create <T extends AnySchema> (type: T): NullableSchema<T> {
-    return new NullableSchema(`Nullable<${type.name}>`, { type })
+    return new NullableSchema({ name: `Nullable<${type.name}>`, type })
   }
 
   is (input: unknown): input is TypeOf<T> | null {

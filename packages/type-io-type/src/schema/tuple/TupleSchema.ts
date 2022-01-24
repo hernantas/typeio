@@ -5,7 +5,7 @@ import { TupleSchemaType } from './TupleSchemaType'
 
 export class TupleSchema<T extends TupleSchemaType> extends BaseSchema<TypeOfMap<T>, TupleSchemaDefinition<T>> {
   static create <T extends TupleSchemaType> (items: T): TupleSchema<T> {
-    return new TupleSchema(`[${items.map(v => v.name).join(', ')}]`, { items })
+    return new TupleSchema({ name: `[${items.map(v => v.name).join(', ')}]`, items })
   }
 
   get items (): T {
