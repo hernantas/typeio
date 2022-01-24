@@ -2,7 +2,7 @@ import { BaseSchema } from './BaseSchema'
 import { TypeOfMap } from './base/TypeOfMap'
 import { IntersectMap } from './intersect/IntersectMap'
 import { IntersectSchemaDefinition } from './definition/IntersectSchemaDefinition'
-import { IntersectSchemaType } from './intersect/IntersectSchemaType'
+import { IntersectSchemaType } from './type/IntersectSchemaType'
 
 export class IntersectSchema<T extends IntersectSchemaType>
   extends BaseSchema<IntersectMap<TypeOfMap<T>>, IntersectSchemaDefinition<T>> {

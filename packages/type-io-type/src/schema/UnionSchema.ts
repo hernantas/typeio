@@ -2,7 +2,7 @@ import { BaseSchema } from './BaseSchema'
 import { TypeOfMap } from './base/TypeOfMap'
 import { UnionMap } from './union/UnionMap'
 import { UnionSchemaDefinition } from './definition/UnionSchemaDefinition'
-import { UnionSchemaType } from './union/UnionSchemaType'
+import { UnionSchemaType } from './type/UnionSchemaType'
 
 export class UnionSchema<T extends UnionSchemaType> extends BaseSchema<UnionMap<TypeOfMap<T>>, UnionSchemaDefinition<T>> {
   static create <T extends UnionSchemaType> (items: T): UnionSchema<T> {
