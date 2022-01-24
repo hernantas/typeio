@@ -9,6 +9,6 @@ export class OptionalSchema<T extends AnySchema> extends BaseSchema<TypeOf<T> | 
   }
 
   is (input: unknown): input is TypeOf<T> | undefined {
-    return this.definition.type.is(input) || input === undefined
+    return input === undefined || this.definition.type.is(input)
   }
 }
