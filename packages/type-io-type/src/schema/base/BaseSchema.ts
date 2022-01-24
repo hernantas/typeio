@@ -1,20 +1,14 @@
-import { ConstructorType } from '../../alias/ConstructorType'
+import { Extendable } from '../../Extendable'
 import { BaseSchemaDefinition } from './BaseSchemaDefinition'
 import { ValidationError } from './ValidationError'
 import { ValidationFunction } from './ValidationFunction'
 import { ValidationRule } from './ValidationRule'
 
-export abstract class BaseSchema<T, D extends BaseSchemaDefinition = BaseSchemaDefinition> {
+export abstract class BaseSchema<T, D extends BaseSchemaDefinition = BaseSchemaDefinition> extends Extendable<D> {
   /**
    * Ignore this. Used to prevent typescript infer the type to `unknown`
    */
   readonly _type!: T
-
-  readonly definition: D
-
-  constructor (definition: D) {
-    this.definition = definition
-  }
 
   get name (): string {
     return this.definition.name
@@ -34,11 +28,6 @@ export abstract class BaseSchema<T, D extends BaseSchemaDefinition = BaseSchemaD
       }
       return error
     })
-  }
-
-  newInstance (definition: D): this {
-    const Constructor = this.constructor as ConstructorType<this>
-    return new Constructor(definition)
   }
 
   /**
