@@ -1,5 +1,5 @@
 import { NumberSchema } from '../../schema/primitive/NumberSchema'
-import { Codec } from '../codec/Codec'
+import { Codec } from '../../codec/Codec'
 
 export class NumberCodec implements Codec<NumberSchema> {
   readonly schema = NumberSchema.create()

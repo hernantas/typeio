@@ -1,5 +1,5 @@
 import { BooleanSchema } from '../../schema/primitive/BooleanSchema'
-import { Codec } from '../codec/Codec'
+import { Codec } from '../../codec/Codec'
 
 export class BooleanCodec implements Codec<BooleanSchema> {
   readonly schema = BooleanSchema.create()
