@@ -2,6 +2,7 @@ import { expect } from 'chai'
 import { AnySchema } from '../../src'
 import { createSuite } from '../util/createSuite'
 import { TestSuite } from '../util/TestSuite'
+import { testValues } from '../util/testValues'
 
 export function createTest<T> (
   label: string,
@@ -20,12 +21,7 @@ export function testArray (schema: AnySchema, label = 'Type check array'): TestS
   return createTest(
     label,
     schema,
-    [
-      [],
-      ['First', 'Second', 'Third'],
-      ['true', 'true', 'false'],
-      ['0', '80', '8080']
-    ]
+    testValues.array.string
   )
 }
 
@@ -33,7 +29,7 @@ export function testBoolean (schema: AnySchema, label = 'Type check boolean'): T
   return createTest(
     label,
     schema,
-    [true, false]
+    testValues.boolean
   )
 }
 
@@ -41,21 +37,21 @@ export function testLiteralString (schema: AnySchema, label = 'Type check litera
   return createTest(
     label,
     schema,
-    ['literal']
+    testValues.literal.string
   )
 }
 export function testLiteralNumber (schema: AnySchema, label = 'Type check literal (number)'): TestSuite {
   return createTest(
     label,
     schema,
-    [0]
+    testValues.literal.number
   )
 }
 export function testLiteralBoolean (schema: AnySchema, label = 'Type check literal (boolean)'): TestSuite {
   return createTest(
     label,
     schema,
-    [true]
+    testValues.literal.boolean
   )
 }
 
@@ -63,7 +59,7 @@ export function testNull (schema: AnySchema, label = 'Type check null'): TestSui
   return createTest(
     label,
     schema,
-    [null]
+    testValues.null
   )
 }
 
@@ -71,7 +67,7 @@ export function testNumber (schema: AnySchema, label = 'Type check number'): Tes
   return createTest(
     label,
     schema,
-    [0, 80, 8080]
+    testValues.number
   )
 }
 
@@ -79,19 +75,7 @@ export function testObject (schema: AnySchema, label = 'Type check object'): Tes
   return createTest(
     label,
     schema,
-    [
-      {
-        _string: '',
-        _number: 0,
-        _boolean: false
-      },
-      {
-        _string: '',
-        _number: 0,
-        _boolean: false,
-        _excess: 'THIS IS EXCESS PROPERTY'
-      }
-    ]
+    testValues.object.simple
   )
 }
 
@@ -99,16 +83,7 @@ export function testDeepObject (schema: AnySchema, label = 'Type check deep obje
   return createTest(
     label,
     schema,
-    [{
-      _string: '',
-      _number: 0,
-      _boolean: false,
-      _nested: {
-        _string: '',
-        _number: 0,
-        _boolean: false
-      }
-    }]
+    testValues.object.nested
   )
 }
 
@@ -116,7 +91,7 @@ export function testString (schema: AnySchema, label = 'Type check string'): Tes
   return createTest(
     label,
     schema,
-    ['', 'String', '0', 'true', 'false', 'null', 'undefined']
+    testValues.string
   )
 }
 
@@ -124,10 +99,7 @@ export function testTuple (schema: AnySchema, label = 'Type check tuple'): TestS
   return createTest(
     label,
     schema,
-    [
-      ['First', 'Second', 0, 80, true, false],
-      ['First', 'Second', 0, 80, true, false, 'THIS IS EXCESS VALUE']
-    ]
+    testValues.tuple
   )
 }
 
@@ -135,6 +107,6 @@ export function testUndefined (schema: AnySchema, label = 'Type check undefined'
   return createTest(
     label,
     schema,
-    [undefined]
+    testValues.undefined
   )
 }
