@@ -9,6 +9,6 @@ export class NullableSchema<T extends AnySchema> extends BaseSchema<TypeOf<T> | 
   }
 
   is (input: unknown): input is TypeOf<T> | null {
-    return this.definition.type.is(input) || input === null
+    return input === null || this.definition.type.is(input)
   }
 }
