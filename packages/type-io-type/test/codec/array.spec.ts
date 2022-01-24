@@ -2,7 +2,7 @@ import { expect } from 'chai'
 import { ArrayCodec, StringCodec } from '../../src'
 
 describe('Codec', () => {
-  describe('BooleanCodec', () => {
+  describe('ArrayCodec', () => {
     const codec = new ArrayCodec(new StringCodec())
 
     it('Decode', () => {
