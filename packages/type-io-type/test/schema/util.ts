@@ -11,7 +11,6 @@ export function createTest<T> (
   return createSuite(
     label,
     values,
-    values,
     value => expect(schema.is(value)).to.be.equal(true),
     value => expect(schema.is(value)).to.be.equal(false)
   )

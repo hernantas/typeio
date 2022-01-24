@@ -5,28 +5,23 @@ import { TestSuite } from './TestSuite'
  *
  * @param label Label for this test
  * @param values Values to be tested
- * @param expectedValues Expected values from tested value
  * @param validFn Valid test function
  * @param invalidFn Invalid test function
  * @returns A new instance of {@link TextExpect}
  */
 export function createSuite<T, U> (
   label: string,
-  values: T[],
-  expectedValues: U[],
+  values: T[] | Map<T, U>,
   validFn: (value: T, expectedValue?: U) => void,
   invalidFn: (value: T, expectedValue?: U) => void
 ): TestSuite {
-  return {
-    valid: () => it(label, () => {
-      for (let i = 0; i < values.length; i++) {
-        validFn(values[i] as T, expectedValues[i])
+  return Array.isArray(values)
+    ? {
+        valid: () => it(label, () => values.forEach(v => validFn(v))),
+        invalid: () => it(label, () => values.forEach(v => invalidFn(v)))
       }
-    }),
-    invalid: () => it(label, () => {
-      for (let i = 0; i < values.length; i++) {
-        invalidFn(values[i] as T, expectedValues[i])
+    : {
+        valid: () => it(label, () => values.forEach((e, v) => validFn(v, e))),
+        invalid: () => it(label, () => values.forEach((e, v) => invalidFn(v, e)))
       }
-    })
-  }
 }
