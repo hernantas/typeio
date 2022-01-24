@@ -14,7 +14,7 @@ export abstract class BaseSchema<T, D extends BaseSchemaDefinition = BaseSchemaD
     return this.definition.name
   }
 
-  get rules (): ValidationRule[] {
+  get rules (): readonly ValidationRule[] {
     return this.definition.rules ?? []
   }
 
