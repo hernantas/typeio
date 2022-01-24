@@ -1,5 +1,5 @@
 import { Extendable } from '../Extendable'
-import { BaseSchemaDefinition } from './base/BaseSchemaDefinition'
+import { BaseSchemaDefinition } from './definition/BaseSchemaDefinition'
 import { ValidationError } from './base/ValidationError'
 import { ValidationFunction } from './base/ValidationFunction'
 import { ValidationRule } from './base/ValidationRule'
