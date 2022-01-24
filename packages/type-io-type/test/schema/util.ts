@@ -1,7 +1,7 @@
 import { expect } from 'chai'
 import { AnySchema } from '../../src'
-import { createSuite } from '../shared/createSuite'
-import { TestSuite } from '../shared/TestSuite'
+import { createSuite } from '../util/createSuite'
+import { TestSuite } from '../util/TestSuite'
 
 export function createTest<T> (
   label: string,

@@ -1,6 +1,6 @@
 import { expect } from 'chai'
 import { ArraySchema, StringSchema } from '../../src'
-import * as t from './shared'
+import * as t from './util'
 
 describe('Schema: ArraySchema', () => {
   const schema = ArraySchema.create(StringSchema.create())

@@ -1,6 +1,6 @@
 import { expect } from 'chai'
 import { NullableSchema, StringSchema } from '../../src'
-import * as t from './shared'
+import * as t from './util'
 
 describe('Schema: NullSchema', () => {
   const schema = NullableSchema.create(StringSchema.create())

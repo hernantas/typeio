@@ -1,6 +1,6 @@
 import { expect } from 'chai'
 import { BooleanSchema, NumberSchema, StringSchema, UnionSchema } from '../../src'
-import * as t from './shared'
+import * as t from './util'
 
 describe('Schema: UnionSchema', () => {
   const schema = UnionSchema.create([

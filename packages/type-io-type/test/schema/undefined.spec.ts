@@ -1,6 +1,6 @@
 import { expect } from 'chai'
 import { UndefinedSchema } from '../../src'
-import * as t from './shared'
+import * as t from './util'
 
 describe('Schema: UndefinedSchema', () => {
   const schema = UndefinedSchema.create()

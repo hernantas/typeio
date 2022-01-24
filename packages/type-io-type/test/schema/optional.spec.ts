@@ -1,6 +1,6 @@
 import { expect } from 'chai'
 import { OptionalSchema, StringSchema } from '../../src'
-import * as t from './shared'
+import * as t from './util'
 
 describe('Schema: OptionalSchema', () => {
   const schema = OptionalSchema.create(StringSchema.create())

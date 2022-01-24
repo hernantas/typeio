@@ -1,6 +1,6 @@
 import { expect } from 'chai'
 import { BooleanSchema, NumberSchema, ObjectSchema, StringSchema } from '../../src'
-import * as t from './shared'
+import * as t from './util'
 
 describe('Schema: ObjectSchema', () => {
   const base = ObjectSchema.create({

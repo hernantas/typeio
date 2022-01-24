@@ -1,6 +1,6 @@
 import { expect } from 'chai'
 import { NumberSchema } from '../../src'
-import * as t from './shared'
+import * as t from './util'
 
 describe('Schema: NumberSchema', () => {
   const schema = NumberSchema.create()

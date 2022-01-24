@@ -1,6 +1,6 @@
 import { expect } from 'chai'
 import { LiteralSchema } from '../../src'
-import * as t from './shared'
+import * as t from './util'
 
 describe('Schema: LiteralSchema', () => {
   it('Name compare', () => {

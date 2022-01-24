@@ -1,6 +1,6 @@
 import { expect } from 'chai'
 import { BooleanSchema } from '../../src'
-import * as t from './shared'
+import * as t from './util'
 
 describe('Schema: BooleanSchema', () => {
   const schema = BooleanSchema.create()

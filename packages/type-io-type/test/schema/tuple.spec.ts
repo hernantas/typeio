@@ -1,6 +1,6 @@
 import { expect } from 'chai'
 import { BooleanSchema, NumberSchema, StringSchema, TupleSchema } from '../../src'
-import * as t from './shared'
+import * as t from './util'
 
 describe('Schema: TupleSchema', () => {
   const schema = TupleSchema.create([
