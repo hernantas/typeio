@@ -1,6 +1,6 @@
 import { BaseSchema } from './BaseSchema'
-import { TypeOfMap } from './base/TypeOfMap'
-import { IntersectMap } from './intersect/IntersectMap'
+import { TypeOfMap } from './helper/TypeOfMap'
+import { IntersectMap } from './helper/IntersectMap'
 import { IntersectSchemaDefinition } from './definition/IntersectSchemaDefinition'
 import { IntersectSchemaType } from './type/IntersectSchemaType'
 

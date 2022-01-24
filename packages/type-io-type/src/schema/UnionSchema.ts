@@ -1,6 +1,6 @@
 import { BaseSchema } from './BaseSchema'
-import { TypeOfMap } from './base/TypeOfMap'
-import { UnionMap } from './union/UnionMap'
+import { TypeOfMap } from './helper/TypeOfMap'
+import { UnionMap } from './helper/UnionMap'
 import { UnionSchemaDefinition } from './definition/UnionSchemaDefinition'
 import { UnionSchemaType } from './type/UnionSchemaType'
 

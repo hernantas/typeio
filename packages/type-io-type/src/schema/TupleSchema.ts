@@ -1,5 +1,5 @@
 import { BaseSchema } from './BaseSchema'
-import { TypeOfMap } from './base/TypeOfMap'
+import { TypeOfMap } from './helper/TypeOfMap'
 import { TupleSchemaDefinition } from './definition/TupleSchemaDefinition'
 import { TupleSchemaType } from './type/TupleSchemaType'
 

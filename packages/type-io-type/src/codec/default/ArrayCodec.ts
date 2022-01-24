@@ -1,5 +1,5 @@
 import { ArraySchema } from '../../schema/ArraySchema'
-import { TypeOf } from '../../schema/base/TypeOf'
+import { TypeOf } from '../../schema/helper/TypeOf'
 import { AnyCodec } from '../AnyCodec'
 import { Codec } from '../Codec'
 

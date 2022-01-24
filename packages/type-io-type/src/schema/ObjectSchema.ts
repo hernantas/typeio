@@ -1,6 +1,6 @@
 import { BaseSchema } from './BaseSchema'
-import { TypeOfMap } from './base/TypeOfMap'
-import { ObjectPropertyMap } from './object/ObjectPropertyMap'
+import { TypeOfMap } from './helper/TypeOfMap'
+import { ObjectPropertyMap } from './helper/ObjectPropertyMap'
 import { ObjectSchemaDefinition } from './definition/ObjectSchemaDefinition'
 import { ObjectSchemaType } from './type/ObjectSchemaType'
 

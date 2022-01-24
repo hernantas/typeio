@@ -1,5 +1,5 @@
 import { AnySchema } from '../schema/AnySchema'
-import { TypeOf } from '../schema/base/TypeOf'
+import { TypeOf } from '../schema/helper/TypeOf'
 import { Decoder } from './Decoder'
 import { Encoder } from './Encoder'
 
