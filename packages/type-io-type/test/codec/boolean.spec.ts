@@ -1,5 +1,5 @@
 import { expect } from 'chai'
-import { BooleanCodec } from '../../../src'
+import { BooleanCodec } from '../../src'
 
 describe('Codec', () => {
   describe('BooleanCodec', () => {

@@ -1,5 +1,5 @@
 import { expect } from 'chai'
-import { StringCodec } from '../../../src'
+import { StringCodec } from '../../src'
 
 describe('Codec', () => {
   describe('StringCodec', () => {
