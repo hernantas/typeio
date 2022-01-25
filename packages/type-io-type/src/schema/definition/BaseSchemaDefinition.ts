@@ -9,7 +9,7 @@ export interface BaseSchemaDefinition {
   /**
    * Label for this definition
    */
-  label?: string
+  readonly label?: string
 
-  rules?: ValidationRule[]
+  readonly rules?: ValidationRule[]
 }
