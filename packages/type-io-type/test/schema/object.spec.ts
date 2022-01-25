@@ -1,6 +1,6 @@
 import { expect } from 'chai'
 import { BooleanSchema, NumberSchema, ObjectSchema, StringSchema } from '../../src'
-import * as t from './util'
+import { createSuite } from '../util/createSuite'
 
 describe('Schema: ObjectSchema', () => {
   const base = ObjectSchema.create({
@@ -22,30 +22,34 @@ describe('Schema: ObjectSchema', () => {
   })
 
   describe('Simple Object Schema', () => {
-    t.testArray(base).invalid()
-    t.testBoolean(base).invalid()
-    t.testLiteralString(base).invalid()
-    t.testLiteralNumber(base).invalid()
-    t.testLiteralBoolean(base).invalid()
-    t.testNull(base).invalid()
-    t.testNumber(base).invalid()
-    t.testObject(base).valid()
-    // t.testDeepObject(base).invalid()
-    t.testString(base).invalid()
-    t.testUndefined(base).invalid()
+    const suite = createSuite('Type check', v => base.is(v))
+    suite.array.string.isFalse()
+    suite.boolean.isFalse()
+    suite.literal.boolean.isFalse()
+    suite.literal.number.isFalse()
+    suite.literal.string.isFalse()
+    suite.null.isFalse()
+    suite.number.isFalse()
+    suite.object.simple.isTrue()
+    suite.object.nested.isTrue()
+    suite.string.isFalse()
+    suite.tuple.isFalse()
+    suite.undefined.isFalse()
   })
 
   describe('Nested Object Schema', () => {
-    t.testArray(schema).invalid()
-    t.testBoolean(schema).invalid()
-    t.testLiteralString(schema).invalid()
-    t.testLiteralNumber(schema).invalid()
-    t.testLiteralBoolean(schema).invalid()
-    t.testNull(schema).invalid()
-    t.testNumber(schema).invalid()
-    t.testObject(schema).invalid()
-    t.testDeepObject(schema).valid()
-    t.testString(schema).invalid()
-    t.testUndefined(schema).invalid()
+    const suite = createSuite('Type check', v => schema.is(v))
+    suite.array.string.isFalse()
+    suite.boolean.isFalse()
+    suite.literal.boolean.isFalse()
+    suite.literal.number.isFalse()
+    suite.literal.string.isFalse()
+    suite.null.isFalse()
+    suite.number.isFalse()
+    suite.object.simple.isFalse()
+    suite.object.nested.isTrue()
+    suite.string.isFalse()
+    suite.tuple.isFalse()
+    suite.undefined.isFalse()
   })
 })

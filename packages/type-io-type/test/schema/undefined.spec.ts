@@ -1,6 +1,6 @@
 import { expect } from 'chai'
 import { UndefinedSchema } from '../../src'
-import * as t from './util'
+import { createSuite } from '../util/createSuite'
 
 describe('Schema: UndefinedSchema', () => {
   const schema = UndefinedSchema.create()
@@ -10,15 +10,17 @@ describe('Schema: UndefinedSchema', () => {
     expect(schema.name).to.be.equal(comparator.name)
   })
 
-  t.testArray(schema).invalid()
-  t.testBoolean(schema).invalid()
-  t.testLiteralString(schema).invalid()
-  t.testLiteralNumber(schema).invalid()
-  t.testLiteralBoolean(schema).invalid()
-  t.testNull(schema).invalid()
-  t.testNumber(schema).invalid()
-  t.testObject(schema).invalid()
-  t.testDeepObject(schema).invalid()
-  t.testString(schema).invalid()
-  t.testUndefined(schema).valid()
+  const suite = createSuite('Type check', v => schema.is(v))
+  suite.array.string.isFalse()
+  suite.boolean.isFalse()
+  suite.literal.boolean.isFalse()
+  suite.literal.number.isFalse()
+  suite.literal.string.isFalse()
+  suite.null.isFalse()
+  suite.number.isFalse()
+  suite.object.simple.isFalse()
+  suite.object.nested.isFalse()
+  suite.string.isFalse()
+  suite.tuple.isFalse()
+  suite.undefined.isTrue()
 })

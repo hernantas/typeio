@@ -1,6 +1,6 @@
 import { expect } from 'chai'
 import { NumberSchema } from '../../src'
-import * as t from './util'
+import { createSuite } from '../util/createSuite'
 
 describe('Schema: NumberSchema', () => {
   const schema = NumberSchema.create()
@@ -10,17 +10,19 @@ describe('Schema: NumberSchema', () => {
     expect(schema.name).to.be.equal(comparator.name)
   })
 
-  t.testArray(schema).invalid()
-  t.testBoolean(schema).invalid()
-  t.testLiteralString(schema).invalid()
-  t.testLiteralNumber(schema).valid()
-  t.testLiteralBoolean(schema).invalid()
-  t.testNull(schema).invalid()
-  t.testNumber(schema).valid()
-  t.testObject(schema).invalid()
-  t.testDeepObject(schema).invalid()
-  t.testString(schema).invalid()
-  t.testUndefined(schema).invalid()
+  const suite = createSuite('Type check', v => schema.is(v))
+  suite.array.string.isFalse()
+  suite.boolean.isFalse()
+  suite.literal.boolean.isFalse()
+  suite.literal.number.isTrue()
+  suite.literal.string.isFalse()
+  suite.null.isFalse()
+  suite.number.isTrue()
+  suite.object.simple.isFalse()
+  suite.object.nested.isFalse()
+  suite.string.isFalse()
+  suite.tuple.isFalse()
+  suite.undefined.isFalse()
 
   it('Validation: Min', () => {
     const validator = schema.min(0)

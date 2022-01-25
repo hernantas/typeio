@@ -1,6 +1,6 @@
 import { expect } from 'chai'
 import { BooleanSchema } from '../../src'
-import * as t from './util'
+import { createSuite } from '../util/createSuite'
 
 describe('Schema: BooleanSchema', () => {
   const schema = BooleanSchema.create()
@@ -10,15 +10,17 @@ describe('Schema: BooleanSchema', () => {
     expect(schema.name).to.be.equal(comparator.name)
   })
 
-  t.testArray(schema).invalid()
-  t.testBoolean(schema).valid()
-  t.testLiteralString(schema).invalid()
-  t.testLiteralNumber(schema).invalid()
-  t.testLiteralBoolean(schema).valid()
-  t.testNull(schema).invalid()
-  t.testNumber(schema).invalid()
-  t.testObject(schema).invalid()
-  t.testDeepObject(schema).invalid()
-  t.testString(schema).invalid()
-  t.testUndefined(schema).invalid()
+  const suite = createSuite('Type check', v => schema.is(v))
+  suite.array.string.isFalse()
+  suite.boolean.isTrue()
+  suite.literal.boolean.isTrue()
+  suite.literal.number.isFalse()
+  suite.literal.string.isFalse()
+  suite.null.isFalse()
+  suite.number.isFalse()
+  suite.object.simple.isFalse()
+  suite.object.nested.isFalse()
+  suite.string.isFalse()
+  suite.tuple.isFalse()
+  suite.undefined.isFalse()
 })

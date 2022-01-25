@@ -1,6 +1,6 @@
 import { expect } from 'chai'
 import { ArraySchema, StringSchema } from '../../src'
-import * as t from './util'
+import { createSuite } from '../util/createSuite'
 
 describe('Schema: ArraySchema', () => {
   const schema = ArraySchema.create(StringSchema.create())
@@ -10,17 +10,19 @@ describe('Schema: ArraySchema', () => {
     expect(schema.name).to.be.equal(comparator.name)
   })
 
-  t.testArray(schema).valid()
-  t.testBoolean(schema).invalid()
-  t.testLiteralString(schema).invalid()
-  t.testLiteralNumber(schema).invalid()
-  t.testLiteralBoolean(schema).invalid()
-  t.testNull(schema).invalid()
-  t.testNumber(schema).invalid()
-  t.testObject(schema).invalid()
-  t.testDeepObject(schema).invalid()
-  t.testString(schema).invalid()
-  t.testUndefined(schema).invalid()
+  const suite = createSuite('Type check', v => schema.is(v))
+  suite.array.string.isTrue()
+  suite.boolean.isFalse()
+  suite.literal.boolean.isFalse()
+  suite.literal.number.isFalse()
+  suite.literal.string.isFalse()
+  suite.null.isFalse()
+  suite.number.isFalse()
+  suite.object.simple.isFalse()
+  suite.object.nested.isFalse()
+  suite.string.isFalse()
+  suite.tuple.isFalse()
+  suite.undefined.isFalse()
 
   it('Validation: Min', () => {
     const validator = schema.min(3)
