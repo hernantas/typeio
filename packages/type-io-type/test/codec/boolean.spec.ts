@@ -1,34 +1,39 @@
-import { expect } from 'chai'
 import { BooleanCodec } from '../../src'
+import { createSuite } from '../util/createSuite'
+import { TestSuiteCase } from '../util/TestSuiteCase'
 
 describe('Codec', () => {
   describe('BooleanCodec', () => {
     const codec = new BooleanCodec()
 
-    it('Decode', () => {
-      expect(codec.decode(false)).to.be.equal(false)
-      expect(codec.decode(0)).to.be.equal(false)
-      expect(codec.decode(-0)).to.be.equal(false)
-      expect(codec.decode('')).to.be.equal(false)
-      expect(codec.decode(null)).to.be.equal(false)
-      expect(codec.decode(undefined)).to.be.equal(false)
-      expect(codec.decode(NaN)).to.be.equal(false)
+    describe('Decode', () => {
+      const falseValues = [
+        false,
+        0,
+        -0,
+        '',
+        null,
+        undefined,
+        NaN
+      ]
+      const fn = (c: TestSuiteCase<any>): any =>
+        falseValues.includes(c.value)
+          ? c.isFalse()
+          : c.isTrue()
 
-      expect(codec.decode(true)).to.be.equal(true)
-      expect(codec.decode({})).to.be.equal(true)
-      expect(codec.decode([])).to.be.equal(true)
-      expect(codec.decode(42)).to.be.equal(true)
-      expect(codec.decode('true')).to.be.equal(true)
-      expect(codec.decode(-1)).to.be.equal(true)
-      expect(codec.decode(3.14)).to.be.equal(true)
-      expect(codec.decode(-3.14)).to.be.equal(true)
-      expect(codec.decode(Infinity)).to.be.equal(true)
-      expect(codec.decode(-Infinity)).to.be.equal(true)
-    })
-
-    it('Encode', () => {
-      expect(codec.encode(false)).to.be.equal(false)
-      expect(codec.encode(true)).to.be.equal(true)
+      const suite = createSuite('From', v => codec.decode(v))
+      suite.array.string.each(fn)
+      suite.boolean.each(fn)
+      suite.literal.boolean.each(fn)
+      suite.literal.number.each(fn)
+      suite.literal.string.each(fn)
+      suite.null.each(fn)
+      suite.number.each(fn)
+      suite.object.simple.each(fn)
+      suite.object.nested.each(fn)
+      suite.string.each(fn)
+      suite.tuple.each(fn)
+      suite.undefined.each(fn)
     })
   })
 })

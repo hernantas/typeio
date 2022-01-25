@@ -1,20 +1,24 @@
-import { expect } from 'chai'
 import { NullableCodec, StringCodec } from '../../src'
+import { createSuite } from '../util/createSuite'
 
 describe('Codec', () => {
   describe('NullableCodec', () => {
     const codec = new NullableCodec(new StringCodec())
 
-    it('Decode', () => {
-      expect(codec.decode('')).to.be.equal('')
-      expect(codec.decode('MyString')).to.be.equal('MyString')
-      expect(codec.decode(null)).to.be.equal(null)
-    })
-
-    it('Encode', () => {
-      expect(codec.encode('')).to.be.equal('')
-      expect(codec.encode('MyString')).to.be.equal('MyString')
-      expect(codec.encode(null)).to.be.equal(null)
+    describe('Decode', () => {
+      const suite = createSuite('From', v => codec.decode(v))
+      suite.array.string.each(c => c.is(c.value.join()))
+      suite.boolean.each(c => c.is(c.value ? 'true' : 'false'))
+      suite.literal.boolean.is('true')
+      suite.literal.number.is('0')
+      suite.literal.string.isEqual()
+      suite.null.is(null)
+      suite.number.each(c => c.is(c.value.toString()))
+      suite.object.simple.is(String({ foo: 'bar' }))
+      suite.object.nested.is(String({ foo: 'bar' }))
+      suite.string.isEqual()
+      suite.tuple.each(c => c.is(c.value.join()))
+      suite.undefined.is('undefined')
     })
   })
 })

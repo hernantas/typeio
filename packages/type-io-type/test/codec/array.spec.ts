@@ -1,19 +1,24 @@
-import { expect } from 'chai'
 import { ArrayCodec, StringCodec } from '../../src'
+import { createSuite } from '../util/createSuite'
 
 describe('Codec', () => {
   describe('ArrayCodec', () => {
     const codec = new ArrayCodec(new StringCodec())
 
-    it('Decode', () => {
-      expect(codec.decode([])).to.be.deep.equal([])
-      expect(codec.decode(['First', 'Second', 'Third'])).to.be.deep.equal(['First', 'Second', 'Third'])
-      expect(codec.decode([0, 1, 2, 3])).to.be.deep.equal(['0', '1', '2', '3'])
-    })
-
-    it('Encode', () => {
-      expect(codec.encode([])).to.be.deep.equal([])
-      expect(codec.encode(['First', 'Second', 'Third'])).to.be.deep.equal(['First', 'Second', 'Third'])
+    describe('Decode', () => {
+      const suite = createSuite('From', v => codec.decode(v))
+      suite.array.string.isDeepEqual()
+      suite.boolean.isThrow()
+      suite.literal.boolean.isThrow()
+      suite.literal.number.isThrow()
+      suite.literal.string.isThrow()
+      suite.null.isThrow()
+      suite.number.isThrow()
+      suite.object.simple.isThrow()
+      suite.object.nested.isThrow()
+      suite.string.isThrow()
+      suite.tuple.each(c => c.isDeep(c.value.map(v => v.toString())))
+      suite.undefined.isThrow()
     })
   })
 })
