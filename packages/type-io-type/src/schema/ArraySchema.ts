@@ -13,7 +13,10 @@ export class ArraySchema<T extends AnySchema> extends BaseSchema<Array<TypeOf<T>
   }
 
   is (input: unknown): input is Array<TypeOf<T>> {
-    return Array.isArray(input) && input.map(v => this.definition.type.is(v)).length === input.length
+    return Array.isArray(input) && input
+      .map(v => this.definition.type.is(v))
+      .filter(b => !b)
+      .length === 0
   }
 
   min (value: number): this {
