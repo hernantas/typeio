@@ -1,6 +1,6 @@
 import { TypeOf } from '../../schema/helper/TypeOf'
 import { OptionalSchema } from '../../schema/OptionalSchema'
-import { AnyCodec } from '../AnyCodec'
+import { AnyCodec } from './AnyCodec'
 import { Codec } from '../Codec'
 
 export class OptionalCodec<T extends AnyCodec> implements Codec<OptionalSchema<T['schema']>> {

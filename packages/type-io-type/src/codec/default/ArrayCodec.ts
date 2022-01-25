@@ -1,6 +1,6 @@
 import { ArraySchema } from '../../schema/ArraySchema'
 import { TypeOf } from '../../schema/helper/TypeOf'
-import { AnyCodec } from '../AnyCodec'
+import { AnyCodec } from './AnyCodec'
 import { Codec } from '../Codec'
 
 export class ArrayCodec<T extends AnyCodec> implements Codec<ArraySchema<T['schema']>> {

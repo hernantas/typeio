@@ -1,6 +1,6 @@
 import { TypeOf } from '../../schema/helper/TypeOf'
 import { NullableSchema } from '../../schema/NullableSchema'
-import { AnyCodec } from '../AnyCodec'
+import { AnyCodec } from './AnyCodec'
 import { Codec } from '../Codec'
 
 export class NullableCodec<T extends AnyCodec> implements Codec<NullableSchema<T['schema']>> {
