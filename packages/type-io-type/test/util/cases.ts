@@ -1,4 +1,4 @@
-export const testValues = {
+export const cases = {
   array: {
     string: [
       [],
