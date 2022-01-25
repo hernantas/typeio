@@ -15,6 +15,9 @@ export class IntersectSchema<T extends IntersectSchemaType>
   }
 
   is (input: unknown): input is IntersectMap<TypeOfMap<T>> {
-    throw new Error('Method not implemented.')
+    for (const item of this.items) {
+      if (!item.is(input)) return false
+    }
+    return true
   }
 }
