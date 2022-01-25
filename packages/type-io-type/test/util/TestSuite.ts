@@ -32,6 +32,10 @@ export class TestSuite<T> {
     this.each(c => c.isEqual())
   }
 
+  isDeepEqual (): void {
+    this.each(c => c.isDeepEqual())
+  }
+
   isThrow (): void {
     this.each(c => c.isThrow())
   }

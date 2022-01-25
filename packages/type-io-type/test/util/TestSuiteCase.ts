@@ -19,6 +19,14 @@ export class TestSuiteCase<T> {
     return this.expect().to.be.equal(value)
   }
 
+  isDeep (value: unknown = this.value): Chai.Assertion {
+    return this.expect().to.be.deep.equal(value)
+  }
+
+  isThrow (): Chai.Assertion {
+    return this.expectSafe().to.throw()
+  }
+
   isTrue (): Chai.Assertion {
     return this.is(true)
   }
@@ -27,15 +35,11 @@ export class TestSuiteCase<T> {
     return this.is(false)
   }
 
-  isDeep (value: unknown = this.value): Chai.Assertion {
-    return this.expect().to.be.equal(value)
-  }
-
-  isThrow (): Chai.Assertion {
-    return this.expectSafe().to.throw()
-  }
-
   isEqual (): Chai.Assertion {
-    return this.expect().to.be.equal(this.value)
+    return this.is(this.value)
+  }
+
+  isDeepEqual (): Chai.Assertion {
+    return this.isDeep(this.value)
   }
 }
