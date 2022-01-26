@@ -22,5 +22,6 @@ describe('Schema: OptionalSchema', () => {
   suite.object.nested.isFalse()
   suite.string.isTrue()
   suite.tuple.isFalse()
+  suite.type.isFalse()
   suite.undefined.isTrue()
 })

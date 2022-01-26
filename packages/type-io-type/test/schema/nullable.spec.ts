@@ -22,5 +22,6 @@ describe('Schema: NullSchema', () => {
   suite.object.nested.isFalse()
   suite.string.isTrue()
   suite.tuple.isFalse()
+  suite.type.isFalse()
   suite.undefined.isFalse()
 })

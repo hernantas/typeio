@@ -36,5 +36,6 @@ describe('Schema: TupleSchema', () => {
   suite.object.nested.isFalse()
   suite.string.isFalse()
   suite.tuple.isTrue()
+  suite.type.isFalse()
   suite.undefined.isFalse()
 })

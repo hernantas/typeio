@@ -22,6 +22,7 @@ describe('Schema: NumberSchema', () => {
   suite.object.nested.isFalse()
   suite.string.isFalse()
   suite.tuple.isFalse()
+  suite.type.isFalse()
   suite.undefined.isFalse()
 
   it('Validation: Min', () => {

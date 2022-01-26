@@ -1,3 +1,11 @@
+export class User {
+  constructor (
+    public name: string = '',
+    public age: number = 0,
+    public active: boolean = false
+  ) {}
+}
+
 export const cases = {
   array: {
     string: [
@@ -52,6 +60,8 @@ export const cases = {
     ['First', 'Second', 0, 80, true, false],
     ['First', 'Second', 0, 80, true, false, 'THIS IS EXCESS VALUE']
   ],
+
+  type: [new User()],
 
   undefined: [undefined]
 }

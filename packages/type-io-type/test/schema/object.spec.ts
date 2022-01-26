@@ -34,6 +34,7 @@ describe('Schema: ObjectSchema', () => {
     suite.object.nested.isTrue()
     suite.string.isFalse()
     suite.tuple.isFalse()
+    suite.type.isFalse()
     suite.undefined.isFalse()
   })
 
@@ -50,6 +51,7 @@ describe('Schema: ObjectSchema', () => {
     suite.object.nested.isTrue()
     suite.string.isFalse()
     suite.tuple.isFalse()
+    suite.type.isFalse()
     suite.undefined.isFalse()
   })
 })
