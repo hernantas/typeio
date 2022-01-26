@@ -1,8 +1,8 @@
 export class User {
   constructor (
-    public name: string = '',
-    public age: number = 0,
-    public active: boolean = false
+    public _string: string = '',
+    public _number: number = 0,
+    public _boolean: boolean = false
   ) {}
 }
 
