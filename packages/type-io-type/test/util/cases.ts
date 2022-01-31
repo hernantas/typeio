@@ -1,5 +1,5 @@
 export class User {
-  constructor (
+  constructor(
     public _string: string = '',
     public _number: number = 0,
     public _boolean: boolean = false
@@ -12,8 +12,8 @@ export const cases = {
       [],
       ['First', 'Second', 'Third'],
       ['true', 'true', 'false'],
-      ['0', '80', '8080']
-    ]
+      ['0', '80', '8080'],
+    ],
   },
 
   boolean: [true, false],
@@ -21,7 +21,7 @@ export const cases = {
   literal: {
     boolean: [true],
     number: [0],
-    string: ['literal']
+    string: ['literal'],
   },
 
   null: [null],
@@ -33,35 +33,37 @@ export const cases = {
       {
         _string: '',
         _number: 0,
-        _boolean: false
+        _boolean: false,
       },
       {
         _string: '',
         _number: 0,
         _boolean: false,
-        _excess: 'THIS IS EXCESS PROPERTY'
-      }
+        _excess: 'THIS IS EXCESS PROPERTY',
+      },
     ],
-    nested: [{
-      _string: '',
-      _number: 0,
-      _boolean: false,
-      _nested: {
+    nested: [
+      {
         _string: '',
         _number: 0,
-        _boolean: false
-      }
-    }]
+        _boolean: false,
+        _nested: {
+          _string: '',
+          _number: 0,
+          _boolean: false,
+        },
+      },
+    ],
   },
 
   string: ['', 'String', '0', 'true', 'false', 'null', 'undefined'],
 
   tuple: [
     ['First', 'Second', 0, 80, true, false],
-    ['First', 'Second', 0, 80, true, false, 'THIS IS EXCESS VALUE']
+    ['First', 'Second', 0, 80, true, false, 'THIS IS EXCESS VALUE'],
   ],
 
   type: [new User()],
 
-  undefined: [undefined]
+  undefined: [undefined],
 }

@@ -1,24 +1,29 @@
 import { expect } from 'chai'
-import { BooleanSchema, NumberSchema, StringSchema, UnionSchema } from '../../src'
+import {
+  BooleanSchema,
+  NumberSchema,
+  StringSchema,
+  UnionSchema,
+} from '../../src'
 import { createSuite } from '../util/createSuite'
 
 describe('Schema: UnionSchema', () => {
   const schema = UnionSchema.create([
     StringSchema.create(),
     NumberSchema.create(),
-    BooleanSchema.create()
+    BooleanSchema.create(),
   ])
 
   it('Name compare', () => {
     const comparator = UnionSchema.create([
       StringSchema.create(),
       NumberSchema.create(),
-      BooleanSchema.create()
+      BooleanSchema.create(),
     ])
     expect(schema.name).to.be.equal(comparator.name)
   })
 
-  const suite = createSuite('Type check', v => schema.is(v))
+  const suite = createSuite('Type check', (v) => schema.is(v))
   suite.array.string.isFalse()
   suite.boolean.isTrue()
   suite.literal.boolean.isTrue()

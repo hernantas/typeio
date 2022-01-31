@@ -10,7 +10,7 @@ describe('Schema: BooleanSchema', () => {
     expect(schema.name).to.be.equal(comparator.name)
   })
 
-  const suite = createSuite('Type check', v => schema.is(v))
+  const suite = createSuite('Type check', (v) => schema.is(v))
   suite.array.string.isFalse()
   suite.boolean.isTrue()
   suite.literal.boolean.isTrue()

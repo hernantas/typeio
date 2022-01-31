@@ -7,21 +7,11 @@ describe('Codec', () => {
     const codec = new BooleanCodec()
 
     describe('Decode', () => {
-      const falseValues = [
-        false,
-        0,
-        -0,
-        '',
-        null,
-        undefined,
-        NaN
-      ]
+      const falseValues = [false, 0, -0, '', null, undefined, NaN]
       const fn = (c: TestSuiteCase<any>): any =>
-        falseValues.includes(c.value)
-          ? c.isFalse()
-          : c.isTrue()
+        falseValues.includes(c.value) ? c.isFalse() : c.isTrue()
 
-      const suite = createSuite('From', v => codec.decode(v))
+      const suite = createSuite('From', (v) => codec.decode(v))
       suite.array.string.each(fn)
       suite.boolean.each(fn)
       suite.literal.boolean.each(fn)

@@ -4,7 +4,7 @@ import { Codec } from '../../codec/Codec'
 export class NumberCodec implements Codec<NumberSchema> {
   readonly schema = NumberSchema.create()
 
-  decode (value: unknown): number {
+  decode(value: unknown): number {
     if (this.schema.is(value)) {
       return value
     }
@@ -17,7 +17,7 @@ export class NumberCodec implements Codec<NumberSchema> {
     throw new Error('Input type cannot be parsed into "Number"')
   }
 
-  encode (value: number): number {
+  encode(value: number): number {
     return value
   }
 }

@@ -9,19 +9,21 @@ import { Codec } from '../Codec'
 export class DefaultCodec<T extends AnySchema> implements Codec<T> {
   readonly schema: T
 
-  constructor (schema: T) {
+  constructor(schema: T) {
     this.schema = schema
   }
 
-  decode (value: unknown): TypeOf<T> {
+  decode(value: unknown): TypeOf<T> {
     if (this.schema.is(value)) {
       return value
     }
 
-    throw new Error(`Input type cannot be parsed into "${this.schema.name}" type`)
+    throw new Error(
+      `Input type cannot be parsed into "${this.schema.name}" type`
+    )
   }
 
-  encode (value: TypeOf<T>): TypeOf<T> {
+  encode(value: TypeOf<T>): TypeOf<T> {
     return value
   }
 }

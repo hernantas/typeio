@@ -10,7 +10,7 @@ describe('Schema: NumberSchema', () => {
     expect(schema.name).to.be.equal(comparator.name)
   })
 
-  const suite = createSuite('Type check', v => schema.is(v))
+  const suite = createSuite('Type check', (v) => schema.is(v))
   suite.array.string.isFalse()
   suite.boolean.isFalse()
   suite.literal.boolean.isFalse()
@@ -31,7 +31,9 @@ describe('Schema: NumberSchema', () => {
     expect(validator.validate(1)).to.have.length(0)
     expect(validator.validate(Number.MAX_SAFE_INTEGER)).to.have.length(0)
     expect(validator.validate(-1)).to.have.length.greaterThan(0)
-    expect(validator.validate(Number.MIN_SAFE_INTEGER)).to.have.length.greaterThan(0)
+    expect(
+      validator.validate(Number.MIN_SAFE_INTEGER)
+    ).to.have.length.greaterThan(0)
   })
 
   it('Validation: Max', () => {
@@ -40,7 +42,9 @@ describe('Schema: NumberSchema', () => {
     expect(validator.validate(-1)).to.have.length(0)
     expect(validator.validate(Number.MIN_SAFE_INTEGER)).to.have.length(0)
     expect(validator.validate(1)).to.have.length.greaterThan(0)
-    expect(validator.validate(Number.MAX_SAFE_INTEGER)).to.have.length.greaterThan(0)
+    expect(
+      validator.validate(Number.MAX_SAFE_INTEGER)
+    ).to.have.length.greaterThan(0)
   })
 
   it('Validation: Greater', () => {
@@ -49,7 +53,9 @@ describe('Schema: NumberSchema', () => {
     expect(validator.validate(Number.MAX_SAFE_INTEGER)).to.have.length(0)
     expect(validator.validate(0)).to.have.length.greaterThan(0)
     expect(validator.validate(-1)).to.have.length.greaterThan(0)
-    expect(validator.validate(Number.MIN_SAFE_INTEGER)).to.have.length.greaterThan(0)
+    expect(
+      validator.validate(Number.MIN_SAFE_INTEGER)
+    ).to.have.length.greaterThan(0)
   })
 
   it('Validation: Less', () => {
@@ -58,6 +64,8 @@ describe('Schema: NumberSchema', () => {
     expect(validator.validate(Number.MIN_SAFE_INTEGER)).to.have.length(0)
     expect(validator.validate(0)).to.have.length.greaterThan(0)
     expect(validator.validate(1)).to.have.length.greaterThan(0)
-    expect(validator.validate(Number.MAX_SAFE_INTEGER)).to.have.length.greaterThan(0)
+    expect(
+      validator.validate(Number.MAX_SAFE_INTEGER)
+    ).to.have.length.greaterThan(0)
   })
 })

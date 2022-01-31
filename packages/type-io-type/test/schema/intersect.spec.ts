@@ -1,5 +1,11 @@
 import { expect } from 'chai'
-import { BooleanSchema, IntersectSchema, NumberSchema, ObjectSchema, StringSchema } from '../../src'
+import {
+  BooleanSchema,
+  IntersectSchema,
+  NumberSchema,
+  ObjectSchema,
+  StringSchema,
+} from '../../src'
 import { createSuite } from '../util/createSuite'
 
 describe('Schema: IntersectSchema', () => {
@@ -7,19 +13,19 @@ describe('Schema: IntersectSchema', () => {
     const schema = IntersectSchema.create([
       ObjectSchema.create({ _string: StringSchema.create() }),
       ObjectSchema.create({ _number: NumberSchema.create() }),
-      ObjectSchema.create({ _boolean: BooleanSchema.create() })
+      ObjectSchema.create({ _boolean: BooleanSchema.create() }),
     ])
 
     it('Name compare', () => {
       const comparator = IntersectSchema.create([
         ObjectSchema.create({ _string: StringSchema.create() }),
         ObjectSchema.create({ _number: NumberSchema.create() }),
-        ObjectSchema.create({ _boolean: BooleanSchema.create() })
+        ObjectSchema.create({ _boolean: BooleanSchema.create() }),
       ])
       expect(schema.name).to.be.equal(comparator.name)
     })
 
-    const suite = createSuite('Type check', v => schema.is(v))
+    const suite = createSuite('Type check', (v) => schema.is(v))
     suite.array.string.isFalse()
     suite.boolean.isFalse()
     suite.literal.boolean.isFalse()
@@ -39,9 +45,9 @@ describe('Schema: IntersectSchema', () => {
     const schema = IntersectSchema.create([
       StringSchema.create(),
       NumberSchema.create(),
-      BooleanSchema.create()
+      BooleanSchema.create(),
     ])
-    const suite = createSuite('Type check', v => schema.is(v))
+    const suite = createSuite('Type check', (v) => schema.is(v))
     suite.array.string.isFalse()
     suite.boolean.isFalse()
     suite.literal.boolean.isFalse()

@@ -1,5 +1,10 @@
 import { expect } from 'chai'
-import { BooleanSchema, NumberSchema, StringSchema, TupleSchema } from '../../src'
+import {
+  BooleanSchema,
+  NumberSchema,
+  StringSchema,
+  TupleSchema,
+} from '../../src'
 import { createSuite } from '../util/createSuite'
 
 describe('Schema: TupleSchema', () => {
@@ -9,7 +14,7 @@ describe('Schema: TupleSchema', () => {
     NumberSchema.create(),
     NumberSchema.create(),
     BooleanSchema.create(),
-    BooleanSchema.create()
+    BooleanSchema.create(),
   ])
 
   it('Name compare', () => {
@@ -19,12 +24,12 @@ describe('Schema: TupleSchema', () => {
       NumberSchema.create(),
       NumberSchema.create(),
       BooleanSchema.create(),
-      BooleanSchema.create()
+      BooleanSchema.create(),
     ])
     expect(schema.name).to.be.equal(comparator.name)
   })
 
-  const suite = createSuite('Type check', v => schema.is(v))
+  const suite = createSuite('Type check', (v) => schema.is(v))
   suite.array.string.isFalse()
   suite.boolean.isFalse()
   suite.literal.boolean.isFalse()

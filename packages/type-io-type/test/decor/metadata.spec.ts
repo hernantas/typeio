@@ -1,7 +1,7 @@
 import { expect } from 'chai'
 import { getDesignType } from '../../src/decorator/metadata'
 
-function Prop (): PropertyDecorator {
+function Prop(): PropertyDecorator {
   return () => {}
 }
 
@@ -22,9 +22,9 @@ class MyClass {
   _union: string | number = ''
 
   @Prop()
-  _intersect: {name: string} & {age: number} = {
+  _intersect: { name: string } & { age: number } = {
     name: '',
-    age: 0
+    age: 0,
   }
 
   @Prop()

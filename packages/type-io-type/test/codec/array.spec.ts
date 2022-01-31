@@ -6,7 +6,7 @@ describe('Codec', () => {
     const codec = new ArrayCodec(new StringCodec())
 
     describe('Decode', () => {
-      const suite = createSuite('From', v => codec.decode(v))
+      const suite = createSuite('From', (v) => codec.decode(v))
       suite.array.string.isDeepEqual()
       suite.boolean.isThrow()
       suite.literal.boolean.isThrow()
@@ -17,7 +17,7 @@ describe('Codec', () => {
       suite.object.simple.isThrow()
       suite.object.nested.isThrow()
       suite.string.isThrow()
-      suite.tuple.each(c => c.isDeep(c.value.map(v => v.toString())))
+      suite.tuple.each((c) => c.isDeep(c.value.map((v) => v.toString())))
       suite.undefined.isThrow()
     })
   })

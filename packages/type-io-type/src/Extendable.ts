@@ -8,11 +8,11 @@ export class Extendable<T> {
    *
    * @param definition New definition for new instance
    */
-  constructor (definition: T) {
+  constructor(definition: T) {
     this.definition = definition
   }
 
-  newInstance (definition: T): this {
+  newInstance(definition: T): this {
     const Constructor = this.constructor as ConstructorType<this>
     return new Constructor(definition)
   }

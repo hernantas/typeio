@@ -1,31 +1,31 @@
 import { BaseSchema } from '../BaseSchema'
 
 export class StringSchema extends BaseSchema<string> {
-  static create (): StringSchema {
+  static create(): StringSchema {
     return new StringSchema({ name: 'string' })
   }
 
-  is (input: unknown): input is string {
+  is(input: unknown): input is string {
     return typeof input === 'string'
   }
 
-  min (value: number): this {
-    return this.check(v => v.length >= value, { kind: 'STRING_MIN' })
+  min(value: number): this {
+    return this.check((v) => v.length >= value, { kind: 'STRING_MIN' })
   }
 
-  max (value: number): this {
-    return this.check(v => v.length <= value, { kind: 'STRING_MAX' })
+  max(value: number): this {
+    return this.check((v) => v.length <= value, { kind: 'STRING_MAX' })
   }
 
-  length (value: number): this {
-    return this.check(v => v.length === value, { kind: 'STRING_LENGTH' })
+  length(value: number): this {
+    return this.check((v) => v.length === value, { kind: 'STRING_LENGTH' })
   }
 
-  pattern (pattern: RegExp): this {
-    return this.check(v => pattern.test(v), { kind: 'STRING_PATTERN' })
+  pattern(pattern: RegExp): this {
+    return this.check((v) => pattern.test(v), { kind: 'STRING_PATTERN' })
   }
 
-  alphanumeric (): this {
+  alphanumeric(): this {
     return this.pattern(/^[a-zA-Z0-9]+$/)
   }
 }

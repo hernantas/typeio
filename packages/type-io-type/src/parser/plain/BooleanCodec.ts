@@ -4,7 +4,7 @@ import { Codec } from '../../codec/Codec'
 export class BooleanCodec implements Codec<BooleanSchema> {
   readonly schema = BooleanSchema.create()
 
-  decode (value: unknown): boolean {
+  decode(value: unknown): boolean {
     if (this.schema.is(value)) {
       return value
     }
@@ -12,7 +12,7 @@ export class BooleanCodec implements Codec<BooleanSchema> {
     return Boolean(value)
   }
 
-  encode (value: boolean): boolean {
+  encode(value: boolean): boolean {
     return value
   }
 }

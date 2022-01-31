@@ -15,7 +15,7 @@ describe('Schema: LiteralSchema', () => {
 
   describe('Literal (string)', () => {
     const schema = LiteralSchema.create('literal')
-    const suite = createSuite('Type check', v => schema.is(v))
+    const suite = createSuite('Type check', (v) => schema.is(v))
     suite.array.string.isFalse()
     suite.boolean.isFalse()
     suite.literal.boolean.isFalse()
@@ -32,14 +32,14 @@ describe('Schema: LiteralSchema', () => {
   })
   describe('Literal (number)', () => {
     const schema = LiteralSchema.create(0)
-    const suite = createSuite('Type check', v => schema.is(v))
+    const suite = createSuite('Type check', (v) => schema.is(v))
     suite.array.string.isFalse()
     suite.boolean.isFalse()
     suite.literal.boolean.isFalse()
     suite.literal.number.isTrue()
     suite.literal.string.isFalse()
     suite.null.isFalse()
-    suite.number.each(c => c.value === 0 ? c.isTrue() : c.isFalse())
+    suite.number.each((c) => (c.value === 0 ? c.isTrue() : c.isFalse()))
     suite.object.simple.isFalse()
     suite.object.nested.isFalse()
     suite.string.isFalse()
@@ -48,9 +48,9 @@ describe('Schema: LiteralSchema', () => {
   })
   describe('Literal (boolean)', () => {
     const schema = LiteralSchema.create(true)
-    const suite = createSuite('Type check', v => schema.is(v))
+    const suite = createSuite('Type check', (v) => schema.is(v))
     suite.array.string.isFalse()
-    suite.boolean.each(c => c.value ? c.isTrue() : c.isFalse())
+    suite.boolean.each((c) => (c.value ? c.isTrue() : c.isFalse()))
     suite.literal.boolean.isTrue()
     suite.literal.number.isFalse()
     suite.literal.string.isFalse()

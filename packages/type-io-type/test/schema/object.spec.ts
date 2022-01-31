@@ -1,19 +1,24 @@
 import { expect } from 'chai'
-import { BooleanSchema, NumberSchema, ObjectSchema, StringSchema } from '../../src'
+import {
+  BooleanSchema,
+  NumberSchema,
+  ObjectSchema,
+  StringSchema,
+} from '../../src'
 import { createSuite } from '../util/createSuite'
 
 describe('Schema: ObjectSchema', () => {
   const base = ObjectSchema.create({
     _string: StringSchema.create(),
     _number: NumberSchema.create(),
-    _boolean: BooleanSchema.create()
+    _boolean: BooleanSchema.create(),
   })
 
   const schema = ObjectSchema.create({
     _string: StringSchema.create(),
     _number: NumberSchema.create(),
     _boolean: BooleanSchema.create(),
-    _nested: base
+    _nested: base,
   })
 
   it('Name compare', () => {
@@ -22,7 +27,7 @@ describe('Schema: ObjectSchema', () => {
   })
 
   describe('Simple Object Schema', () => {
-    const suite = createSuite('Type check', v => base.is(v))
+    const suite = createSuite('Type check', (v) => base.is(v))
     suite.array.string.isFalse()
     suite.boolean.isFalse()
     suite.literal.boolean.isFalse()
@@ -39,7 +44,7 @@ describe('Schema: ObjectSchema', () => {
   })
 
   describe('Nested Object Schema', () => {
-    const suite = createSuite('Type check', v => schema.is(v))
+    const suite = createSuite('Type check', (v) => schema.is(v))
     suite.array.string.isFalse()
     suite.boolean.isFalse()
     suite.literal.boolean.isFalse()
