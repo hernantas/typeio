@@ -1,6 +1,7 @@
 import { ArraySchema } from '../../schema/ArraySchema'
 import { TypeOf } from '../../schema/helper/TypeOf'
 import { Codec } from '../Codec'
+import { DecodeError } from '../error/DecodeError'
 import { InputOf } from '../helper/InputOf'
 import { OutputOf } from '../helper/OutputOf'
 import { SchemaOf } from '../helper/SchemaOf'
@@ -24,9 +25,8 @@ export class ArrayCodec<T extends AnyCodec>
       // eslint-disable-next-line @typescript-eslint/no-unsafe-return
       return value.map((v) => this.codec.decode(v))
     }
-    throw new Error(
-      `Input type cannot be parsed into "${this.schema.name}" type`
-    )
+
+    throw new DecodeError(this.schema.name)
   }
 
   encode(value: TypeOf<SchemaOf<T>>[]): OutputOf<T>[] {

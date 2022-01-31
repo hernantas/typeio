@@ -2,6 +2,8 @@ import { TypeOfMap } from '../../schema/helper/TypeOfMap'
 import { UnionMap } from '../../schema/helper/UnionMap'
 import { UnionSchema } from '../../schema/UnionSchema'
 import { Codec } from '../Codec'
+import { DecodeError } from '../error/DecodeError'
+import { EncodeError } from '../error/EncodeError'
 import { InputOfMap } from '../helper/InputOfMap'
 import { OutputOfMap } from '../helper/OutputOfMap'
 import { SchemaOfMap } from '../helper/SchemaOfMap'
@@ -34,7 +36,7 @@ export class UnionCodec<T extends UnionCodecType>
         // eslint-disable-next-line no-empty
       } catch (e) {}
     }
-    throw new Error(`Input type must be "${this.schema.name}"`)
+    throw new DecodeError(this.schema.name)
   }
 
   encode(value: UnionMap<TypeOfMap<SchemaOfMap<T>>>): UnionMap<OutputOfMap<T>> {
@@ -45,6 +47,6 @@ export class UnionCodec<T extends UnionCodecType>
         // eslint-disable-next-line no-empty
       } catch (e) {}
     }
-    throw new Error(`Input type must be "${this.schema.name}"`)
+    throw new EncodeError(this.schema.name)
   }
 }

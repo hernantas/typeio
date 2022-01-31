@@ -1,6 +1,7 @@
 import { AnySchema } from '../../schema/AnySchema'
 import { TypeOf } from '../../schema/helper/TypeOf'
 import { Codec } from '../Codec'
+import { DecodeError } from '../error/DecodeError'
 
 /**
  * Fallback codec. If codec is not found for particular schema, use its own schema
@@ -19,9 +20,7 @@ export class DefaultCodec<T extends AnySchema> implements Codec<T> {
       return value
     }
 
-    throw new Error(
-      `Input type cannot be parsed into "${this.schema.name}" type`
-    )
+    throw new DecodeError(this.schema.name)
   }
 
   encode(value: TypeOf<T>): TypeOf<T> {
