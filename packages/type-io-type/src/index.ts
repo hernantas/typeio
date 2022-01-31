@@ -1,5 +1,5 @@
-export * from './codec/default/AnyCodec'
 export * from './codec/Codec'
+export * from './codec/default/AnyCodec'
 export * from './codec/default/ArrayCodec'
 export * from './codec/default/DefaultCodec'
 export * from './codec/default/NullableCodec'
