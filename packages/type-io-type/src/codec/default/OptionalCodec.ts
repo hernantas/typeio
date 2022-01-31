@@ -22,6 +22,6 @@ export class OptionalCodec<T extends AnyCodec>
   encode(
     value: TypeOf<T['schema']> | undefined
   ): TypeOf<T['schema']> | undefined {
-    return this.codec.encode(value)
+    return value === undefined ? undefined : this.codec.encode(value)
   }
 }
