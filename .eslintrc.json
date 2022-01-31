@@ -9,5 +9,8 @@
   "parserOptions": {
     "sourceType": "module",
     "project": ["packages/**/tsconfig.json"]
+  },
+  "rules": {
+    "@typescript-eslint/no-inferrable-types": [0, { "ignoreProperties": true }]
   }
 }
