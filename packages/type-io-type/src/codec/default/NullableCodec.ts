@@ -20,6 +20,6 @@ export class NullableCodec<T extends AnyCodec>
   }
 
   encode(value: TypeOf<T['schema']> | null): TypeOf<T['schema']> | null {
-    return this.codec.encode(value)
+    return value === null ? null : this.codec.encode(value)
   }
 }
