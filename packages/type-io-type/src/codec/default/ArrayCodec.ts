@@ -1,12 +1,16 @@
 import { ArraySchema } from '../../schema/ArraySchema'
 import { TypeOf } from '../../schema/helper/TypeOf'
-import { AnyCodec } from './AnyCodec'
 import { Codec } from '../Codec'
+import { InputOf } from '../helper/InputOf'
+import { OutputOf } from '../helper/OutputOf'
+import { SchemaOf } from '../helper/SchemaOf'
+import { AnyCodec } from './AnyCodec'
 
 export class ArrayCodec<T extends AnyCodec>
-  implements Codec<ArraySchema<T['schema']>>
+  implements
+    Codec<ArraySchema<SchemaOf<T>>, OutputOf<T>[], InputOf<T>[] | unknown>
 {
-  readonly schema: ArraySchema<T['schema']>
+  readonly schema: ArraySchema<SchemaOf<T>>
 
   readonly codec: T
 
@@ -15,7 +19,7 @@ export class ArrayCodec<T extends AnyCodec>
     this.schema = ArraySchema.create(codec.schema)
   }
 
-  decode(value: unknown): Array<TypeOf<T['schema']>> {
+  decode(value: InputOf<T>[] | unknown): TypeOf<SchemaOf<T>>[] {
     if (Array.isArray(value)) {
       // eslint-disable-next-line @typescript-eslint/no-unsafe-return
       return value.map((v) => this.codec.decode(v))
@@ -25,7 +29,7 @@ export class ArrayCodec<T extends AnyCodec>
     )
   }
 
-  encode(value: Array<TypeOf<T['schema']>>): Array<TypeOf<T['schema']>> {
+  encode(value: TypeOf<SchemaOf<T>>[]): OutputOf<T>[] {
     // eslint-disable-next-line @typescript-eslint/no-unsafe-return
     return value.map((v) => this.codec.encode(v))
   }

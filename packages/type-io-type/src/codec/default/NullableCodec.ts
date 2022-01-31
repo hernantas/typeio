@@ -1,10 +1,14 @@
 import { TypeOf } from '../../schema/helper/TypeOf'
 import { NullableSchema } from '../../schema/NullableSchema'
-import { AnyCodec } from './AnyCodec'
 import { Codec } from '../Codec'
+import { InputOf } from '../helper/InputOf'
+import { OutputOf } from '../helper/OutputOf'
+import { SchemaOf } from '../helper/SchemaOf'
+import { AnyCodec } from './AnyCodec'
 
 export class NullableCodec<T extends AnyCodec>
-  implements Codec<NullableSchema<T['schema']>>
+  implements
+    Codec<NullableSchema<SchemaOf<T>>, OutputOf<T> | null, InputOf<T> | null>
 {
   readonly schema: NullableSchema<T['schema']>
 
@@ -15,12 +19,12 @@ export class NullableCodec<T extends AnyCodec>
     this.schema = NullableSchema.create(codec.schema)
   }
 
-  decode(value: unknown): TypeOf<T['schema']> | null {
+  decode(value: InputOf<T>): TypeOf<SchemaOf<T>> | null {
     // eslint-disable-next-line @typescript-eslint/no-unsafe-return
     return value === null ? null : this.codec.decode(value)
   }
 
-  encode(value: TypeOf<T['schema']> | null): TypeOf<T['schema']> | null {
+  encode(value: TypeOf<SchemaOf<T>> | null): OutputOf<T> | null {
     // eslint-disable-next-line @typescript-eslint/no-unsafe-return
     return value === null ? null : this.codec.encode(value)
   }

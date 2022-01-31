@@ -1,10 +1,18 @@
 import { TypeOf } from '../../schema/helper/TypeOf'
 import { OptionalSchema } from '../../schema/OptionalSchema'
-import { AnyCodec } from './AnyCodec'
 import { Codec } from '../Codec'
+import { InputOf } from '../helper/InputOf'
+import { OutputOf } from '../helper/OutputOf'
+import { SchemaOf } from '../helper/SchemaOf'
+import { AnyCodec } from './AnyCodec'
 
 export class OptionalCodec<T extends AnyCodec>
-  implements Codec<OptionalSchema<T['schema']>>
+  implements
+    Codec<
+      OptionalSchema<SchemaOf<T>>,
+      OutputOf<T> | undefined,
+      InputOf<T> | undefined
+    >
 {
   readonly schema: OptionalSchema<T['schema']>
 
@@ -15,14 +23,12 @@ export class OptionalCodec<T extends AnyCodec>
     this.schema = OptionalSchema.create(codec.schema)
   }
 
-  decode(value: unknown): TypeOf<T['schema']> | undefined {
+  decode(value: InputOf<T> | undefined): TypeOf<SchemaOf<T>> | undefined {
     // eslint-disable-next-line @typescript-eslint/no-unsafe-return
     return value === undefined ? undefined : this.codec.decode(value)
   }
 
-  encode(
-    value: TypeOf<T['schema']> | undefined
-  ): TypeOf<T['schema']> | undefined {
+  encode(value: TypeOf<SchemaOf<T>> | undefined): OutputOf<T> | undefined {
     // eslint-disable-next-line @typescript-eslint/no-unsafe-return
     return value === undefined ? undefined : this.codec.encode(value)
   }
