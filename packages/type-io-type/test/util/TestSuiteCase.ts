@@ -2,7 +2,10 @@ import { expect } from 'chai'
 import { TransformFn } from './TransformFn'
 
 export class TestSuiteCase<T> {
-  constructor(readonly transformer: TransformFn<T, any>, readonly value: T) {}
+  constructor(
+    readonly transformer: TransformFn<T, unknown>,
+    readonly value: T
+  ) {}
 
   expect(): Chai.Assertion {
     return expect(this.transformer(this.value))

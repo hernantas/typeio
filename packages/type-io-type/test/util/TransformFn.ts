@@ -1,1 +1,1 @@
-export type TransformFn<T = any, R = T> = (value: T) => R
+export type TransformFn<T = unknown, R = T> = (value: T) => R

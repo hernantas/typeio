@@ -8,7 +8,9 @@ describe('Codec', () => {
 
     describe('Decode', () => {
       const falseValues = [false, 0, -0, '', null, undefined, NaN]
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
       const fn = (c: TestSuiteCase<any>): any =>
+        // eslint-disable-next-line @typescript-eslint/no-unsafe-argument
         falseValues.includes(c.value) ? c.isFalse() : c.isTrue()
 
       const suite = createSuite('From', (v) => codec.decode(v))

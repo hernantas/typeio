@@ -6,7 +6,7 @@ export class TestSuite<T> {
 
   constructor(
     readonly label: string,
-    transformer: TransformFn<T, any>,
+    transformer: TransformFn<T, unknown>,
     values: T[]
   ) {
     this.cases = values.map((v) => new TestSuiteCase(transformer, v))

@@ -5,6 +5,7 @@ import { TypeSchema } from '../schema/TypeSchema'
 import { getDesignType, setMetadata } from './metadata'
 
 export function Property(schema?: AnySchema): PropertyDecorator {
+  // eslint-disable-next-line @typescript-eslint/ban-types
   return function <T>(target: Object, key: string | symbol) {
     const tTarget = target.constructor as ConstructorType<T>
     const tKey = key as keyof T

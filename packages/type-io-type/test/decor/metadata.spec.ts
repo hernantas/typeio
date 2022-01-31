@@ -2,6 +2,7 @@ import { expect } from 'chai'
 import { getDesignType } from '../../src/decorator/metadata'
 
 function Prop(): PropertyDecorator {
+  // eslint-disable-next-line @typescript-eslint/no-empty-function
   return () => {}
 }
 

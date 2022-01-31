@@ -22,9 +22,10 @@ export function getDesignType<T, K extends keyof T>(
 ): ConstructorType<T[K]> {
   return Reflect.getMetadata(
     METADATA_KEY_DESIGN_TYPE,
+    // eslint-disable-next-line @typescript-eslint/no-unsafe-argument
     target.prototype,
     property as string
-  )
+  ) as ConstructorType<T[K]>
 }
 
 /**
@@ -40,9 +41,10 @@ export function getMetadata<T, K extends keyof T>(
 ): BaseSchema<T[K]> {
   return Reflect.getMetadata(
     METADATA_KEY_STORAGE,
+    // eslint-disable-next-line @typescript-eslint/no-unsafe-argument
     target.prototype,
     property as string
-  )
+  ) as BaseSchema<T[K]>
 }
 
 /**
@@ -60,6 +62,7 @@ export function setMetadata<T, K extends keyof T>(
   Reflect.defineMetadata(
     METADATA_KEY_STORAGE,
     schema,
+    // eslint-disable-next-line @typescript-eslint/no-unsafe-argument
     target.prototype,
     property as string
   )

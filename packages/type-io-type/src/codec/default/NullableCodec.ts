@@ -16,10 +16,12 @@ export class NullableCodec<T extends AnyCodec>
   }
 
   decode(value: unknown): TypeOf<T['schema']> | null {
+    // eslint-disable-next-line @typescript-eslint/no-unsafe-return
     return value === null ? null : this.codec.decode(value)
   }
 
   encode(value: TypeOf<T['schema']> | null): TypeOf<T['schema']> | null {
+    // eslint-disable-next-line @typescript-eslint/no-unsafe-return
     return value === null ? null : this.codec.encode(value)
   }
 }

@@ -16,12 +16,14 @@ export class OptionalCodec<T extends AnyCodec>
   }
 
   decode(value: unknown): TypeOf<T['schema']> | undefined {
+    // eslint-disable-next-line @typescript-eslint/no-unsafe-return
     return value === undefined ? undefined : this.codec.decode(value)
   }
 
   encode(
     value: TypeOf<T['schema']> | undefined
   ): TypeOf<T['schema']> | undefined {
+    // eslint-disable-next-line @typescript-eslint/no-unsafe-return
     return value === undefined ? undefined : this.codec.encode(value)
   }
 }

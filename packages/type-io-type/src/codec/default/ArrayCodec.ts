@@ -17,6 +17,7 @@ export class ArrayCodec<T extends AnyCodec>
 
   decode(value: unknown): Array<TypeOf<T['schema']>> {
     if (Array.isArray(value)) {
+      // eslint-disable-next-line @typescript-eslint/no-unsafe-return
       return value.map((v) => this.codec.decode(v))
     }
     throw new Error(
@@ -25,6 +26,7 @@ export class ArrayCodec<T extends AnyCodec>
   }
 
   encode(value: Array<TypeOf<T['schema']>>): Array<TypeOf<T['schema']>> {
+    // eslint-disable-next-line @typescript-eslint/no-unsafe-return
     return value.map((v) => this.codec.encode(v))
   }
 }
