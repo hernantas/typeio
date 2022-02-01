@@ -1,8 +1,8 @@
 import { BaseSchema } from './BaseSchema'
 import { TypeOfMap } from './helper/TypeOfMap'
-import { ObjectPropertyMap } from './helper/ObjectPropertyMap'
 import { ObjectDefinition } from './definition/ObjectDefinition'
 import { ObjectSchemaType } from './type/ObjectSchemaType'
+import { ObjectType } from '../alias/ObjectType'
 
 export class ObjectSchema<T extends ObjectSchemaType> extends BaseSchema<
   TypeOfMap<T>,
@@ -31,7 +31,7 @@ export class ObjectSchema<T extends ObjectSchemaType> extends BaseSchema<
       Object.keys(this.properties)
         .map((key) => {
           const tKey = key as keyof T
-          const tInput = input as ObjectPropertyMap<T>
+          const tInput = input as ObjectType<T>
           const schema = this.definition.properties[tKey]
           return schema !== undefined ? schema.is(tInput[tKey]) : false
         })
