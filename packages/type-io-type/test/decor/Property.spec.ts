@@ -11,13 +11,13 @@ class MyClass {
 }
 
 describe('Decorator: @Property', () => {
+  const schemas = getMetadata(MyClass)
+
   it('Define property (default)', () => {
-    const schema = getMetadata(MyClass, '_string')
-    expect(schema).to.be.instanceOf(TypeSchema)
+    expect(schemas._string).to.be.instanceOf(TypeSchema)
   })
 
   it('Define property (defined)', () => {
-    const schema = getMetadata(MyClass, '_defined')
-    expect(schema).to.be.instanceOf(StringSchema)
+    expect(schemas._defined).to.be.instanceOf(StringSchema)
   })
 })

@@ -1,7 +1,6 @@
 import 'reflect-metadata'
 import { ConstructorType } from '../alias/ConstructorType'
-import { AnySchema } from '../schema/AnySchema'
-import { BaseSchema } from '../schema/BaseSchema'
+import { SchemaMap } from '../schema/helper/SchemaMap'
 
 /**
  * Key used in typescript decoration to type
@@ -32,38 +31,30 @@ export function getDesignType<T, K extends keyof T>(
  * Get metadata schema from given property type of `<T>`
  *
  * @param target Target type `<T>` constructor
- * @param property Property key of target object
- * @returns Metadata schema of given property
+ * @returns Object schema that describe `<T>`
  */
-export function getMetadata<T, K extends keyof T>(
-  target: ConstructorType<T>,
-  property: K
-): BaseSchema<T[K]> {
-  return Reflect.getMetadata(
-    METADATA_KEY_STORAGE,
-    // eslint-disable-next-line @typescript-eslint/no-unsafe-argument
-    target.prototype,
-    property as string
-  ) as BaseSchema<T[K]>
+export function getMetadata<T>(
+  target: ConstructorType<T>
+): Partial<SchemaMap<T>> {
+  return (
+    (Reflect.getMetadata(
+      METADATA_KEY_STORAGE,
+      // eslint-disable-next-line @typescript-eslint/no-unsafe-argument
+      target.prototype
+    ) as SchemaMap<T>) ?? {}
+  )
 }
 
 /**
  * Set metadata schema from given property type of `<T>`
  *
  * @param target Target type `<T>` constructor
- * @param property Property key of target object
- * @param schema Metadata schema for given property
+ * @param schema Object schema that describe `<T>`
  */
-export function setMetadata<T, K extends keyof T>(
+export function setMetadata<T>(
   target: ConstructorType<T>,
-  property: K,
-  schema: AnySchema
+  schema: Partial<SchemaMap<T>>
 ): void {
-  Reflect.defineMetadata(
-    METADATA_KEY_STORAGE,
-    schema,
-    // eslint-disable-next-line @typescript-eslint/no-unsafe-argument
-    target.prototype,
-    property as string
-  )
+  // eslint-disable-next-line @typescript-eslint/no-unsafe-argument
+  Reflect.defineMetadata(METADATA_KEY_STORAGE, schema, target.prototype)
 }
