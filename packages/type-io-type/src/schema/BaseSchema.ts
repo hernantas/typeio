@@ -26,13 +26,10 @@ export abstract class BaseSchema<
   validate(input: T): ValidationError[] {
     return this.rules
       .filter((r) => !r.validate(input))
-      .map((r) => {
-        const error: ValidationError = {
-          kind: r.kind,
-          message: r.message,
-        }
-        return error
-      })
+      .map((r) => ({
+        kind: r.kind,
+        message: r.message,
+      }))
   }
 
   /**
