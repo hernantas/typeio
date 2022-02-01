@@ -1,10 +1,10 @@
 import { LiteralType } from '../alias/LiteralType'
 import { BaseSchema } from './BaseSchema'
-import { LiteralSchemaDefinition } from './definition/LiteralSchemaDefinition'
+import { LiteralDefinition } from './definition/LiteralDefinition'
 
 export class LiteralSchema<T extends LiteralType> extends BaseSchema<
   T,
-  LiteralSchemaDefinition<T>
+  LiteralDefinition<T>
 > {
   static create<T extends LiteralType>(value: T): LiteralSchema<T> {
     return new LiteralSchema({ name: value.toString(), value })

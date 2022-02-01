@@ -1,12 +1,12 @@
 import { Extendable } from '../Extendable'
-import { BaseSchemaDefinition } from './definition/BaseSchemaDefinition'
+import { BaseDefinition } from './definition/BaseDefinition'
 import { ValidationError } from './validation/ValidationError'
 import { ValidationFunction } from './validation/ValidationFunction'
 import { ValidationRule } from './validation/ValidationRule'
 
 export abstract class BaseSchema<
   T,
-  D extends BaseSchemaDefinition = BaseSchemaDefinition
+  D extends BaseDefinition = BaseDefinition
 > extends Extendable<D> {
   /**
    * Ignore this. Used to prevent typescript infer the type to `unknown`

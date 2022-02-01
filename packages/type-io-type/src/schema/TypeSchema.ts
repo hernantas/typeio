@@ -1,8 +1,8 @@
 import { BaseSchema } from './BaseSchema'
 import { ConstructorType } from '../alias/ConstructorType'
-import { TypeSchemaDefinition } from './definition/TypeSchemaDefinition'
+import { TypeDefinition } from './definition/TypeDefinition'
 
-export class TypeSchema<T> extends BaseSchema<T, TypeSchemaDefinition<T>> {
+export class TypeSchema<T> extends BaseSchema<T, TypeDefinition<T>> {
   static create<T>(constructor: ConstructorType<T>): TypeSchema<T> {
     return new TypeSchema({ name: constructor.name, type: constructor })
   }

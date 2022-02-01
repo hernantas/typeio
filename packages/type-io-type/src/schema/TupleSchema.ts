@@ -1,11 +1,11 @@
 import { BaseSchema } from './BaseSchema'
 import { TypeOfMap } from './helper/TypeOfMap'
-import { TupleSchemaDefinition } from './definition/TupleSchemaDefinition'
+import { TupleDefinition } from './definition/TupleDefinition'
 import { TupleSchemaType } from './type/TupleSchemaType'
 
 export class TupleSchema<T extends TupleSchemaType> extends BaseSchema<
   TypeOfMap<T>,
-  TupleSchemaDefinition<T>
+  TupleDefinition<T>
 > {
   static create<T extends TupleSchemaType>(items: T): TupleSchema<T> {
     return new TupleSchema({
