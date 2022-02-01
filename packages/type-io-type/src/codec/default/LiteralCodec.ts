@@ -5,6 +5,7 @@ import { NumberSchema } from '../../schema/primitive/NumberSchema'
 import { StringSchema } from '../../schema/primitive/StringSchema'
 import { Codec } from '../Codec'
 import { DecodeError } from '../error/DecodeError'
+import { AnyCodec } from './AnyCodec'
 import { BooleanCodec } from './BooleanCodec'
 import { NumberCodec } from './NumberCodec'
 import { StringCodec } from './StringCodec'
@@ -16,7 +17,7 @@ export class LiteralCodec<T extends LiteralType>
 
   readonly value: T
 
-  readonly codec: Codec<StringSchema | NumberSchema | BooleanSchema, any, any>
+  readonly codec: AnyCodec<StringSchema | NumberSchema | BooleanSchema>
 
   constructor(value: T) {
     this.value = value
