@@ -1,14 +1,15 @@
+import { AnySchema } from '..'
+import { UnionType } from '../alias/UnionType'
 import { BaseSchema } from './BaseSchema'
+import { UnionDefinition } from './definition/UnionDefinition'
 import { TypeOfMap } from './helper/TypeOfMap'
 import { UnionMap } from './helper/UnionMap'
-import { UnionDefinition } from './definition/UnionDefinition'
-import { UnionSchemaType } from './type/UnionSchemaType'
 
-export class UnionSchema<T extends UnionSchemaType> extends BaseSchema<
+export class UnionSchema<T extends UnionType<AnySchema>> extends BaseSchema<
   UnionMap<TypeOfMap<T>>,
   UnionDefinition<T>
 > {
-  static create<T extends UnionSchemaType>(items: T): UnionSchema<T> {
+  static create<T extends UnionType<AnySchema>>(items: T): UnionSchema<T> {
     return new UnionSchema({
       name: items.map((v) => v.name).join(' | '),
       items,

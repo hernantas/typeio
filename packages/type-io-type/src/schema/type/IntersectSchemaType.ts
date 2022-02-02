@@ -1,3 +1,4 @@
-import { UnionSchemaType } from './UnionSchemaType'
+import { UnionType } from '../../alias/UnionType'
+import { AnySchema } from '../AnySchema'
 
-export type IntersectSchemaType = UnionSchemaType
+export type IntersectSchemaType = UnionType<AnySchema>

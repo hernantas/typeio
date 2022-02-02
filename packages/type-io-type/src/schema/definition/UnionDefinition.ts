@@ -1,7 +1,8 @@
+import { UnionType } from '../../alias/UnionType'
+import { AnySchema } from '../AnySchema'
 import { BaseDefinition } from './BaseDefinition'
-import { UnionSchemaType } from '../type/UnionSchemaType'
 
-export interface UnionDefinition<T extends UnionSchemaType>
+export interface UnionDefinition<T extends UnionType<AnySchema>>
   extends BaseDefinition {
   readonly items: T
 }
