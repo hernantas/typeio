@@ -1,7 +1,7 @@
+import { ObjectType } from '../../src/alias/ObjectType'
 import { TestSuite } from './TestSuite'
-import { TransformFn } from './TransformFn'
 import { TestSuiteMap } from './TestSuiteMap'
-import { DynamicObjectType } from '../../src/alias/DynamicObjectType'
+import { TransformFn } from './TransformFn'
 
 export function createCase<T>(
   fn: TransformFn,
@@ -15,8 +15,8 @@ export function createCase<T>(
   return Object.keys(value).reduce(
     (prev, key) => ({
       ...prev,
-      [key]: createCase(fn, (value as DynamicObjectType)[key], [...path, key]),
+      [key]: createCase(fn, (value as ObjectType)[key], [...path, key]),
     }),
-    {} as DynamicObjectType
+    {} as ObjectType
   ) as TestSuiteMap<T>
 }

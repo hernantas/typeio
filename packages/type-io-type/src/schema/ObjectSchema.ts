@@ -1,14 +1,16 @@
 import { BaseSchema } from './BaseSchema'
 import { TypeOfMap } from './helper/TypeOfMap'
 import { ObjectDefinition } from './definition/ObjectDefinition'
-import { ObjectSchemaType } from './type/ObjectSchemaType'
 import { ObjectType } from '../alias/ObjectType'
+import { AnySchema } from '..'
 
-export class ObjectSchema<T extends ObjectSchemaType> extends BaseSchema<
+export class ObjectSchema<T extends ObjectType<AnySchema>> extends BaseSchema<
   TypeOfMap<T>,
   ObjectDefinition<T>
 > {
-  static create<T extends ObjectSchemaType>(properties: T): ObjectSchema<T> {
+  static create<T extends ObjectType<AnySchema>>(
+    properties: T
+  ): ObjectSchema<T> {
     return new ObjectSchema({
       name: `{${Object.keys(properties)
         .map((key) => {

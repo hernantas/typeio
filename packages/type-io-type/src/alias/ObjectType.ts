@@ -3,6 +3,4 @@
  * since in future it can be changed to better type that can represent it better.
  */
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
-export type ObjectType<T = any> = {
-  [K in keyof T]: unknown
-}
+export type ObjectType<T = unknown> = Record<keyof any, T>

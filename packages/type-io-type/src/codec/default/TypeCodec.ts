@@ -1,5 +1,5 @@
 import { ConstructorType } from '../../alias/ConstructorType'
-import { DynamicObjectType } from '../../alias/DynamicObjectType'
+import { ObjectType } from '../../alias/ObjectType'
 import { UnknownMap } from '../../schema/helper/UnknownMap'
 import { TypeSchema } from '../../schema/TypeSchema'
 import { Codec } from '../Codec'
@@ -27,7 +27,7 @@ export class TypeCodec<T> implements Codec<TypeSchema<T>, UnknownMap<T>> {
         const tKey = key as keyof T
         const codec = this.properties[tKey]
         if (codec !== undefined) {
-          instance[tKey] = codec.decode((value as DynamicObjectType)[key])
+          instance[tKey] = codec.decode((value as ObjectType)[key])
         }
       })
 
