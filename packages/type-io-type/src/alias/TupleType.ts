@@ -1,1 +1,1 @@
-export type TupleType = [unknown, ...unknown[]]
+export type TupleType<T = unknown> = [T, ...T[]]
