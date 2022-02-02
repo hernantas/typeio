@@ -1,5 +1,5 @@
 import { TupleType } from '../../alias/TupleType'
-import { UnionMap } from './UnionMap'
+import { UnionMap } from '../../alias/helper/UnionMap'
 
 type IntersectOf<T> = (T extends unknown ? (key: T) => void : never) extends (
   key: infer I

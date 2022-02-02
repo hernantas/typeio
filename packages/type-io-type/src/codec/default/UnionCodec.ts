@@ -1,5 +1,5 @@
 import { TypeOfMap } from '../../schema/helper/TypeOfMap'
-import { UnionMap } from '../../schema/helper/UnionMap'
+import { UnionMap } from '../../alias/helper/UnionMap'
 import { UnionSchema } from '../../schema/UnionSchema'
 import { Codec } from '../Codec'
 import { DecodeError } from '../error/DecodeError'
