@@ -15,7 +15,7 @@ export class ObjectSchema<T extends ObjectType<AnySchema>> extends BaseSchema<
       name: `{${Object.keys(properties)
         .map((key) => {
           const value = properties[key]
-          return value !== undefined ? value.name : ''
+          return `${key}: ${value !== undefined ? value.name : ''}`
         })
         .join(', ')}}`,
       properties,
