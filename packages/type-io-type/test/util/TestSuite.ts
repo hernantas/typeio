@@ -20,6 +20,10 @@ export class TestSuite<T> {
     this.each((c) => c.is(value))
   }
 
+  isDeep(value: unknown): void {
+    this.each((c) => c.isDeep(value))
+  }
+
   isTrue(): void {
     this.each((c) => c.isTrue())
   }
