@@ -2,7 +2,7 @@ import { IntersectType } from '../alias/IntersectType'
 import { AnySchema } from './AnySchema'
 import { BaseSchema } from './BaseSchema'
 import { IntersectDefinition } from './definition/IntersectDefinition'
-import { IntersectMap } from './helper/IntersectMap'
+import { IntersectMap } from '../alias/helper/IntersectMap'
 import { TypeOfMap } from './helper/TypeOfMap'
 
 export class IntersectSchema<
