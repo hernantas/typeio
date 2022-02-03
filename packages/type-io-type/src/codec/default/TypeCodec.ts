@@ -1,12 +1,12 @@
 import { ConstructorType } from '../../alias/ConstructorType'
+import { ObjectMap } from '../../alias/helper/ObjectMap'
 import { ObjectType } from '../../alias/ObjectType'
-import { UnknownMap } from '../../schema/helper/UnknownMap'
 import { TypeSchema } from '../../schema/TypeSchema'
 import { Codec } from '../Codec'
 import { DecodeError } from '../error/DecodeError'
 import { CodecMap } from '../helper/CodecMap'
 
-export class TypeCodec<T> implements Codec<TypeSchema<T>, UnknownMap<T>> {
+export class TypeCodec<T> implements Codec<TypeSchema<T>, ObjectMap<T>> {
   readonly schema: TypeSchema<T>
 
   readonly Ctor: ConstructorType<T>
@@ -37,7 +37,7 @@ export class TypeCodec<T> implements Codec<TypeSchema<T>, UnknownMap<T>> {
     throw new DecodeError(this.schema.name)
   }
 
-  encode(value: T): UnknownMap<T> {
+  encode(value: T): ObjectMap<T> {
     return Object.keys(this.properties).reduce((prev, key) => {
       const tKey = key as keyof T
       const codec = this.properties[tKey]
@@ -48,6 +48,6 @@ export class TypeCodec<T> implements Codec<TypeSchema<T>, UnknownMap<T>> {
             [tKey]: codec.encode(value[tKey]),
           }
         : prev
-    }, {} as UnknownMap<T>)
+    }, {} as ObjectMap<T>)
   }
 }
