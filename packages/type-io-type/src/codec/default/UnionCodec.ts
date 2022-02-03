@@ -1,5 +1,6 @@
-import { TypeOfMap } from '../../schema/helper/TypeOfMap'
 import { UnionMap } from '../../alias/helper/UnionMap'
+import { UnionType } from '../../alias/UnionType'
+import { TypeOfMap } from '../../schema/helper/TypeOfMap'
 import { UnionSchema } from '../../schema/UnionSchema'
 import { Codec } from '../Codec'
 import { DecodeError } from '../error/DecodeError'
@@ -7,9 +8,9 @@ import { EncodeError } from '../error/EncodeError'
 import { InputOfMap } from '../helper/InputOfMap'
 import { OutputOfMap } from '../helper/OutputOfMap'
 import { SchemaOfMap } from '../helper/SchemaOfMap'
-import { UnionCodecType } from '../type/UnionCodecType'
+import { AnyCodec } from './AnyCodec'
 
-export class UnionCodec<T extends UnionCodecType>
+export class UnionCodec<T extends UnionType<AnyCodec>>
   implements
     Codec<
       UnionSchema<SchemaOfMap<T>>,
