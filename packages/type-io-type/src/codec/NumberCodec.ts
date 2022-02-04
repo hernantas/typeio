@@ -1,6 +1,6 @@
-import { NumberSchema } from '../../schema/NumberSchema'
-import { Codec } from '../interface/Codec'
-import { DecodeError } from '../error/DecodeError'
+import { NumberSchema } from '../schema/NumberSchema'
+import { Codec } from './interface/Codec'
+import { DecodeError } from './error/DecodeError'
 
 export class NumberCodec implements Codec<NumberSchema> {
   readonly schema = NumberSchema.create()

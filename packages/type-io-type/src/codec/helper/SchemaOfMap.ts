@@ -1,4 +1,4 @@
-import { AnyCodec } from '../default/AnyCodec'
+import { AnyCodec } from '../AnyCodec'
 import { SchemaOf } from './SchemaOf'
 
 export type SchemaOfMap<T> = {

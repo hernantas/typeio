@@ -1,4 +1,4 @@
-import { AnyCodec } from '../default/AnyCodec'
+import { AnyCodec } from '../AnyCodec'
 import { InputOf } from './InputOf'
 
 export type InputOfMap<T> = {

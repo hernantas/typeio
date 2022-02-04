@@ -1,10 +1,10 @@
-import { TupleType } from '../../alias/TupleType'
-import { TypeOfMap } from '../../schema/helper/TypeOfMap'
-import { TupleSchema } from '../../schema/TupleSchema'
-import { Codec } from '../interface/Codec'
-import { DecodeError } from '../error/DecodeError'
-import { OutputOfMap } from '../helper/OutputOfMap'
-import { SchemaOfMap } from '../helper/SchemaOfMap'
+import { TupleType } from '../alias/TupleType'
+import { TypeOfMap } from '../schema/helper/TypeOfMap'
+import { TupleSchema } from '../schema/TupleSchema'
+import { Codec } from './interface/Codec'
+import { DecodeError } from './error/DecodeError'
+import { OutputOfMap } from './helper/OutputOfMap'
+import { SchemaOfMap } from './helper/SchemaOfMap'
 import { AnyCodec } from './AnyCodec'
 
 export class TupleCodec<T extends TupleType<AnyCodec>>

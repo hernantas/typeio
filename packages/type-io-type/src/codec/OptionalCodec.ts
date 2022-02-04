@@ -1,9 +1,9 @@
-import { TypeOf } from '../../schema/helper/TypeOf'
-import { OptionalSchema } from '../../schema/OptionalSchema'
-import { Codec } from '../interface/Codec'
-import { InputOf } from '../helper/InputOf'
-import { OutputOf } from '../helper/OutputOf'
-import { SchemaOf } from '../helper/SchemaOf'
+import { TypeOf } from '../schema/helper/TypeOf'
+import { OptionalSchema } from '../schema/OptionalSchema'
+import { Codec } from './interface/Codec'
+import { InputOf } from './helper/InputOf'
+import { OutputOf } from './helper/OutputOf'
+import { SchemaOf } from './helper/SchemaOf'
 import { AnyCodec } from './AnyCodec'
 
 export class OptionalCodec<T extends AnyCodec>

@@ -1,10 +1,10 @@
-import { ConstructorType } from '../../alias/ConstructorType'
-import { ObjectMap } from '../../alias/helper/ObjectMap'
-import { ObjectType } from '../../alias/ObjectType'
-import { TypeSchema } from '../../schema/TypeSchema'
-import { Codec } from '../interface/Codec'
-import { DecodeError } from '../error/DecodeError'
-import { CodecMap } from '../helper/CodecMap'
+import { ConstructorType } from '../alias/ConstructorType'
+import { ObjectMap } from '../alias/helper/ObjectMap'
+import { ObjectType } from '../alias/ObjectType'
+import { TypeSchema } from '../schema/TypeSchema'
+import { Codec } from './interface/Codec'
+import { DecodeError } from './error/DecodeError'
+import { CodecMap } from './helper/CodecMap'
 
 export class TypeCodec<T> implements Codec<TypeSchema<T>, ObjectMap<T>> {
   readonly schema: TypeSchema<T>
