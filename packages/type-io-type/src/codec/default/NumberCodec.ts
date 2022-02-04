@@ -1,4 +1,4 @@
-import { NumberSchema } from '../../schema/primitive/NumberSchema'
+import { NumberSchema } from '../../schema/NumberSchema'
 import { Codec } from '../Codec'
 import { DecodeError } from '../error/DecodeError'
 

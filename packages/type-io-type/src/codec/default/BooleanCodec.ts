@@ -1,4 +1,4 @@
-import { BooleanSchema } from '../../schema/primitive/BooleanSchema'
+import { BooleanSchema } from '../../schema/BooleanSchema'
 import { Codec } from '../Codec'
 
 export class BooleanCodec implements Codec<BooleanSchema> {

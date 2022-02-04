@@ -1,4 +1,4 @@
-import { BaseSchema } from '../BaseSchema'
+import { BaseSchema } from './BaseSchema'
 
 export class NumberSchema extends BaseSchema<number> {
   static create(): NumberSchema {

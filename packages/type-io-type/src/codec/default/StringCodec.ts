@@ -1,4 +1,4 @@
-import { StringSchema } from '../../schema/primitive/StringSchema'
+import { StringSchema } from '../../schema/StringSchema'
 import { Codec } from '../Codec'
 
 export class StringCodec implements Codec<StringSchema> {
