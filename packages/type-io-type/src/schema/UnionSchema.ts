@@ -1,9 +1,9 @@
-import { AnySchema } from '..'
+import { UnionMap } from '../alias/helper/UnionMap'
 import { UnionType } from '../alias/UnionType'
+import { AnySchema } from './AnySchema'
 import { BaseSchema } from './BaseSchema'
 import { UnionDefinition } from './definition/UnionDefinition'
 import { TypeOfMap } from './helper/TypeOfMap'
-import { UnionMap } from '../alias/helper/UnionMap'
 
 export class UnionSchema<T extends UnionType<AnySchema>> extends BaseSchema<
   UnionMap<TypeOfMap<T>>,

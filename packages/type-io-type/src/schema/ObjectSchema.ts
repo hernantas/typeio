@@ -1,8 +1,8 @@
-import { BaseSchema } from './BaseSchema'
-import { TypeOfMap } from './helper/TypeOfMap'
-import { ObjectDefinition } from './definition/ObjectDefinition'
 import { ObjectType } from '../alias/ObjectType'
-import { AnySchema } from '..'
+import { AnySchema } from './AnySchema'
+import { BaseSchema } from './BaseSchema'
+import { ObjectDefinition } from './definition/ObjectDefinition'
+import { TypeOfMap } from './helper/TypeOfMap'
 
 export class ObjectSchema<T extends ObjectType<AnySchema>> extends BaseSchema<
   TypeOfMap<T>,
