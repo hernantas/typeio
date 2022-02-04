@@ -1,5 +1,5 @@
 import { NumberSchema } from '../../schema/NumberSchema'
-import { Codec } from '../Codec'
+import { Codec } from '../interface/Codec'
 import { DecodeError } from '../error/DecodeError'
 
 export class NumberCodec implements Codec<NumberSchema> {

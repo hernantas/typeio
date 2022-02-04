@@ -1,7 +1,7 @@
 import { TupleType } from '../../alias/TupleType'
 import { TypeOfMap } from '../../schema/helper/TypeOfMap'
 import { TupleSchema } from '../../schema/TupleSchema'
-import { Codec } from '../Codec'
+import { Codec } from '../interface/Codec'
 import { DecodeError } from '../error/DecodeError'
 import { OutputOfMap } from '../helper/OutputOfMap'
 import { SchemaOfMap } from '../helper/SchemaOfMap'

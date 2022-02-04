@@ -1,7 +1,7 @@
 import { ObjectType } from '../../alias/ObjectType'
 import { TypeOfMap } from '../../schema/helper/TypeOfMap'
 import { ObjectSchema } from '../../schema/ObjectSchema'
-import { Codec } from '../Codec'
+import { Codec } from '../interface/Codec'
 import { DecodeError } from '../error/DecodeError'
 import { InputOfMap } from '../helper/InputOfMap'
 import { OutputOfMap } from '../helper/OutputOfMap'

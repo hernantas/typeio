@@ -1,6 +1,6 @@
 import { AnySchema } from '../../schema/AnySchema'
 import { TypeOf } from '../../schema/helper/TypeOf'
-import { Codec } from '../Codec'
+import { Codec } from '../interface/Codec'
 import { DecodeError } from '../error/DecodeError'
 
 /**

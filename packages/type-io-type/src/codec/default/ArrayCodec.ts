@@ -1,6 +1,6 @@
 import { ArraySchema } from '../../schema/ArraySchema'
 import { TypeOf } from '../../schema/helper/TypeOf'
-import { Codec } from '../Codec'
+import { Codec } from '../interface/Codec'
 import { InputOf } from '../helper/InputOf'
 import { OutputOf } from '../helper/OutputOf'
 import { SchemaOf } from '../helper/SchemaOf'

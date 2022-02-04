@@ -1,4 +1,4 @@
-import { Codec } from '../Codec'
+import { Codec } from '../interface/Codec'
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 export type InputOf<T> = T extends Codec<any, any, infer R> ? R : never

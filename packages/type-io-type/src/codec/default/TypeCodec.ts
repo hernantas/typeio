@@ -2,7 +2,7 @@ import { ConstructorType } from '../../alias/ConstructorType'
 import { ObjectMap } from '../../alias/helper/ObjectMap'
 import { ObjectType } from '../../alias/ObjectType'
 import { TypeSchema } from '../../schema/TypeSchema'
-import { Codec } from '../Codec'
+import { Codec } from '../interface/Codec'
 import { DecodeError } from '../error/DecodeError'
 import { CodecMap } from '../helper/CodecMap'
 
