@@ -22,6 +22,7 @@ describe('Codec', () => {
         ['', '0'].includes(c.value) ? c.is(0) : c.isThrow()
       )
       suite.tuple.isThrow()
+      suite.type.isThrow()
       suite.undefined.isThrow()
     })
   })

@@ -18,6 +18,7 @@ describe('Codec', () => {
       suite.object.nested.is(String({ foo: 'bar' }))
       suite.string.isEqual()
       suite.tuple.each((c) => c.is(c.value.join()))
+      suite.type.is(String({ foo: 'bar' }))
       suite.undefined.is(undefined)
     })
   })

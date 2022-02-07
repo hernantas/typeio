@@ -18,6 +18,7 @@ describe('Codec', () => {
       suite.object.nested.isDeep([String({ foo: 'bar' })])
       suite.string.each((c) => c.isDeep([c.value]))
       suite.tuple.each((c) => c.isDeep(c.value.map((v) => v.toString())))
+      suite.type.isDeep([String({ foo: 'bar' })])
       suite.undefined.isDeep(['undefined'])
     })
   })

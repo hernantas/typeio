@@ -25,6 +25,7 @@ describe('Codec', () => {
       suite.object.nested.each(fn)
       suite.string.each(fn)
       suite.tuple.each(fn)
+      suite.type.each(fn)
       suite.undefined.each(fn)
     })
   })
