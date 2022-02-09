@@ -1,14 +1,14 @@
+import { IntersectMap } from '../alias/helper/IntersectMap'
 import { IntersectType } from '../alias/IntersectType'
-import { AnySchema } from './AnySchema'
+import { SchemaAny } from './alias/SchemaAny'
 import { BaseSchema } from './BaseSchema'
 import { IntersectDefinition } from './definition/IntersectDefinition'
-import { IntersectMap } from '../alias/helper/IntersectMap'
 import { TypeOfMap } from './helper/TypeOfMap'
 
 export class IntersectSchema<
-  T extends IntersectType<AnySchema>
+  T extends IntersectType<SchemaAny>
 > extends BaseSchema<IntersectMap<TypeOfMap<T>>, IntersectDefinition<T>> {
-  static create<T extends IntersectType<AnySchema>>(
+  static create<T extends IntersectType<SchemaAny>>(
     items: T
   ): IntersectSchema<T> {
     return new IntersectSchema({

@@ -1,5 +1,13 @@
 import { BaseSchema } from './BaseSchema'
-import { BaseDefinition } from './definition/BaseDefinition'
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
-export type AnySchema = BaseSchema<any, BaseDefinition>
+export class AnySchema extends BaseSchema<any> {
+  static create(): AnySchema {
+    return new AnySchema({ name: 'any' })
+  }
+
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  is(_input: unknown): _input is any {
+    return true
+  }
+}

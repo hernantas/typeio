@@ -1,10 +1,10 @@
-import { AnySchema } from '../../schema/AnySchema'
+import { SchemaAny } from '../../schema/alias/SchemaAny'
 import { TypeOf } from '../../schema/helper/TypeOf'
 import { Decoder } from './Decoder'
 import { Encoder } from './Encoder'
 
 export interface Codec<
-  T extends AnySchema = AnySchema,
+  T extends SchemaAny = SchemaAny,
   O = TypeOf<T>,
   I = unknown
 > extends Decoder<TypeOf<T>, I>,

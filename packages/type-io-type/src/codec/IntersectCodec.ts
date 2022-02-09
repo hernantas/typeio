@@ -31,55 +31,35 @@ export class IntersectCodec<T extends IntersectType<AnyCodec>>
   decode(
     value: IntersectMap<InputOfMap<T>>
   ): IntersectMap<TypeOfMap<SchemaOfMap<T>>> {
-    /* 
-      eslint-disable 
-        @typescript-eslint/no-unsafe-return, 
-        @typescript-eslint/no-unsafe-assignment, 
-        @typescript-eslint/no-unsafe-argument,
-        @typescript-eslint/no-unsafe-member-access
-    */
     return this.codecs
       .map((c) => c.decode(value))
       .filter((v) => typeof v === 'object')
       .reduce(
-        (result, v) =>
-          Object.keys(v)
-            .filter((k) => !Object.keys(result).includes(k))
-            .reduce(
-              (prev, key) => ({
-                ...prev,
-                [key]: v[key],
-              }),
-              result
-            ),
+        (result, v) => merge(result, v),
         {} as ObjectType
-      )
+      ) as IntersectMap<TypeOfMap<SchemaOfMap<T>>>
   }
+
   encode(
     value: IntersectMap<TypeOfMap<SchemaOfMap<T>>>
   ): IntersectMap<OutputOfMap<T>> {
-    /* 
-      eslint-disable 
-        @typescript-eslint/no-unsafe-return, 
-        @typescript-eslint/no-unsafe-assignment, 
-        @typescript-eslint/no-unsafe-argument,
-        @typescript-eslint/no-unsafe-member-access
-    */
-    return this.codecs
-      .map((c) => c.encode(value))
-      .filter((v) => typeof v === 'object')
-      .reduce(
-        (result, v) =>
-          Object.keys(v)
-            .filter((k) => !Object.keys(result).includes(k))
-            .reduce(
-              (prev, key) => ({
-                ...prev,
-                [key]: v[key],
-              }),
-              result
-            ),
-        {} as ObjectType
-      )
+    return (
+      this.codecs
+        // eslint-disable-next-line @typescript-eslint/no-unsafe-return
+        .map((c) => c.encode(value))
+        .filter((v) => typeof v === 'object')
+        .reduce(
+          // eslint-disable-next-line @typescript-eslint/no-unsafe-return
+          (result, v) => merge(result, v),
+          {} as ObjectType
+        ) as IntersectMap<OutputOfMap<T>>
+    )
+  }
+}
+
+function merge<T, U>(base: T, target: U): T & U {
+  return {
+    ...target,
+    ...base,
   }
 }

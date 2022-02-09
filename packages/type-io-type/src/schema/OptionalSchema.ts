@@ -1,13 +1,13 @@
-import { AnySchema } from './AnySchema'
+import { SchemaAny } from './alias/SchemaAny'
 import { BaseSchema } from './BaseSchema'
-import { TypeOf } from './helper/TypeOf'
 import { OptionalDefinition } from './definition/OptionalDefinition'
+import { TypeOf } from './helper/TypeOf'
 
-export class OptionalSchema<T extends AnySchema> extends BaseSchema<
+export class OptionalSchema<T extends SchemaAny> extends BaseSchema<
   TypeOf<T> | undefined,
   OptionalDefinition<T>
 > {
-  static create<T extends AnySchema>(type: T): OptionalSchema<T> {
+  static create<T extends SchemaAny>(type: T): OptionalSchema<T> {
     return new OptionalSchema({ name: `Optional<${type.name}>`, type })
   }
 

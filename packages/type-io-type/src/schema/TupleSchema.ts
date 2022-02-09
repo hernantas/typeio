@@ -1,14 +1,14 @@
 import { TupleType } from '../alias/TupleType'
-import { AnySchema } from './AnySchema'
+import { SchemaAny } from './alias/SchemaAny'
 import { BaseSchema } from './BaseSchema'
 import { TupleDefinition } from './definition/TupleDefinition'
 import { TypeOfMap } from './helper/TypeOfMap'
 
-export class TupleSchema<T extends TupleType<AnySchema>> extends BaseSchema<
+export class TupleSchema<T extends TupleType<SchemaAny>> extends BaseSchema<
   TypeOfMap<T>,
   TupleDefinition<T>
 > {
-  static create<T extends TupleType<AnySchema>>(items: T): TupleSchema<T> {
+  static create<T extends TupleType<SchemaAny>>(items: T): TupleSchema<T> {
     return new TupleSchema({
       name: `[${items.map((v) => v.name).join(', ')}]`,
       items,

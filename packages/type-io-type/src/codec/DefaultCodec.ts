@@ -1,13 +1,13 @@
-import { AnySchema } from '../schema/AnySchema'
+import { SchemaAny } from '../schema/alias/SchemaAny'
 import { TypeOf } from '../schema/helper/TypeOf'
-import { Codec } from './interface/Codec'
 import { DecodeError } from './error/DecodeError'
+import { Codec } from './interface/Codec'
 
 /**
  * Fallback codec. If codec is not found for particular schema, use its own schema
  * to decode/encode
  */
-export class DefaultCodec<T extends AnySchema> implements Codec<T> {
+export class DefaultCodec<T extends SchemaAny> implements Codec<T> {
   readonly schema: T
 
   constructor(schema: T) {

@@ -1,13 +1,13 @@
-import { AnySchema } from './AnySchema'
+import { SchemaAny } from './alias/SchemaAny'
 import { BaseSchema } from './BaseSchema'
-import { TypeOf } from './helper/TypeOf'
 import { ArrayDefinition } from './definition/ArrayDefinition'
+import { TypeOf } from './helper/TypeOf'
 
-export class ArraySchema<T extends AnySchema> extends BaseSchema<
+export class ArraySchema<T extends SchemaAny> extends BaseSchema<
   Array<TypeOf<T>>,
   ArrayDefinition<T>
 > {
-  static create<T extends AnySchema>(type: T): ArraySchema<T> {
+  static create<T extends SchemaAny>(type: T): ArraySchema<T> {
     return new ArraySchema({ name: `Array<${type.name}>`, type })
   }
 
