@@ -1,12 +1,12 @@
 import { TypeOf } from '../schema/helper/TypeOf'
 import { OptionalSchema } from '../schema/OptionalSchema'
-import { Codec } from './interface/Codec'
+import { CodecAny } from './alias/CodecAny'
 import { InputOf } from './helper/InputOf'
 import { OutputOf } from './helper/OutputOf'
 import { SchemaOf } from './helper/SchemaOf'
-import { AnyCodec } from './AnyCodec'
+import { Codec } from './interface/Codec'
 
-export class OptionalCodec<T extends AnyCodec>
+export class OptionalCodec<T extends CodecAny>
   implements
     Codec<
       OptionalSchema<SchemaOf<T>>,
@@ -24,12 +24,12 @@ export class OptionalCodec<T extends AnyCodec>
   }
 
   decode(value: InputOf<T> | undefined): TypeOf<SchemaOf<T>> | undefined {
-    // eslint-disable-next-line @typescript-eslint/no-unsafe-return
     return value === undefined ? undefined : this.codec.decode(value)
   }
 
   encode(value: TypeOf<SchemaOf<T>> | undefined): OutputOf<T> | undefined {
-    // eslint-disable-next-line @typescript-eslint/no-unsafe-return
-    return value === undefined ? undefined : this.codec.encode(value)
+    return value === undefined
+      ? undefined
+      : (this.codec.encode(value) as OutputOf<T>)
   }
 }

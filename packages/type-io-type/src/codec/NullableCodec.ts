@@ -1,12 +1,12 @@
 import { TypeOf } from '../schema/helper/TypeOf'
 import { NullableSchema } from '../schema/NullableSchema'
-import { Codec } from './interface/Codec'
+import { CodecAny } from './alias/CodecAny'
 import { InputOf } from './helper/InputOf'
 import { OutputOf } from './helper/OutputOf'
 import { SchemaOf } from './helper/SchemaOf'
-import { AnyCodec } from './AnyCodec'
+import { Codec } from './interface/Codec'
 
-export class NullableCodec<T extends AnyCodec>
+export class NullableCodec<T extends CodecAny>
   implements
     Codec<NullableSchema<SchemaOf<T>>, OutputOf<T> | null, InputOf<T> | null>
 {
@@ -20,12 +20,10 @@ export class NullableCodec<T extends AnyCodec>
   }
 
   decode(value: InputOf<T>): TypeOf<SchemaOf<T>> | null {
-    // eslint-disable-next-line @typescript-eslint/no-unsafe-return
     return value === null ? null : this.codec.decode(value)
   }
 
   encode(value: TypeOf<SchemaOf<T>> | null): OutputOf<T> | null {
-    // eslint-disable-next-line @typescript-eslint/no-unsafe-return
-    return value === null ? null : this.codec.encode(value)
+    return value === null ? null : (this.codec.encode(value) as OutputOf<T>)
   }
 }

@@ -2,15 +2,15 @@ import { UnionMap } from '../alias/helper/UnionMap'
 import { UnionType } from '../alias/UnionType'
 import { TypeOfMap } from '../schema/helper/TypeOfMap'
 import { UnionSchema } from '../schema/UnionSchema'
-import { Codec } from './interface/Codec'
+import { CodecAny } from './alias/CodecAny'
 import { DecodeError } from './error/DecodeError'
 import { EncodeError } from './error/EncodeError'
 import { InputOfMap } from './helper/InputOfMap'
 import { OutputOfMap } from './helper/OutputOfMap'
 import { SchemaOfMap } from './helper/SchemaOfMap'
-import { AnyCodec } from './AnyCodec'
+import { Codec } from './interface/Codec'
 
-export class UnionCodec<T extends UnionType<AnyCodec>>
+export class UnionCodec<T extends UnionType<CodecAny>>
   implements
     Codec<
       UnionSchema<SchemaOfMap<T>>,
@@ -32,7 +32,6 @@ export class UnionCodec<T extends UnionType<AnyCodec>>
   decode(value: UnionMap<InputOfMap<T>>): UnionMap<TypeOfMap<SchemaOfMap<T>>> {
     for (const codec of this.codecs) {
       try {
-        // eslint-disable-next-line @typescript-eslint/no-unsafe-return
         return codec.decode(value)
         // eslint-disable-next-line no-empty
       } catch (e) {}
@@ -43,8 +42,7 @@ export class UnionCodec<T extends UnionType<AnyCodec>>
   encode(value: UnionMap<TypeOfMap<SchemaOfMap<T>>>): UnionMap<OutputOfMap<T>> {
     for (const codec of this.codecs) {
       try {
-        // eslint-disable-next-line @typescript-eslint/no-unsafe-return
-        return codec.encode(value)
+        return codec.encode(value) as UnionMap<OutputOfMap<T>>
         // eslint-disable-next-line no-empty
       } catch (e) {}
     }

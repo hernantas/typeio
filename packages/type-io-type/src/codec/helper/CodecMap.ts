@@ -1,6 +1,6 @@
 import { BaseSchema } from '../../schema/BaseSchema'
-import { AnyCodec } from '../AnyCodec'
+import { CodecAny } from '../alias/CodecAny'
 
 export type CodecMap<T> = {
-  [K in keyof T]: AnyCodec<BaseSchema<T[K]>>
+  [K in keyof T]: CodecAny<BaseSchema<T[K]>>
 }

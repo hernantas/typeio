@@ -1,3 +1,3 @@
-import { AnyCodec } from '../AnyCodec'
+import { CodecAny } from '../alias/CodecAny'
 
-export type SchemaOf<T extends AnyCodec> = T['schema']
+export type SchemaOf<T extends CodecAny> = T['schema']

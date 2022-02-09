@@ -1,12 +1,12 @@
 import { LiteralType } from '../alias/LiteralType'
-import { LiteralSchema } from '../schema/LiteralSchema'
 import { BooleanSchema } from '../schema/BooleanSchema'
+import { LiteralSchema } from '../schema/LiteralSchema'
 import { NumberSchema } from '../schema/NumberSchema'
 import { StringSchema } from '../schema/StringSchema'
-import { Codec } from './interface/Codec'
-import { DecodeError } from './error/DecodeError'
-import { AnyCodec } from './AnyCodec'
+import { CodecAny } from './alias/CodecAny'
 import { BooleanCodec } from './BooleanCodec'
+import { DecodeError } from './error/DecodeError'
+import { Codec } from './interface/Codec'
 import { NumberCodec } from './NumberCodec'
 import { StringCodec } from './StringCodec'
 
@@ -17,7 +17,7 @@ export class LiteralCodec<T extends LiteralType>
 
   readonly value: T
 
-  readonly codec: AnyCodec<StringSchema | NumberSchema | BooleanSchema>
+  readonly codec: CodecAny<StringSchema | NumberSchema | BooleanSchema>
 
   constructor(value: T) {
     this.value = value

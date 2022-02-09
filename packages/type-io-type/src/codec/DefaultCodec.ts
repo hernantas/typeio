@@ -16,7 +16,6 @@ export class DefaultCodec<T extends SchemaAny> implements Codec<T> {
 
   decode(value: unknown): TypeOf<T> {
     if (this.schema.is(value)) {
-      // eslint-disable-next-line @typescript-eslint/no-unsafe-return
       return value
     }
 
@@ -24,7 +23,6 @@ export class DefaultCodec<T extends SchemaAny> implements Codec<T> {
   }
 
   encode(value: TypeOf<T>): TypeOf<T> {
-    // eslint-disable-next-line @typescript-eslint/no-unsafe-return
     return value
   }
 }

@@ -1,6 +1,6 @@
-import { AnyCodec } from '../AnyCodec'
+import { CodecAny } from '../alias/CodecAny'
 import { SchemaOf } from './SchemaOf'
 
 export type SchemaOfMap<T> = {
-  [K in keyof T]: T[K] extends AnyCodec ? SchemaOf<T[K]> : never
+  [K in keyof T]: T[K] extends CodecAny ? SchemaOf<T[K]> : never
 }

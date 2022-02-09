@@ -1,14 +1,14 @@
 import { ObjectType } from '../alias/ObjectType'
 import { TypeOfMap } from '../schema/helper/TypeOfMap'
 import { ObjectSchema } from '../schema/ObjectSchema'
-import { Codec } from './interface/Codec'
+import { CodecAny } from './alias/CodecAny'
 import { DecodeError } from './error/DecodeError'
 import { InputOfMap } from './helper/InputOfMap'
 import { OutputOfMap } from './helper/OutputOfMap'
 import { SchemaOfMap } from './helper/SchemaOfMap'
-import { AnyCodec } from './AnyCodec'
+import { Codec } from './interface/Codec'
 
-export class ObjectCodec<T extends ObjectType<AnyCodec>>
+export class ObjectCodec<T extends ObjectType<CodecAny>>
   implements
     Codec<
       ObjectSchema<SchemaOfMap<T>>,
@@ -39,7 +39,6 @@ export class ObjectCodec<T extends ObjectType<AnyCodec>>
       return Object.keys(this.codecs).reduce(
         (prev, key) => ({
           ...prev,
-          // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
           [key]: this.codecs[key]?.decode(tValue[key]),
         }),
         {} as TypeOfMap<SchemaOfMap<T>>
@@ -53,7 +52,6 @@ export class ObjectCodec<T extends ObjectType<AnyCodec>>
     return Object.keys(this.codecs).reduce(
       (prev, key) => ({
         ...prev,
-        // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
         [key]: this.codecs[key]?.encode(value[key]),
       }),
       {} as OutputOfMap<T>

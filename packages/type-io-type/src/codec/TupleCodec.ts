@@ -1,13 +1,13 @@
 import { TupleType } from '../alias/TupleType'
 import { TypeOfMap } from '../schema/helper/TypeOfMap'
 import { TupleSchema } from '../schema/TupleSchema'
-import { Codec } from './interface/Codec'
+import { CodecAny } from './alias/CodecAny'
 import { DecodeError } from './error/DecodeError'
 import { OutputOfMap } from './helper/OutputOfMap'
 import { SchemaOfMap } from './helper/SchemaOfMap'
-import { AnyCodec } from './AnyCodec'
+import { Codec } from './interface/Codec'
 
-export class TupleCodec<T extends TupleType<AnyCodec>>
+export class TupleCodec<T extends TupleType<CodecAny>>
   implements Codec<TupleSchema<SchemaOfMap<T>>, OutputOfMap<T>>
 {
   readonly schema: TupleSchema<SchemaOfMap<T>>
@@ -24,7 +24,6 @@ export class TupleCodec<T extends TupleType<AnyCodec>>
   decode(value: unknown): TypeOfMap<SchemaOfMap<T>> {
     if (Array.isArray(value)) {
       return this.codecs.map((codec, index) =>
-        // eslint-disable-next-line @typescript-eslint/no-unsafe-return
         codec.decode(value[index])
       ) as TypeOfMap<SchemaOfMap<T>>
     }
@@ -34,7 +33,6 @@ export class TupleCodec<T extends TupleType<AnyCodec>>
 
   encode(value: TypeOfMap<SchemaOfMap<T>>): OutputOfMap<T> {
     return this.codecs.map((codec, index) =>
-      // eslint-disable-next-line @typescript-eslint/no-unsafe-return
       codec.encode(value[index])
     ) as OutputOfMap<T>
   }

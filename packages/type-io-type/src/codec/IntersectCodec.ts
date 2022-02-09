@@ -3,13 +3,13 @@ import { IntersectType } from '../alias/IntersectType'
 import { ObjectType } from '../alias/ObjectType'
 import { TypeOfMap } from '../schema/helper/TypeOfMap'
 import { IntersectSchema } from '../schema/IntersectSchema'
-import { Codec } from './interface/Codec'
+import { CodecAny } from './alias/CodecAny'
 import { InputOfMap } from './helper/InputOfMap'
 import { OutputOfMap } from './helper/OutputOfMap'
 import { SchemaOfMap } from './helper/SchemaOfMap'
-import { AnyCodec } from './AnyCodec'
+import { Codec } from './interface/Codec'
 
-export class IntersectCodec<T extends IntersectType<AnyCodec>>
+export class IntersectCodec<T extends IntersectType<CodecAny>>
   implements
     Codec<
       IntersectSchema<SchemaOfMap<T>>,
@@ -43,17 +43,13 @@ export class IntersectCodec<T extends IntersectType<AnyCodec>>
   encode(
     value: IntersectMap<TypeOfMap<SchemaOfMap<T>>>
   ): IntersectMap<OutputOfMap<T>> {
-    return (
-      this.codecs
-        // eslint-disable-next-line @typescript-eslint/no-unsafe-return
-        .map((c) => c.encode(value))
-        .filter((v) => typeof v === 'object')
-        .reduce(
-          // eslint-disable-next-line @typescript-eslint/no-unsafe-return
-          (result, v) => merge(result, v),
-          {} as ObjectType
-        ) as IntersectMap<OutputOfMap<T>>
-    )
+    return this.codecs
+      .map((c) => c.encode(value))
+      .filter((v) => typeof v === 'object')
+      .reduce(
+        (result, v) => merge(result, v),
+        {} as ObjectType
+      ) as IntersectMap<OutputOfMap<T>>
   }
 }
 

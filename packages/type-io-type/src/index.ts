@@ -1,4 +1,4 @@
-export * from './codec/AnyCodec'
+export * from './codec/alias/CodecAny'
 export * from './codec/ArrayCodec'
 export * from './codec/BooleanCodec'
 export * from './codec/DefaultCodec'
