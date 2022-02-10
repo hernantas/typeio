@@ -13,6 +13,10 @@ export class OptionalSchema<T extends SchemaAny> extends BaseSchema<
     return new OptionalSchema({ name: `Optional<${type.name}>`, type })
   }
 
+  get type(): T {
+    return this.definition.type
+  }
+
   is(input: unknown): input is TypeOf<T> | undefined {
     return input === undefined || this.definition.type.is(input)
   }
