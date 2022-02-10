@@ -9,6 +9,10 @@ export class TypeSchema<T> extends BaseSchema<T, TypeDefinition<T>> {
     return new TypeSchema({ name: constructor.name, type: constructor })
   }
 
+  get type(): ConstructorType<T> {
+    return this.definition.type
+  }
+
   is(input: unknown): input is T {
     return input instanceof this.definition.type
   }
