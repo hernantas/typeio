@@ -12,6 +12,10 @@ export class LiteralSchema<T extends LiteralType> extends BaseSchema<
     return new LiteralSchema({ name: `'${value.toString()}'`, value })
   }
 
+  get value(): T {
+    return this.definition.value
+  }
+
   is(input: unknown): input is T {
     return input === this.definition.value
   }
