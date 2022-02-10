@@ -4,7 +4,7 @@ export class NumberSchema extends BaseSchema<number> {
   readonly _kind: string = 'number'
 
   static create(): NumberSchema {
-    return new NumberSchema({ name: 'number' })
+    return new NumberSchema({ name: 'Number' })
   }
 
   is(input: unknown): input is number {

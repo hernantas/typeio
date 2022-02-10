@@ -4,7 +4,7 @@ export class StringSchema extends BaseSchema<string> {
   readonly _kind: string = 'string'
 
   static create(): StringSchema {
-    return new StringSchema({ name: 'string' })
+    return new StringSchema({ name: 'String' })
   }
 
   is(input: unknown): input is string {

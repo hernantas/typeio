@@ -4,7 +4,7 @@ export class NullSchema extends BaseSchema<null> {
   readonly _kind: string = 'null'
 
   static create(): NullSchema {
-    return new NullSchema({ name: 'null' })
+    return new NullSchema({ name: 'Null' })
   }
 
   is(input: unknown): input is null {

@@ -4,7 +4,7 @@ export class UndefinedSchema extends BaseSchema<undefined> {
   readonly _kind: string = 'undefined'
 
   static create(): UndefinedSchema {
-    return new UndefinedSchema({ name: 'undefined' })
+    return new UndefinedSchema({ name: 'Undefined' })
   }
 
   is(input: unknown): input is undefined {
