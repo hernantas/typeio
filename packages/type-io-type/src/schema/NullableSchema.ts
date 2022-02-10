@@ -7,6 +7,8 @@ export class NullableSchema<T extends SchemaAny> extends BaseSchema<
   TypeOf<T> | null,
   NullableDefinition<T>
 > {
+  readonly _kind: string = 'nullable'
+
   static create<T extends SchemaAny>(type: T): NullableSchema<T> {
     return new NullableSchema({ name: `Nullable<${type.name}>`, type })
   }

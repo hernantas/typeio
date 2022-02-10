@@ -7,6 +7,8 @@ export class ArraySchema<T extends SchemaAny> extends BaseSchema<
   Array<TypeOf<T>>,
   ArrayDefinition<T>
 > {
+  readonly _kind: string = 'array'
+
   static create<T extends SchemaAny>(type: T): ArraySchema<T> {
     return new ArraySchema({ name: `Array<${type.name}>`, type })
   }

@@ -8,6 +8,8 @@ import { TypeOfMap } from './helper/TypeOfMap'
 export class IntersectSchema<
   T extends IntersectType<SchemaAny>
 > extends BaseSchema<IntersectMap<TypeOfMap<T>>, IntersectDefinition<T>> {
+  readonly _kind: string = 'intersect'
+
   static create<T extends IntersectType<SchemaAny>>(
     items: T
   ): IntersectSchema<T> {

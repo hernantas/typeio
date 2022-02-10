@@ -6,6 +6,8 @@ export class LiteralSchema<T extends LiteralType> extends BaseSchema<
   T,
   LiteralDefinition<T>
 > {
+  readonly _kind: string = 'literal'
+
   static create<T extends LiteralType>(value: T): LiteralSchema<T> {
     return new LiteralSchema({ name: value.toString(), value })
   }

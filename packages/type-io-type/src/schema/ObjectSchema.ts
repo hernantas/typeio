@@ -8,6 +8,8 @@ export class ObjectSchema<T extends ObjectType<SchemaAny>> extends BaseSchema<
   TypeOfMap<T>,
   ObjectDefinition<T>
 > {
+  readonly _kind: string = 'object'
+
   static create<T extends ObjectType<SchemaAny>>(
     properties: T
   ): ObjectSchema<T> {

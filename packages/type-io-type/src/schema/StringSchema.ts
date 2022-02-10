@@ -1,6 +1,8 @@
 import { BaseSchema } from './BaseSchema'
 
 export class StringSchema extends BaseSchema<string> {
+  readonly _kind: string = 'string'
+
   static create(): StringSchema {
     return new StringSchema({ name: 'string' })
   }

@@ -13,6 +13,8 @@ export abstract class BaseSchema<
    */
   readonly _type!: T
 
+  abstract readonly _kind: string
+
   get name(): string {
     return this.definition.name
   }

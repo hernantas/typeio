@@ -9,6 +9,8 @@ export class UnionSchema<T extends UnionType<SchemaAny>> extends BaseSchema<
   UnionMap<TypeOfMap<T>>,
   UnionDefinition<T>
 > {
+  readonly _kind: string = 'union'
+
   static create<T extends UnionType<SchemaAny>>(items: T): UnionSchema<T> {
     return new UnionSchema({
       name: items.map((v) => v.name).join(' | '),

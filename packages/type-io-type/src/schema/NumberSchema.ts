@@ -1,6 +1,8 @@
 import { BaseSchema } from './BaseSchema'
 
 export class NumberSchema extends BaseSchema<number> {
+  readonly _kind: string = 'number'
+
   static create(): NumberSchema {
     return new NumberSchema({ name: 'number' })
   }

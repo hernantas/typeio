@@ -3,6 +3,8 @@ import { ConstructorType } from '../alias/ConstructorType'
 import { TypeDefinition } from './definition/TypeDefinition'
 
 export class TypeSchema<T> extends BaseSchema<T, TypeDefinition<T>> {
+  readonly _kind: string = 'type'
+
   static create<T>(constructor: ConstructorType<T>): TypeSchema<T> {
     return new TypeSchema({ name: constructor.name, type: constructor })
   }

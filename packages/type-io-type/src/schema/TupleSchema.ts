@@ -8,6 +8,8 @@ export class TupleSchema<T extends TupleType<SchemaAny>> extends BaseSchema<
   TypeOfMap<T>,
   TupleDefinition<T>
 > {
+  readonly _kind: string = 'tuple'
+
   static create<T extends TupleType<SchemaAny>>(items: T): TupleSchema<T> {
     return new TupleSchema({
       name: `[${items.map((v) => v.name).join(', ')}]`,

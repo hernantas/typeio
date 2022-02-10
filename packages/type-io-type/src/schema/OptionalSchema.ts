@@ -7,6 +7,8 @@ export class OptionalSchema<T extends SchemaAny> extends BaseSchema<
   TypeOf<T> | undefined,
   OptionalDefinition<T>
 > {
+  readonly _kind: string = 'optional'
+
   static create<T extends SchemaAny>(type: T): OptionalSchema<T> {
     return new OptionalSchema({ name: `Optional<${type.name}>`, type })
   }
