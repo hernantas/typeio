@@ -12,6 +12,12 @@ export class Extendable<T> {
     this.definition = definition
   }
 
+  /**
+   * Create a new instance of current object
+   *
+   * @param definition New definition
+   * @returns Instance of current object
+   */
   newInstance(definition: T): this {
     const Constructor = this.constructor as ConstructorType<this>
     return new Constructor(definition)
