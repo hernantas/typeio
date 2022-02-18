@@ -6,10 +6,10 @@ export interface BaseDefinition {
    */
   readonly name: string
 
+  readonly rules?: ValidationRule[]
+
   /**
    * Label for this definition
    */
   readonly label?: string
-
-  readonly rules?: ValidationRule[]
 }
