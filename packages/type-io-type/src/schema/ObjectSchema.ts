@@ -3,6 +3,7 @@ import { SchemaAny } from './alias/SchemaAny'
 import { BaseSchema } from './BaseSchema'
 import { ObjectDefinition } from './definition/ObjectDefinition'
 import { TypeOfMap } from './helper/TypeOfMap'
+import { ValidationError } from './validation/ValidationError'
 
 export class ObjectSchema<T extends ObjectType<SchemaAny>> extends BaseSchema<
   TypeOfMap<T>,
@@ -29,17 +30,33 @@ export class ObjectSchema<T extends ObjectType<SchemaAny>> extends BaseSchema<
   }
 
   override is(input: unknown): input is TypeOfMap<T> {
+    const tInput = input as ObjectType<T>
     return (
       typeof input === 'object' &&
       input !== null &&
       Object.keys(this.properties)
         .map((key) => {
           const tKey = key as keyof T
-          const tInput = input as ObjectType<T>
           const schema = this.properties[tKey]
           return schema !== undefined ? schema.is(tInput[tKey]) : false
         })
         .filter((b) => !b).length === 0
+    )
+  }
+
+  override validate(input: TypeOfMap<T>): ValidationError[] {
+    const tInput = input as ObjectType<T>
+    return super.validate(input).concat(
+      Object.keys(this.properties).flatMap((key) => {
+        const tKey = key as keyof T
+        const schema = this.properties[tKey]
+        return schema !== undefined
+          ? schema.validate(tInput[tKey]).map((error) => ({
+              ...error,
+              path: [key].concat(error.path ?? []),
+            }))
+          : []
+      })
     )
   }
 }

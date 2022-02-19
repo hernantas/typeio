@@ -61,4 +61,25 @@ describe('Schema: ObjectSchema', () => {
       suite.undefined.isFalse()
     })
   })
+
+  describe('Validation', () => {
+    it('Inner type', () => {
+      const validator = ObjectSchema.create({
+        _string: StringSchema.create().notEmpty(),
+        _number: NumberSchema.create().greater(0),
+      })
+      expect(
+        validator.validate({ _string: 'string', _number: 80 })
+      ).to.have.length(0)
+      expect(
+        validator.validate({ _string: 'string', _number: 0 })
+      ).to.have.length.greaterThan(0)
+      expect(
+        validator.validate({ _string: '', _number: 80 })
+      ).to.have.length.greaterThan(0)
+      expect(
+        validator.validate({ _string: '', _number: 0 })
+      ).to.have.length.greaterThan(0)
+    })
+  })
 })
