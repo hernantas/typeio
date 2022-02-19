@@ -71,5 +71,16 @@ describe('Schema: ArraySchema', () => {
       expect(validator.validate(['First'])).to.have.length.greaterThan(0)
       expect(validator.validate([])).to.have.length.greaterThan(0)
     })
+
+    it('Inner type', () => {
+      const validator = ArraySchema.create(
+        ArraySchema.create(StringSchema.create().notEmpty())
+      )
+      const errors = validator.validate([
+        ['First', 'Second', 'Third', 'Fourth', 'Fifth', ''],
+      ])
+      expect(errors).to.have.length.greaterThan(0)
+      expect(errors[0]?.path).to.be.deep.equal(['0', '5'])
+    })
   })
 })

@@ -2,6 +2,7 @@ import { SchemaAny } from './alias/SchemaAny'
 import { BaseSchema } from './BaseSchema'
 import { ArrayDefinition } from './definition/ArrayDefinition'
 import { TypeOf } from './helper/TypeOf'
+import { ValidationError } from './validation/ValidationError'
 
 export class ArraySchema<T extends SchemaAny> extends BaseSchema<
   Array<TypeOf<T>>,
@@ -22,6 +23,17 @@ export class ArraySchema<T extends SchemaAny> extends BaseSchema<
       Array.isArray(input) &&
       input.map((value) => this.definition.type.is(value)).filter((b) => !b)
         .length === 0
+    )
+  }
+
+  override validate(input: TypeOf<T>[]): ValidationError[] {
+    return super.validate(input).concat(
+      ...input.flatMap((value, index) =>
+        this.type.validate(value).map((error) => ({
+          ...error,
+          path: [index.toString()].concat(error.path ?? []),
+        }))
+      )
     )
   }
 
