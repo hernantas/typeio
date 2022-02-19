@@ -25,49 +25,51 @@ describe('Schema: ArraySchema', () => {
   suite.type.isFalse()
   suite.undefined.isFalse()
 
-  it('Validation: Min', () => {
-    const validator = schema.min(3)
-    expect(
-      validator.validate(['First', 'Second', 'Third', 'Fourth', 'Fifth'])
-    ).to.have.length(0)
-    expect(
-      validator.validate(['First', 'Second', 'Third', 'Fourth'])
-    ).to.have.length(0)
-    expect(validator.validate(['First', 'Second', 'Third'])).to.have.length(0)
-    expect(validator.validate(['First', 'Second'])).to.have.length.greaterThan(
-      0
-    )
-    expect(validator.validate(['First'])).to.have.length.greaterThan(0)
-    expect(validator.validate([])).to.have.length.greaterThan(0)
-  })
+  describe('Validation', () => {
+    it('Min', () => {
+      const validator = schema.min(3)
+      expect(
+        validator.validate(['First', 'Second', 'Third', 'Fourth', 'Fifth'])
+      ).to.have.length(0)
+      expect(
+        validator.validate(['First', 'Second', 'Third', 'Fourth'])
+      ).to.have.length(0)
+      expect(validator.validate(['First', 'Second', 'Third'])).to.have.length(0)
+      expect(
+        validator.validate(['First', 'Second'])
+      ).to.have.length.greaterThan(0)
+      expect(validator.validate(['First'])).to.have.length.greaterThan(0)
+      expect(validator.validate([])).to.have.length.greaterThan(0)
+    })
 
-  it('Validation: Max', () => {
-    const validator = schema.max(3)
-    expect(
-      validator.validate(['First', 'Second', 'Third', 'Fourth', 'Fifth'])
-    ).to.have.length.greaterThan(0)
-    expect(
-      validator.validate(['First', 'Second', 'Third', 'Fourth'])
-    ).to.have.length.greaterThan(0)
-    expect(validator.validate(['First', 'Second', 'Third'])).to.have.length(0)
-    expect(validator.validate(['First', 'Second'])).to.have.length(0)
-    expect(validator.validate(['First'])).to.have.length(0)
-    expect(validator.validate([])).to.have.length(0)
-  })
+    it('Max', () => {
+      const validator = schema.max(3)
+      expect(
+        validator.validate(['First', 'Second', 'Third', 'Fourth', 'Fifth'])
+      ).to.have.length.greaterThan(0)
+      expect(
+        validator.validate(['First', 'Second', 'Third', 'Fourth'])
+      ).to.have.length.greaterThan(0)
+      expect(validator.validate(['First', 'Second', 'Third'])).to.have.length(0)
+      expect(validator.validate(['First', 'Second'])).to.have.length(0)
+      expect(validator.validate(['First'])).to.have.length(0)
+      expect(validator.validate([])).to.have.length(0)
+    })
 
-  it('Validation: Length', () => {
-    const validator = schema.length(3)
-    expect(
-      validator.validate(['First', 'Second', 'Third', 'Fourth', 'Fifth'])
-    ).to.have.length.greaterThan(0)
-    expect(
-      validator.validate(['First', 'Second', 'Third', 'Fourth'])
-    ).to.have.length.greaterThan(0)
-    expect(validator.validate(['First', 'Second', 'Third'])).to.have.length(0)
-    expect(validator.validate(['First', 'Second'])).to.have.length.greaterThan(
-      0
-    )
-    expect(validator.validate(['First'])).to.have.length.greaterThan(0)
-    expect(validator.validate([])).to.have.length.greaterThan(0)
+    it('Length', () => {
+      const validator = schema.length(3)
+      expect(
+        validator.validate(['First', 'Second', 'Third', 'Fourth', 'Fifth'])
+      ).to.have.length.greaterThan(0)
+      expect(
+        validator.validate(['First', 'Second', 'Third', 'Fourth'])
+      ).to.have.length.greaterThan(0)
+      expect(validator.validate(['First', 'Second', 'Third'])).to.have.length(0)
+      expect(
+        validator.validate(['First', 'Second'])
+      ).to.have.length.greaterThan(0)
+      expect(validator.validate(['First'])).to.have.length.greaterThan(0)
+      expect(validator.validate([])).to.have.length.greaterThan(0)
+    })
   })
 })
