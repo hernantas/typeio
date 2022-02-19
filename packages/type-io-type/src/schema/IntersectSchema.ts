@@ -4,6 +4,7 @@ import { SchemaAny } from './alias/SchemaAny'
 import { BaseSchema } from './BaseSchema'
 import { IntersectDefinition } from './definition/IntersectDefinition'
 import { TypeOfMap } from './helper/TypeOfMap'
+import { ValidationError } from './validation/ValidationError'
 
 export class IntersectSchema<
   T extends IntersectType<SchemaAny>
@@ -28,5 +29,11 @@ export class IntersectSchema<
       if (!item.is(input)) return false
     }
     return true
+  }
+
+  override validate(input: IntersectMap<TypeOfMap<T>>): ValidationError[] {
+    return super
+      .validate(input)
+      .concat(this.items.flatMap((item) => item.validate(input)))
   }
 }
