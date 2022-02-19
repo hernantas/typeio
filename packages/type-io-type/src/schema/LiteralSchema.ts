@@ -17,6 +17,6 @@ export class LiteralSchema<T extends LiteralType> extends BaseSchema<
   }
 
   override is(input: unknown): input is T {
-    return input === this.definition.value
+    return input === this.value
   }
 }

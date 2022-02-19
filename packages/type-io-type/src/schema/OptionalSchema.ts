@@ -18,6 +18,6 @@ export class OptionalSchema<T extends SchemaAny> extends BaseSchema<
   }
 
   override is(input: unknown): input is TypeOf<T> | undefined {
-    return input === undefined || this.definition.type.is(input)
+    return input === undefined || this.type.is(input)
   }
 }

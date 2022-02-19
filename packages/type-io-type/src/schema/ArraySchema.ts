@@ -21,8 +21,7 @@ export class ArraySchema<T extends SchemaAny> extends BaseSchema<
   override is(input: unknown): input is Array<TypeOf<T>> {
     return (
       Array.isArray(input) &&
-      input.map((value) => this.definition.type.is(value)).filter((b) => !b)
-        .length === 0
+      input.map((value) => this.type.is(value)).filter((b) => !b).length === 0
     )
   }
 

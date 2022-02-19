@@ -36,7 +36,7 @@ export class ObjectSchema<T extends ObjectType<SchemaAny>> extends BaseSchema<
         .map((key) => {
           const tKey = key as keyof T
           const tInput = input as ObjectType<T>
-          const schema = this.definition.properties[tKey]
+          const schema = this.properties[tKey]
           return schema !== undefined ? schema.is(tInput[tKey]) : false
         })
         .filter((b) => !b).length === 0

@@ -14,6 +14,6 @@ export class TypeSchema<T> extends BaseSchema<T, TypeDefinition<T>> {
   }
 
   override is(input: unknown): input is T {
-    return input instanceof this.definition.type
+    return input instanceof this.type
   }
 }
