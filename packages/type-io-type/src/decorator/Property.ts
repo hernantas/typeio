@@ -1,7 +1,7 @@
 import 'reflect-metadata'
 import { ConstructorType } from '../alias/ConstructorType'
 import { SchemaAny } from '../schema/alias/SchemaAny'
-import { TypeSchema } from '../schema/TypeSchema'
+import { type } from '../schema/builder/type'
 import { getDesignType, getMetadata, setMetadata } from './metadata'
 
 export function Property(schema?: SchemaAny): PropertyDecorator {
@@ -10,8 +10,7 @@ export function Property(schema?: SchemaAny): PropertyDecorator {
     const tTarget = target.constructor as ConstructorType<T>
     const tKey = key as keyof T
     const designType = getDesignType(tTarget, tKey)
-    const propertySchema =
-      schema !== undefined ? schema : TypeSchema.create(designType)
+    const propertySchema = schema !== undefined ? schema : type(designType)
     const targetSchemas = getMetadata(tTarget)
     setMetadata(tTarget, {
       ...targetSchemas,

@@ -1,5 +1,6 @@
 import { UnionMap } from '../alias/helper/UnionMap'
 import { UnionType } from '../alias/UnionType'
+import { union } from '../schema/builder/union'
 import { TypeOfMap } from '../schema/helper/TypeOfMap'
 import { UnionSchema } from '../schema/UnionSchema'
 import { CodecAny } from './alias/CodecAny'
@@ -24,9 +25,7 @@ export class UnionCodec<T extends UnionType<CodecAny>>
 
   constructor(codecs: T) {
     this.codecs = codecs
-    this.schema = UnionSchema.create(
-      codecs.map((c) => c.schema) as SchemaOfMap<T>
-    )
+    this.schema = union(codecs.map((c) => c.schema) as SchemaOfMap<T>)
   }
 
   decode(value: UnionMap<InputOfMap<T>>): UnionMap<TypeOfMap<SchemaOfMap<T>>> {

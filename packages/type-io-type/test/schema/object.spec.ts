@@ -1,23 +1,18 @@
 import { expect } from 'chai'
-import {
-  BooleanSchema,
-  NumberSchema,
-  ObjectSchema,
-  StringSchema,
-} from '../../src'
+import { boolean, number, object, string } from '../../src'
 import { createSuite } from '../util/createSuite'
 
 describe('Schema: ObjectSchema', () => {
-  const base = ObjectSchema.create({
-    _string: StringSchema.create(),
-    _number: NumberSchema.create(),
-    _boolean: BooleanSchema.create(),
+  const base = object({
+    _string: string(),
+    _number: number(),
+    _boolean: boolean(),
   })
 
-  const schema = ObjectSchema.create({
-    _string: StringSchema.create(),
-    _number: NumberSchema.create(),
-    _boolean: BooleanSchema.create(),
+  const schema = object({
+    _string: string(),
+    _number: number(),
+    _boolean: boolean(),
     _nested: base,
   })
 
@@ -64,9 +59,9 @@ describe('Schema: ObjectSchema', () => {
 
   describe('Validation', () => {
     it('Inner type', () => {
-      const validator = ObjectSchema.create({
-        _string: StringSchema.create().notEmpty(),
-        _number: NumberSchema.create().greater(0),
+      const validator = object({
+        _string: string().notEmpty(),
+        _number: number().greater(0),
       })
       expect(
         validator.validate({ _string: 'string', _number: 80 })

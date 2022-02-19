@@ -1,12 +1,12 @@
 import { expect } from 'chai'
-import { OptionalSchema, StringSchema } from '../../src'
+import { optional, string } from '../../src'
 import { createSuite } from '../util/createSuite'
 
 describe('Schema: OptionalSchema', () => {
-  const schema = OptionalSchema.create(StringSchema.create())
+  const schema = optional(string())
 
   it('Name compare', () => {
-    const comparator = OptionalSchema.create(StringSchema.create())
+    const comparator = optional(string())
     expect(schema.name).to.be.equal(comparator.name)
   })
 
@@ -29,7 +29,7 @@ describe('Schema: OptionalSchema', () => {
 
   describe('Validation', () => {
     it('Inner type', () => {
-      const validator = OptionalSchema.create(StringSchema.create().notEmpty())
+      const validator = optional(string().notEmpty())
       expect(validator.validate('string')).to.have.length(0)
       expect(validator.validate('')).to.have.length.greaterThan(0)
       expect(validator.validate(undefined)).to.have.length(0)

@@ -1,12 +1,12 @@
 import { expect } from 'chai'
-import { NullableSchema, StringSchema } from '../../src'
+import { nullable, string } from '../../src'
 import { createSuite } from '../util/createSuite'
 
 describe('Schema: NullSchema', () => {
-  const schema = NullableSchema.create(StringSchema.create())
+  const schema = nullable(string())
 
   it('Name compare', () => {
-    const comparator = NullableSchema.create(StringSchema.create())
+    const comparator = nullable(string())
     expect(schema.name).to.be.equal(comparator.name)
   })
 
@@ -29,7 +29,7 @@ describe('Schema: NullSchema', () => {
 
   describe('Validation', () => {
     it('Inner type', () => {
-      const validator = NullableSchema.create(StringSchema.create().notEmpty())
+      const validator = nullable(string().notEmpty())
       expect(validator.validate('string')).to.have.length(0)
       expect(validator.validate('')).to.have.length.greaterThan(0)
       expect(validator.validate(null)).to.have.length(0)

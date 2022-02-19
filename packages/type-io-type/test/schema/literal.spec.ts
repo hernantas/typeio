@@ -1,12 +1,12 @@
 import { expect } from 'chai'
-import { LiteralSchema } from '../../src'
+import { literal } from '../../src'
 import { createSuite } from '../util/createSuite'
 
 describe('Schema: LiteralSchema', () => {
   it('Name compare', () => {
-    const stringLiteral = LiteralSchema.create('literal')
-    const numberLiteral = LiteralSchema.create(0)
-    const booleanLiteral = LiteralSchema.create(true)
+    const stringLiteral = literal('literal')
+    const numberLiteral = literal(0)
+    const booleanLiteral = literal(true)
 
     expect(stringLiteral.name).to.be.not.equal(numberLiteral.name)
     expect(stringLiteral.name).to.be.not.equal(booleanLiteral.name)
@@ -14,7 +14,7 @@ describe('Schema: LiteralSchema', () => {
   })
 
   describe('Type check (string)', () => {
-    const schema = LiteralSchema.create('literal')
+    const schema = literal('literal')
     const suite = createSuite((v) => schema.is(v))
     suite.array.string.isFalse()
     suite.boolean.isFalse()
@@ -31,7 +31,7 @@ describe('Schema: LiteralSchema', () => {
     suite.undefined.isFalse()
   })
   describe('Type check (number)', () => {
-    const schema = LiteralSchema.create(0)
+    const schema = literal(0)
     const suite = createSuite((v) => schema.is(v))
     suite.array.string.isFalse()
     suite.boolean.isFalse()
@@ -47,7 +47,7 @@ describe('Schema: LiteralSchema', () => {
     suite.undefined.isFalse()
   })
   describe('Type check (boolean)', () => {
-    const schema = LiteralSchema.create(true)
+    const schema = literal(true)
     const suite = createSuite((v) => schema.is(v))
     suite.array.string.isFalse()
     suite.boolean.each((c) => (c.value ? c.isTrue() : c.isFalse()))

@@ -1,3 +1,4 @@
+import { optional } from '../schema/builder/optional'
 import { TypeOf } from '../schema/helper/TypeOf'
 import { OptionalSchema } from '../schema/OptionalSchema'
 import { CodecAny } from './alias/CodecAny'
@@ -20,7 +21,7 @@ export class OptionalCodec<T extends CodecAny>
 
   constructor(codec: T) {
     this.codec = codec
-    this.schema = OptionalSchema.create(codec.schema)
+    this.schema = optional(codec.schema)
   }
 
   decode(value: InputOf<T> | undefined): TypeOf<SchemaOf<T>> | undefined {

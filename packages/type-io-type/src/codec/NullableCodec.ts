@@ -1,3 +1,4 @@
+import { nullable } from '../schema/builder/nullable'
 import { TypeOf } from '../schema/helper/TypeOf'
 import { NullableSchema } from '../schema/NullableSchema'
 import { CodecAny } from './alias/CodecAny'
@@ -16,7 +17,7 @@ export class NullableCodec<T extends CodecAny>
 
   constructor(codec: T) {
     this.codec = codec
-    this.schema = NullableSchema.create(codec.schema)
+    this.schema = nullable(codec.schema)
   }
 
   decode(value: InputOf<T>): TypeOf<SchemaOf<T>> | null {

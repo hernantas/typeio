@@ -1,31 +1,31 @@
-import { UnknownSchema } from '../../src'
 import { expect } from 'chai'
+import { unknown } from '../../src'
 
 describe('Schema: Base', () => {
   it('Basic declaration', () => {
-    const schema = UnknownSchema.create()
+    const schema = unknown()
     expect(schema.definition.label).to.be.equal(undefined)
   })
 
   it('Set: label', () => {
-    const schema = UnknownSchema.create().label('MyLabel')
+    const schema = unknown().label('MyLabel')
     expect(schema.definition.label).to.be.equal('MyLabel')
   })
 
   it('Override label', () => {
-    const schema = UnknownSchema.create().label('MyLabel')
+    const schema = unknown().label('MyLabel')
     const overrideSchema = schema.label('MyOverrideLabel')
     expect(schema.definition.label).to.be.equal('MyLabel')
     expect(overrideSchema.definition.label).to.be.equal('MyOverrideLabel')
   })
 
   it('Empty checks', () => {
-    const schema = UnknownSchema.create()
+    const schema = unknown()
     expect(schema.validate('String')).to.have.length(0)
   })
 
   it('Validation checks', () => {
-    const schema = UnknownSchema.create().check({
+    const schema = unknown().check({
       name: 'TYPE_STRING',
       message: 'Type must be a string',
       validate: (v) => typeof v === 'string',
@@ -36,7 +36,7 @@ describe('Schema: Base', () => {
   })
 
   it('Validation checks override', () => {
-    const base = UnknownSchema.create().check({
+    const base = unknown().check({
       name: 'TYPE_STRING',
       message: 'Type must be a string',
       validate: (v) => typeof v === 'string',

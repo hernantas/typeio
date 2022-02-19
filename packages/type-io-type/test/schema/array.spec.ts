@@ -1,12 +1,12 @@
 import { expect } from 'chai'
-import { ArraySchema, StringSchema } from '../../src'
+import { array, string } from '../../src'
 import { createSuite } from '../util/createSuite'
 
 describe('Schema: ArraySchema', () => {
-  const schema = ArraySchema.create(StringSchema.create())
+  const schema = array(string())
 
   it('Name compare', () => {
-    const comparator = ArraySchema.create(StringSchema.create())
+    const comparator = array(string())
     expect(schema.name).to.be.equal(comparator.name)
   })
 
@@ -75,9 +75,7 @@ describe('Schema: ArraySchema', () => {
     })
 
     it('Inner type', () => {
-      const validator = ArraySchema.create(
-        ArraySchema.create(StringSchema.create().notEmpty())
-      )
+      const validator = array(array(string().notEmpty()))
       const errors = validator.validate([
         ['First', 'Second', 'Third', 'Fourth', 'Fifth', ''],
       ])

@@ -1,4 +1,5 @@
 import { ObjectType } from '../alias/ObjectType'
+import { object } from '../schema/builder/object'
 import { TypeOfMap } from '../schema/helper/TypeOfMap'
 import { ObjectSchema } from '../schema/ObjectSchema'
 import { CodecAny } from './alias/CodecAny'
@@ -22,7 +23,7 @@ export class ObjectCodec<T extends ObjectType<CodecAny>>
 
   constructor(codecs: T) {
     this.codecs = codecs
-    this.schema = ObjectSchema.create(
+    this.schema = object(
       Object.keys(codecs).reduce(
         (prev, key) => ({
           ...prev,

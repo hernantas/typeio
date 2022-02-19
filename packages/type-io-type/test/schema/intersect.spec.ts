@@ -1,26 +1,20 @@
 import { expect } from 'chai'
-import {
-  BooleanSchema,
-  IntersectSchema,
-  NumberSchema,
-  ObjectSchema,
-  StringSchema,
-} from '../../src'
+import { boolean, intersect, number, object, string } from '../../src'
 import { createSuite } from '../util/createSuite'
 
 describe('Schema: IntersectSchema', () => {
   {
-    const schema = IntersectSchema.create([
-      ObjectSchema.create({ _string: StringSchema.create() }),
-      ObjectSchema.create({ _number: NumberSchema.create() }),
-      ObjectSchema.create({ _boolean: BooleanSchema.create() }),
+    const schema = intersect([
+      object({ _string: string() }),
+      object({ _number: number() }),
+      object({ _boolean: boolean() }),
     ])
 
     it('Name compare', () => {
-      const comparator = IntersectSchema.create([
-        ObjectSchema.create({ _string: StringSchema.create() }),
-        ObjectSchema.create({ _number: NumberSchema.create() }),
-        ObjectSchema.create({ _boolean: BooleanSchema.create() }),
+      const comparator = intersect([
+        object({ _string: string() }),
+        object({ _number: number() }),
+        object({ _boolean: boolean() }),
       ])
       expect(schema.name).to.be.equal(comparator.name)
     })
@@ -44,11 +38,7 @@ describe('Schema: IntersectSchema', () => {
   }
 
   describe('Type check (never)', () => {
-    const schema = IntersectSchema.create([
-      StringSchema.create(),
-      NumberSchema.create(),
-      BooleanSchema.create(),
-    ])
+    const schema = intersect([string(), number(), boolean()])
     const suite = createSuite((v) => schema.is(v))
     suite.array.string.isFalse()
     suite.boolean.isFalse()
@@ -67,9 +57,9 @@ describe('Schema: IntersectSchema', () => {
 
   describe('Validation', () => {
     it('Inner type', () => {
-      const validator = IntersectSchema.create([
-        ObjectSchema.create({ _string: StringSchema.create().notEmpty() }),
-        ObjectSchema.create({ _number: NumberSchema.create().greater(0) }),
+      const validator = intersect([
+        object({ _string: string().notEmpty() }),
+        object({ _number: number().greater(0) }),
       ])
       expect(
         validator.validate({ _string: 'string', _number: 80 })

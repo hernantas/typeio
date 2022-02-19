@@ -1,12 +1,12 @@
 import { expect } from 'chai'
-import { TypeSchema, Property, StringSchema } from '../../src'
+import { TypeSchema, Property, StringSchema, string } from '../../src'
 import { getMetadata } from '../../src/decorator/metadata'
 
 class MyClass {
   @Property()
   _string: string = ''
 
-  @Property(StringSchema.create())
+  @Property(string())
   _defined: string = ''
 }
 

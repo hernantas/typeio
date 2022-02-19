@@ -1,12 +1,12 @@
 import { expect } from 'chai'
-import { UndefinedSchema } from '../../src'
+import { _undefined } from '../../src'
 import { createSuite } from '../util/createSuite'
 
 describe('Schema: UndefinedSchema', () => {
-  const schema = UndefinedSchema.create()
+  const schema = _undefined()
 
   it('Name compare', () => {
-    const comparator = UndefinedSchema.create()
+    const comparator = _undefined()
     expect(schema.name).to.be.equal(comparator.name)
   })
 

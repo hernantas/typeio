@@ -1,6 +1,7 @@
 import { IntersectMap } from '../alias/helper/IntersectMap'
 import { IntersectType } from '../alias/IntersectType'
 import { ObjectType } from '../alias/ObjectType'
+import { intersect } from '../schema/builder/intersect'
 import { TypeOfMap } from '../schema/helper/TypeOfMap'
 import { IntersectSchema } from '../schema/IntersectSchema'
 import { CodecAny } from './alias/CodecAny'
@@ -23,9 +24,7 @@ export class IntersectCodec<T extends IntersectType<CodecAny>>
 
   constructor(codecs: T) {
     this.codecs = codecs
-    this.schema = IntersectSchema.create(
-      this.codecs.map((c) => c.schema) as SchemaOfMap<T>
-    )
+    this.schema = intersect(this.codecs.map((c) => c.schema) as SchemaOfMap<T>)
   }
 
   decode(

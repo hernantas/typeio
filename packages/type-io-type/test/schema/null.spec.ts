@@ -1,12 +1,12 @@
 import { expect } from 'chai'
-import { NullSchema } from '../../src'
+import { _null } from '../../src'
 import { createSuite } from '../util/createSuite'
 
 describe('Schema: NullSchema', () => {
-  const schema = NullSchema.create()
+  const schema = _null()
 
   it('Name compare', () => {
-    const comparator = NullSchema.create()
+    const comparator = _null()
     expect(schema.name).to.be.equal(comparator.name)
   })
 

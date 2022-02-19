@@ -1,12 +1,12 @@
 import { expect } from 'chai'
-import { StringSchema } from '../../src'
+import { string } from '../../src'
 import { createSuite } from '../util/createSuite'
 
 describe('Schema: StringSchema', () => {
-  const schema = StringSchema.create()
+  const schema = string()
 
   it('Name compare', () => {
-    const comparator = StringSchema.create()
+    const comparator = string()
     expect(schema.name).to.be.equal(comparator.name)
   })
 

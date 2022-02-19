@@ -1,12 +1,12 @@
 import { expect } from 'chai'
-import { BooleanSchema } from '../../src'
+import { bool } from '../../src'
 import { createSuite } from '../util/createSuite'
 
 describe('Schema: BooleanSchema', () => {
-  const schema = BooleanSchema.create()
+  const schema = bool()
 
   it('Name compare', () => {
-    const comparator = BooleanSchema.create()
+    const comparator = bool()
     expect(schema.name).to.be.equal(comparator.name)
   })
 

@@ -1,5 +1,6 @@
 import { LiteralType } from '../alias/LiteralType'
 import { BooleanSchema } from '../schema/BooleanSchema'
+import { literal } from '../schema/builder/literal'
 import { LiteralSchema } from '../schema/LiteralSchema'
 import { NumberSchema } from '../schema/NumberSchema'
 import { StringSchema } from '../schema/StringSchema'
@@ -32,7 +33,7 @@ export class LiteralCodec<T extends LiteralType>
         this.codec = new BooleanCodec()
         break
     }
-    this.schema = LiteralSchema.create(value)
+    this.schema = literal(value)
   }
 
   decode(value: unknown): T {

@@ -1,12 +1,12 @@
 import { expect } from 'chai'
-import { NumberSchema } from '../../src'
+import { number } from '../../src'
 import { createSuite } from '../util/createSuite'
 
 describe('Schema: NumberSchema', () => {
-  const schema = NumberSchema.create()
+  const schema = number()
 
   it('Name compare', () => {
-    const comparator = NumberSchema.create()
+    const comparator = number()
     expect(schema.name).to.be.equal(comparator.name)
   })
 

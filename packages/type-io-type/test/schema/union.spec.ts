@@ -1,25 +1,12 @@
 import { expect } from 'chai'
-import {
-  BooleanSchema,
-  NumberSchema,
-  StringSchema,
-  UnionSchema,
-} from '../../src'
+import { boolean, number, string, union } from '../../src'
 import { createSuite } from '../util/createSuite'
 
 describe('Schema: UnionSchema', () => {
-  const schema = UnionSchema.create([
-    StringSchema.create(),
-    NumberSchema.create(),
-    BooleanSchema.create(),
-  ])
+  const schema = union([string(), number(), boolean()])
 
   it('Name compare', () => {
-    const comparator = UnionSchema.create([
-      StringSchema.create(),
-      NumberSchema.create(),
-      BooleanSchema.create(),
-    ])
+    const comparator = union([string(), number(), boolean()])
     expect(schema.name).to.be.equal(comparator.name)
   })
 
@@ -42,10 +29,7 @@ describe('Schema: UnionSchema', () => {
 
   describe('Validation', () => {
     it('Inner type', () => {
-      const validator = UnionSchema.create([
-        StringSchema.create().notEmpty(),
-        NumberSchema.create().greater(0),
-      ])
+      const validator = union([string().notEmpty(), number().greater(0)])
       expect(validator.validate('string')).to.have.length(0)
       expect(validator.validate('')).to.have.length.greaterThan(0)
       expect(validator.validate(80)).to.have.length(0)

@@ -1,6 +1,7 @@
 import { ConstructorType } from '../alias/ConstructorType'
 import { ObjectMap } from '../alias/helper/ObjectMap'
 import { ObjectType } from '../alias/ObjectType'
+import { type } from '../schema/builder/type'
 import { TypeSchema } from '../schema/TypeSchema'
 import { DecodeError } from './error/DecodeError'
 import { CodecMap } from './helper/CodecMap'
@@ -14,7 +15,7 @@ export class TypeCodec<T> implements Codec<TypeSchema<T>, ObjectMap<T>> {
   readonly properties: Partial<CodecMap<T>>
 
   constructor(Ctor: ConstructorType<T>, properties: Partial<CodecMap<T>>) {
-    this.schema = TypeSchema.create(Ctor)
+    this.schema = type(Ctor)
     this.Ctor = Ctor
     this.properties = properties
   }

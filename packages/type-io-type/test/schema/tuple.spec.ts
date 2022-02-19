@@ -1,30 +1,25 @@
 import { expect } from 'chai'
-import {
-  BooleanSchema,
-  NumberSchema,
-  StringSchema,
-  TupleSchema,
-} from '../../src'
+import { boolean, number, string, tuple } from '../../src'
 import { createSuite } from '../util/createSuite'
 
 describe('Schema: TupleSchema', () => {
-  const schema = TupleSchema.create([
-    StringSchema.create(),
-    StringSchema.create(),
-    NumberSchema.create(),
-    NumberSchema.create(),
-    BooleanSchema.create(),
-    BooleanSchema.create(),
+  const schema = tuple([
+    string(),
+    string(),
+    number(),
+    number(),
+    boolean(),
+    boolean(),
   ])
 
   it('Name compare', () => {
-    const comparator = TupleSchema.create([
-      StringSchema.create(),
-      StringSchema.create(),
-      NumberSchema.create(),
-      NumberSchema.create(),
-      BooleanSchema.create(),
-      BooleanSchema.create(),
+    const comparator = tuple([
+      string(),
+      string(),
+      number(),
+      number(),
+      boolean(),
+      boolean(),
     ])
     expect(schema.name).to.be.equal(comparator.name)
   })
@@ -48,10 +43,7 @@ describe('Schema: TupleSchema', () => {
 
   describe('Validation', () => {
     it('Inner type', () => {
-      const validator = TupleSchema.create([
-        StringSchema.create().notEmpty(),
-        NumberSchema.create().greater(0),
-      ])
+      const validator = tuple([string().notEmpty(), number().greater(0)])
       expect(validator.validate(['string', 80])).to.have.length(0)
       expect(validator.validate(['string', 0])).to.have.length.greaterThan(0)
       expect(validator.validate(['', 80])).to.have.length.greaterThan(0)

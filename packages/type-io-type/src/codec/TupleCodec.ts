@@ -1,4 +1,5 @@
 import { TupleType } from '../alias/TupleType'
+import { tuple } from '../schema/builder/tuple'
 import { TypeOfMap } from '../schema/helper/TypeOfMap'
 import { TupleSchema } from '../schema/TupleSchema'
 import { CodecAny } from './alias/CodecAny'
@@ -16,9 +17,7 @@ export class TupleCodec<T extends TupleType<CodecAny>>
 
   constructor(codecs: T) {
     this.codecs = codecs
-    this.schema = TupleSchema.create(
-      codecs.map((c) => c.schema) as SchemaOfMap<T>
-    )
+    this.schema = tuple(codecs.map((c) => c.schema) as SchemaOfMap<T>)
   }
 
   decode(value: unknown): TypeOfMap<SchemaOfMap<T>> {

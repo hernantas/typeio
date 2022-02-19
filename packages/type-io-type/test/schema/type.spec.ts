@@ -1,13 +1,13 @@
 import { expect } from 'chai'
-import { TypeSchema } from '../../src'
+import { type } from '../../src'
 import { User } from '../util/cases'
 import { createSuite } from '../util/createSuite'
 
 describe('Schema: TypeSchema', () => {
-  const schema = TypeSchema.create(User)
+  const schema = type(User)
 
   it('Name compare', () => {
-    const comparator = TypeSchema.create(User)
+    const comparator = type(User)
     expect(schema.name).to.be.equal(comparator.name)
   })
 
