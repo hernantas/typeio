@@ -43,4 +43,16 @@ describe('Schema: TupleSchema', () => {
   suite.tuple.isTrue()
   suite.type.isFalse()
   suite.undefined.isFalse()
+
+  describe('Validation', () => {
+    it('Inner type', () => {
+      const validator = TupleSchema.create([
+        StringSchema.create().notEmpty(),
+        NumberSchema.create().greater(0),
+      ])
+      expect(validator.validate(['string', 80])).to.have.length(0)
+      expect(validator.validate(['string', 0])).to.have.length.greaterThan(0)
+      expect(validator.validate(['', 80])).to.have.length.greaterThan(0)
+    })
+  })
 })
