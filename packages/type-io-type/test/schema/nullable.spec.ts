@@ -26,4 +26,13 @@ describe('Schema: NullSchema', () => {
     suite.type.isFalse()
     suite.undefined.isFalse()
   })
+
+  describe('Validation', () => {
+    it('Inner type', () => {
+      const validator = NullableSchema.create(StringSchema.create().notEmpty())
+      expect(validator.validate('string')).to.have.length(0)
+      expect(validator.validate('')).to.have.length.greaterThan(0)
+      expect(validator.validate(null)).to.have.length(0)
+    })
+  })
 })
