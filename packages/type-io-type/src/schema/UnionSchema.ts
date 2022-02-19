@@ -34,7 +34,7 @@ export class UnionSchema<T extends UnionType<SchemaAny>> extends BaseSchema<
     return super
       .validate(input)
       .concat(
-        ...this.items
+        this.items
           .filter((item) => item.is(input))
           .flatMap((item) => item.validate(input))
       )

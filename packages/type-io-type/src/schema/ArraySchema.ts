@@ -27,7 +27,7 @@ export class ArraySchema<T extends SchemaAny> extends BaseSchema<
 
   override validate(input: TypeOf<T>[]): ValidationError[] {
     return super.validate(input).concat(
-      ...input.flatMap((value, index) =>
+      input.flatMap((value, index) =>
         this.type.validate(value).map((error) => ({
           ...error,
           path: [index.toString()].concat(error.path ?? []),

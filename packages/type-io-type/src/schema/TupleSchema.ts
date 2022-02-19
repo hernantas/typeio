@@ -33,7 +33,7 @@ export class TupleSchema<T extends TupleType<SchemaAny>> extends BaseSchema<
 
   override validate(input: TypeOfMap<T>): ValidationError[] {
     return super.validate(input).concat(
-      ...this.items.flatMap((item, index) =>
+      this.items.flatMap((item, index) =>
         item.validate(input[index]).map((error) => ({
           ...error,
           path: [index.toString()].concat(error.path ?? []),
