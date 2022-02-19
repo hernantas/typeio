@@ -20,8 +20,8 @@ export class ArraySchema<T extends SchemaAny> extends BaseSchema<
   is(input: unknown): input is Array<TypeOf<T>> {
     return (
       Array.isArray(input) &&
-      input.map((v) => this.definition.type.is(v)).filter((b) => !b).length ===
-        0
+      input.map((value) => this.definition.type.is(value)).filter((b) => !b)
+        .length === 0
     )
   }
 
@@ -29,7 +29,7 @@ export class ArraySchema<T extends SchemaAny> extends BaseSchema<
     return this.check({
       name: 'ARRAY_LENGTH_MIN',
       args: { limit },
-      validate: (v) => v.length >= limit,
+      validate: (value) => value.length >= limit,
     })
   }
 
@@ -37,7 +37,7 @@ export class ArraySchema<T extends SchemaAny> extends BaseSchema<
     return this.check({
       name: 'ARRAY_LENGTH_MAX',
       args: { limit },
-      validate: (v) => v.length <= limit,
+      validate: (value) => value.length <= limit,
     })
   }
 
@@ -45,7 +45,7 @@ export class ArraySchema<T extends SchemaAny> extends BaseSchema<
     return this.check({
       name: 'ARRAY_LENGTH',
       args: { limit },
-      validate: (v) => v.length === limit,
+      validate: (value) => value.length === limit,
     })
   }
 }
