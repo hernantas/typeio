@@ -1,8 +1,7 @@
+import { ValidationError } from './ValidationError'
 import { ValidationFunction } from './ValidationFunction'
 
-export interface ValidationRule {
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  validate: ValidationFunction<any>
-  kind: string
-  message?: string
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+export interface ValidationRule<T = any> extends ValidationError {
+  readonly validate: ValidationFunction<T>
 }

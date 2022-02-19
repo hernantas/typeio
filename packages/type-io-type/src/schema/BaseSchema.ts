@@ -1,7 +1,6 @@
 import { Extendable } from '../Extendable'
 import { BaseDefinition } from './definition/BaseDefinition'
 import { ValidationError } from './validation/ValidationError'
-import { ValidationFunction } from './validation/ValidationFunction'
 import { ValidationRule } from './validation/ValidationRule'
 
 export abstract class BaseSchema<
@@ -25,38 +24,24 @@ export abstract class BaseSchema<
 
   validate(input: T): ValidationError[] {
     return this.rules
-      .filter((r) => !r.validate(input))
-      .map((r) => ({
-        kind: r.kind,
-        message: r.message,
+      .filter((rule) => !rule.validate(input))
+      .map((rule) => ({
+        name: rule.name,
+        message: rule.message,
+        args: rule.args,
       }))
   }
 
   /**
    * Add validation rule
    *
-   * @param validate Callback function to validate the value
-   * @param error Optional message to be included when validation failed
+   * @param rule New rule to be added
    * @returns A new instance with additional rule
    */
-  check(
-    validate: ValidationFunction<T>,
-    error?: string | ValidationError
-  ): this {
-    const funcError: ValidationError =
-      typeof error === 'string' || error === undefined
-        ? {
-            kind: 'VALIDATION',
-            message: error,
-          }
-        : error
+  check(rule: ValidationRule<T>): this {
     return this.newInstance({
       ...this.definition,
-      rules: this.rules.concat({
-        validate,
-        kind: funcError.kind,
-        message: funcError.message,
-      }),
+      rules: this.rules.concat(rule),
     })
   }
 

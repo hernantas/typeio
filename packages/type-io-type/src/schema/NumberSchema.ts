@@ -11,27 +11,43 @@ export class NumberSchema extends BaseSchema<number> {
     return typeof input === 'number'
   }
 
-  min(value: number): this {
-    return this.check((v) => v >= value, { kind: 'NUMBER_MIN' })
+  min(limit: number): this {
+    return this.check({
+      name: 'NUMBER_MIN',
+      args: { limit },
+      validate: (v) => v >= limit,
+    })
   }
 
-  max(value: number): this {
-    return this.check((v) => v <= value, { kind: 'NUMBER_MAX' })
+  max(limit: number): this {
+    return this.check({
+      name: 'NUMBER_MAX',
+      args: { limit },
+      validate: (v) => v <= limit,
+    })
   }
 
-  greater(value: number): this {
-    return this.check((v) => v > value, { kind: 'NUMBER_GREATER' })
+  greater(limit: number): this {
+    return this.check({
+      name: 'NUMBER_GREATER',
+      args: { limit },
+      validate: (v) => v > limit,
+    })
   }
 
-  less(value: number): this {
-    return this.check((v) => v < value, { kind: 'NUMBER_LESS' })
+  less(limit: number): this {
+    return this.check({
+      name: 'NUMBER_LESS',
+      args: { limit },
+      validate: (v) => v < limit,
+    })
   }
 
   positive(): this {
-    return this.check((v) => v > 0, { kind: 'NUMBER_POSITIVE' })
+    return this.check({ name: 'NUMBER_POSITIVE', validate: (v) => v > 0 })
   }
 
   negative(): this {
-    return this.check((v) => v < 0, { kind: 'NUMBER_NEGATIVE' })
+    return this.check({ name: 'NUMBER_NEGATIVE', validate: (v) => v < 0 })
   }
 }

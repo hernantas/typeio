@@ -25,24 +25,28 @@ describe('Schema: Base', () => {
   })
 
   it('Validation checks', () => {
-    const schema = UnknownSchema.create().check(
-      (v) => typeof v === 'string',
-      'Type must be a string'
-    )
+    const schema = UnknownSchema.create().check({
+      name: 'TYPE_STRING',
+      message: 'Type must be a string',
+      validate: (v) => typeof v === 'string',
+    })
     expect(schema.validate('String')).to.have.length(0)
     expect(schema.validate(0)).to.have.length.greaterThan(0)
     expect(schema.validate(true)).to.have.length.greaterThan(0)
   })
 
   it('Validation checks override', () => {
-    const base = UnknownSchema.create().check(
-      (v) => typeof v === 'string',
-      'Type must be a string'
-    )
-    const schema = base.check(
-      (v) => typeof v === 'string' && v.length > 3,
-      'String must be greater than 3 characters'
-    )
+    const base = UnknownSchema.create().check({
+      name: 'TYPE_STRING',
+      message: 'Type must be a string',
+      validate: (v) => typeof v === 'string',
+    })
+    const schema = base.check({
+      name: '',
+      message: 'String must be greater than 3 characters',
+      validate: (v) => typeof v === 'string' && v.length > 3,
+    })
+
     expect(base.validate('S')).to.have.length(0)
     expect(base.validate('String')).to.have.length(0)
     expect(base.validate(0)).to.have.length.greaterThan(0)

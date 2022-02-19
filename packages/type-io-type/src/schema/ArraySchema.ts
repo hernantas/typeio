@@ -25,15 +25,27 @@ export class ArraySchema<T extends SchemaAny> extends BaseSchema<
     )
   }
 
-  min(value: number): this {
-    return this.check((v) => v.length >= value, { kind: 'ARRAY_LENGTH_MIN' })
+  min(limit: number): this {
+    return this.check({
+      name: 'ARRAY_LENGTH_MIN',
+      args: { limit },
+      validate: (v) => v.length >= limit,
+    })
   }
 
-  max(value: number): this {
-    return this.check((v) => v.length <= value, { kind: 'ARRAY_LENGTH_MAX' })
+  max(limit: number): this {
+    return this.check({
+      name: 'ARRAY_LENGTH_MAX',
+      args: { limit },
+      validate: (v) => v.length <= limit,
+    })
   }
 
-  length(value: number): this {
-    return this.check((v) => v.length === value, { kind: 'ARRAY_LENGTH' })
+  length(limit: number): this {
+    return this.check({
+      name: 'ARRAY_LENGTH',
+      args: { limit },
+      validate: (v) => v.length === limit,
+    })
   }
 }

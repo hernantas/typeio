@@ -11,20 +11,36 @@ export class StringSchema extends BaseSchema<string> {
     return typeof input === 'string'
   }
 
-  min(value: number): this {
-    return this.check((v) => v.length >= value, { kind: 'STRING_MIN' })
+  min(limit: number): this {
+    return this.check({
+      name: 'STRING_LENGTH_MIN',
+      args: { limit },
+      validate: (v) => v.length >= limit,
+    })
   }
 
-  max(value: number): this {
-    return this.check((v) => v.length <= value, { kind: 'STRING_MAX' })
+  max(limit: number): this {
+    return this.check({
+      name: 'STRING_LENGTH_MAX',
+      args: { limit },
+      validate: (v) => v.length <= limit,
+    })
   }
 
-  length(value: number): this {
-    return this.check((v) => v.length === value, { kind: 'STRING_LENGTH' })
+  length(limit: number): this {
+    return this.check({
+      name: 'STRING_LENGTH',
+      args: { limit },
+      validate: (v) => v.length === limit,
+    })
   }
 
   pattern(pattern: RegExp): this {
-    return this.check((v) => pattern.test(v), { kind: 'STRING_PATTERN' })
+    return this.check({
+      name: 'STRING_PATTERN',
+      args: { pattern },
+      validate: (v) => pattern.test(v),
+    })
   }
 
   alphanumeric(): this {
