@@ -7,7 +7,7 @@ describe('Codec', () => {
       const codec = new LiteralCodec('literal')
 
       describe('Decode', () => {
-        const suite = createSuite('From', (v) => codec.decode(v))
+        const suite = createSuite((v) => codec.decode(v))
         suite.array.string.isThrow()
         suite.boolean.isThrow()
         suite.literal.boolean.isThrow()
@@ -28,7 +28,7 @@ describe('Codec', () => {
       const codec = new LiteralCodec(0)
 
       describe('Decode', () => {
-        const suite = createSuite('From', (v) => codec.decode(v))
+        const suite = createSuite((v) => codec.decode(v))
         suite.array.string.each((c) =>
           c.value.length === 0 ? c.is(0) : c.isThrow()
         )
@@ -53,7 +53,7 @@ describe('Codec', () => {
       const codec = new LiteralCodec(true)
 
       describe('Decode', () => {
-        const suite = createSuite('From', (v) => codec.decode(v))
+        const suite = createSuite((v) => codec.decode(v))
         suite.array.string.isTrue()
         suite.boolean.each((c) => (c.value ? c.isTrue() : c.isThrow()))
         suite.literal.boolean.isTrue()

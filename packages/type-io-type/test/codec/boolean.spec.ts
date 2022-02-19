@@ -13,7 +13,7 @@ describe('Codec', () => {
         // eslint-disable-next-line @typescript-eslint/no-unsafe-argument
         falseValues.includes(c.value) ? c.isFalse() : c.isTrue()
 
-      const suite = createSuite('From', (v) => codec.decode(v))
+      const suite = createSuite((v) => codec.decode(v))
       suite.array.string.each(fn)
       suite.boolean.each(fn)
       suite.literal.boolean.each(fn)

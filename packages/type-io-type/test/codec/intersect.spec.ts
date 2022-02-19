@@ -16,7 +16,7 @@ describe('Codec', () => {
     ])
 
     describe('Decode', () => {
-      const suite = createSuite('From', (v) => codec.decode(v))
+      const suite = createSuite((v) => codec.decode(v))
       suite.array.string.isThrow()
       suite.boolean.isThrow()
       suite.literal.boolean.isThrow()
@@ -45,7 +45,7 @@ describe('Codec', () => {
     })
 
     describe('Encode', () => {
-      const suite = createSuite('From', (v) => codec.encode(codec.decode(v)))
+      const suite = createSuite((v) => codec.encode(codec.decode(v)))
       suite.array.string.isThrow()
       suite.boolean.isThrow()
       suite.literal.boolean.isThrow()

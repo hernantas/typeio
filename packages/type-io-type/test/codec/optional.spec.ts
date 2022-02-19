@@ -6,7 +6,7 @@ describe('Codec', () => {
     const codec = new OptionalCodec(new StringCodec())
 
     describe('Decode', () => {
-      const suite = createSuite('From', (v) => codec.decode(v))
+      const suite = createSuite((v) => codec.decode(v))
       suite.array.string.each((c) => c.is(c.value.join()))
       suite.boolean.each((c) => c.is(c.value ? 'true' : 'false'))
       suite.literal.boolean.is('true')

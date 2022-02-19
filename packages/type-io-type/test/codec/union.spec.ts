@@ -6,7 +6,7 @@ describe('Codec', () => {
     describe('StringCodec | NumberCodec', () => {
       const codec = new UnionCodec([new StringCodec(), new NumberCodec()])
       describe('Decode', () => {
-        const suite = createSuite('From', (v) => codec.decode(v))
+        const suite = createSuite((v) => codec.decode(v))
         suite.array.string.each((c) => c.is(c.value.join()))
         suite.boolean.each((c) => c.is(c.value ? 'true' : 'false'))
         suite.literal.boolean.is('true')
@@ -26,7 +26,7 @@ describe('Codec', () => {
     describe('NumberCodec | BooleanCodec', () => {
       const codec = new UnionCodec([new NumberCodec(), new BooleanCodec()])
       describe('Decode', () => {
-        const suite = createSuite('From', (v) => codec.decode(v))
+        const suite = createSuite((v) => codec.decode(v))
         suite.array.string.each((c) =>
           c.value.length === 0 ? c.is(0) : c.is(Boolean(c.value))
         )

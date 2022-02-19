@@ -6,7 +6,7 @@ describe('Codec', () => {
     const codec = new NumberCodec()
 
     describe('Decode', () => {
-      const suite = createSuite('From', (v) => codec.decode(v))
+      const suite = createSuite((v) => codec.decode(v))
       suite.array.string.each((c) =>
         c.value.length === 0 ? c.is(0) : c.isThrow()
       )

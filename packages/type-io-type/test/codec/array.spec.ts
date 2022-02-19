@@ -6,7 +6,7 @@ describe('Codec', () => {
     const codec = new ArrayCodec(new StringCodec())
 
     describe('Decode', () => {
-      const suite = createSuite('From', (v) => codec.decode(v))
+      const suite = createSuite((v) => codec.decode(v))
       suite.array.string.isDeepEqual()
       suite.boolean.each((c) => c.isDeep([c.value ? 'true' : 'false']))
       suite.literal.boolean.isDeep(['true'])

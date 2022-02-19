@@ -11,7 +11,7 @@ describe('Codec', () => {
     })
 
     describe('Decode', () => {
-      const suite = createSuite('From', (v) => codec.decode(v))
+      const suite = createSuite((v) => codec.decode(v))
       suite.array.string.isThrow()
       suite.boolean.isThrow()
       suite.literal.boolean.isThrow()

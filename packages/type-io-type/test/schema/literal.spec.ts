@@ -13,9 +13,9 @@ describe('Schema: LiteralSchema', () => {
     expect(numberLiteral.name).to.be.not.equal(booleanLiteral.name)
   })
 
-  describe('Literal (string)', () => {
+  describe('Type check (string)', () => {
     const schema = LiteralSchema.create('literal')
-    const suite = createSuite('Type check', (v) => schema.is(v))
+    const suite = createSuite((v) => schema.is(v))
     suite.array.string.isFalse()
     suite.boolean.isFalse()
     suite.literal.boolean.isFalse()
@@ -30,9 +30,9 @@ describe('Schema: LiteralSchema', () => {
     suite.type.isFalse()
     suite.undefined.isFalse()
   })
-  describe('Literal (number)', () => {
+  describe('Type check (number)', () => {
     const schema = LiteralSchema.create(0)
-    const suite = createSuite('Type check', (v) => schema.is(v))
+    const suite = createSuite((v) => schema.is(v))
     suite.array.string.isFalse()
     suite.boolean.isFalse()
     suite.literal.boolean.isFalse()
@@ -46,9 +46,9 @@ describe('Schema: LiteralSchema', () => {
     suite.tuple.isFalse()
     suite.undefined.isFalse()
   })
-  describe('Literal (boolean)', () => {
+  describe('Type check (boolean)', () => {
     const schema = LiteralSchema.create(true)
-    const suite = createSuite('Type check', (v) => schema.is(v))
+    const suite = createSuite((v) => schema.is(v))
     suite.array.string.isFalse()
     suite.boolean.each((c) => (c.value ? c.isTrue() : c.isFalse()))
     suite.literal.boolean.isTrue()
