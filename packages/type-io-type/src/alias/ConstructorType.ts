@@ -1,5 +1,7 @@
 /**
  * Alias for constructor type
  */
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
-export type ConstructorType<T = unknown> = new (...args: any[]) => T
+export interface ConstructorType<T = unknown> {
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  new (...args: any[]): T
+}
