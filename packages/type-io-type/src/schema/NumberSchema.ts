@@ -7,7 +7,7 @@ export class NumberSchema extends BaseSchema<number> {
     return new NumberSchema({ name: 'Number' })
   }
 
-  is(input: unknown): input is number {
+  override is(input: unknown): input is number {
     return typeof input === 'number'
   }
 

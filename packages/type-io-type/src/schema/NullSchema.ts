@@ -7,7 +7,7 @@ export class NullSchema extends BaseSchema<null> {
     return new NullSchema({ name: 'Null' })
   }
 
-  is(input: unknown): input is null {
+  override is(input: unknown): input is null {
     return input === null
   }
 }

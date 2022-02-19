@@ -23,7 +23,7 @@ export class IntersectSchema<
     return this.definition.items
   }
 
-  is(input: unknown): input is IntersectMap<TypeOfMap<T>> {
+  override is(input: unknown): input is IntersectMap<TypeOfMap<T>> {
     for (const item of this.items) {
       if (!item.is(input)) return false
     }

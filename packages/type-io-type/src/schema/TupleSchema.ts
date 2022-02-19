@@ -21,7 +21,7 @@ export class TupleSchema<T extends TupleType<SchemaAny>> extends BaseSchema<
     return this.definition.items
   }
 
-  is(input: unknown): input is TypeOfMap<T> {
+  override is(input: unknown): input is TypeOfMap<T> {
     return (
       Array.isArray(input) &&
       this.definition.items

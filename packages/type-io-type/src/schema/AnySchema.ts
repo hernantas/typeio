@@ -9,7 +9,7 @@ export class AnySchema extends BaseSchema<any> {
   }
 
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  is(_input: unknown): _input is any {
+  override is(_input: unknown): _input is any {
     return true
   }
 }

@@ -7,7 +7,7 @@ export class BooleanSchema extends BaseSchema<boolean> {
     return new BooleanSchema({ name: 'Boolean' })
   }
 
-  is(input: unknown): input is boolean {
+  override is(input: unknown): input is boolean {
     return typeof input === 'boolean'
   }
 }

@@ -22,8 +22,8 @@ export class UnionSchema<T extends UnionType<SchemaAny>> extends BaseSchema<
     return this.definition.items
   }
 
-  is(input: unknown): input is UnionMap<TypeOfMap<T>> {
-    for (const schema of this.definition.items) {
+  override is(input: unknown): input is UnionMap<TypeOfMap<T>> {
+    for (const schema of this.items) {
       if (schema.is(input)) return true
     }
     return false

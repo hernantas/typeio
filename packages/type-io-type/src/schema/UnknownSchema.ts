@@ -7,7 +7,7 @@ export class UnknownSchema extends BaseSchema<unknown> {
     return new UnknownSchema({ name: 'Unknown' })
   }
 
-  is(_input: unknown): _input is unknown {
+  override is(_input: unknown): _input is unknown {
     return true
   }
 }

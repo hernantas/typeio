@@ -7,7 +7,7 @@ export class StringSchema extends BaseSchema<string> {
     return new StringSchema({ name: 'String' })
   }
 
-  is(input: unknown): input is string {
+  override is(input: unknown): input is string {
     return typeof input === 'string'
   }
 

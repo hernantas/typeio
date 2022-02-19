@@ -7,7 +7,7 @@ export class UndefinedSchema extends BaseSchema<undefined> {
     return new UndefinedSchema({ name: 'Undefined' })
   }
 
-  is(input: unknown): input is undefined {
+  override is(input: unknown): input is undefined {
     return typeof input === 'undefined'
   }
 }

@@ -28,7 +28,7 @@ export class ObjectSchema<T extends ObjectType<SchemaAny>> extends BaseSchema<
     return this.definition.properties
   }
 
-  is(input: unknown): input is TypeOfMap<T> {
+  override is(input: unknown): input is TypeOfMap<T> {
     return (
       typeof input === 'object' &&
       input !== null &&
