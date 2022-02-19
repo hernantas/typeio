@@ -8,9 +8,7 @@ export abstract class BaseSchema<
   T,
   D extends BaseDefinition = BaseDefinition
 > extends Extendable<D> {
-  /**
-   * Ignore this. Used to prevent typescript infer the type to `unknown`
-   */
+  /** Ignore this. Used to prevent typescript infer the type to `unknown` */
   readonly _type!: T
 
   abstract readonly _kind: string

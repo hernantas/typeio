@@ -4,8 +4,8 @@ import { DecodeError } from './error/DecodeError'
 import { Codec } from './interface/Codec'
 
 /**
- * Fallback codec. If codec is not found for particular schema, use its own schema
- * to decode/encode
+ * Fallback codec. If codec is not found for particular schema, use its own
+ * schema to decode/encode
  */
 export class DefaultCodec<T extends SchemaAny> implements Codec<T> {
   readonly schema: T
