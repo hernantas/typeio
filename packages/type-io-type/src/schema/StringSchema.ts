@@ -35,6 +35,13 @@ export class StringSchema extends BaseSchema<string> {
     })
   }
 
+  notEmpty(): this {
+    return this.check({
+      name: 'STRING_NOT_EMPTY',
+      validate: (v) => v.length > 0,
+    })
+  }
+
   pattern(pattern: RegExp): this {
     return this.check({
       name: 'STRING_PATTERN',
