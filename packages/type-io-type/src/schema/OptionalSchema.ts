@@ -2,6 +2,7 @@ import { SchemaAny } from './alias/SchemaAny'
 import { BaseSchema } from './BaseSchema'
 import { OptionalDefinition } from './definition/OptionalDefinition'
 import { TypeOf } from './helper/TypeOf'
+import { ValidationError } from './validation/ValidationError'
 
 export class OptionalSchema<T extends SchemaAny> extends BaseSchema<
   TypeOf<T> | undefined,
@@ -19,5 +20,11 @@ export class OptionalSchema<T extends SchemaAny> extends BaseSchema<
 
   override is(input: unknown): input is TypeOf<T> | undefined {
     return input === undefined || this.type.is(input)
+  }
+
+  override validate(input: TypeOf<T> | undefined): ValidationError[] {
+    return super
+      .validate(input)
+      .concat(this.type.is(input) ? this.type.validate(input) : [])
   }
 }

@@ -26,4 +26,13 @@ describe('Schema: OptionalSchema', () => {
     suite.type.isFalse()
     suite.undefined.isTrue()
   })
+
+  describe('Validation', () => {
+    it('Inner type', () => {
+      const validator = OptionalSchema.create(StringSchema.create().notEmpty())
+      expect(validator.validate('string')).to.have.length(0)
+      expect(validator.validate('')).to.have.length.greaterThan(0)
+      expect(validator.validate(undefined)).to.have.length(0)
+    })
+  })
 })
