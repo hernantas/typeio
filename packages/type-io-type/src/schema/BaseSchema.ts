@@ -28,6 +28,7 @@ export abstract class BaseSchema<
       .map((rule) => ({
         name: rule.name,
         message: rule.message,
+        path: rule.path,
         args: rule.args,
       }))
   }
