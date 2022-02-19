@@ -1,3 +1,5 @@
+import { t } from './default'
+
 export * from './codec/alias/CodecAny'
 export * from './codec/ArrayCodec'
 export * from './codec/BooleanCodec'
@@ -66,3 +68,5 @@ export * from './schema/UnionSchema'
 export * from './schema/UnknownSchema'
 export * from './schema/validation/ValidationError'
 export * from './schema/validation/ValidationFunction'
+
+export default t
