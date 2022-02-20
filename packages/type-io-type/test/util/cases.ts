@@ -1,9 +1,16 @@
+import { Property } from '../../src'
+
 export class User {
-  constructor(
-    public _string: string = '',
-    public _number: number = 0,
-    public _boolean: boolean = false
-  ) {}
+  @Property()
+  _string: string = ''
+
+  @Property()
+  _number: number = 0
+
+  @Property()
+  _boolean: boolean = false
+
+  _hidden?: boolean
 }
 
 export const cases = {
