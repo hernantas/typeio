@@ -2,7 +2,9 @@ import { ObjectType } from '../alias/ObjectType'
 import { SchemaAny } from './alias/SchemaAny'
 import { BaseSchema } from './BaseSchema'
 import { ObjectDefinition } from './definition/ObjectDefinition'
+import { OptionalSchemaMap } from './helper/OptionalSchemaMap'
 import { TypeOfMap } from './helper/TypeOfMap'
+import { OptionalSchema } from './OptionalSchema'
 import { ValidationError } from './validation/ValidationError'
 
 export class ObjectSchema<T extends ObjectType<SchemaAny>> extends BaseSchema<
@@ -57,6 +59,18 @@ export class ObjectSchema<T extends ObjectType<SchemaAny>> extends BaseSchema<
             }))
           : []
       })
+    )
+  }
+
+  partial(): ObjectSchema<OptionalSchemaMap<T>> {
+    return ObjectSchema.create(
+      Object.keys(this.properties).reduce(
+        (prev, key) => ({
+          ...prev,
+          [key]: OptionalSchema.create(this.properties[key as keyof T]),
+        }),
+        {} as OptionalSchemaMap<T>
+      )
     )
   }
 }
