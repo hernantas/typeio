@@ -47,13 +47,12 @@ export class ObjectSchema<T extends ObjectType<SchemaAny>> extends BaseSchema<
   }
 
   override validate(input: TypeOfMap<T>): ValidationError[] {
-    const tInput = input as ObjectType<T>
     return super.validate(input).concat(
       Object.keys(this.properties).flatMap((key) => {
         const tKey = key as keyof T
         const schema = this.properties[tKey]
         return schema !== undefined
-          ? schema.validate(tInput[tKey]).map((error) => ({
+          ? schema.validate(input[tKey]).map((error) => ({
               ...error,
               path: [key].concat(error.path ?? []),
             }))
