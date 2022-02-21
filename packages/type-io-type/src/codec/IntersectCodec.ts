@@ -1,16 +1,15 @@
 import { IntersectMap } from '../alias/helper/IntersectMap'
-import { IntersectType } from '../alias/IntersectType'
 import { ObjectType } from '../alias/ObjectType'
 import { intersect } from '../schema/builder/intersect'
 import { TypeOfMap } from '../schema/helper/TypeOfMap'
 import { IntersectSchema } from '../schema/IntersectSchema'
-import { CodecAny } from './alias/CodecAny'
+import { IntersectCodecType } from './alias/IntersectCodecType'
 import { InputOfMap } from './helper/InputOfMap'
 import { OutputOfMap } from './helper/OutputOfMap'
 import { SchemaOfMap } from './helper/SchemaOfMap'
 import { Codec } from './interface/Codec'
 
-export class IntersectCodec<T extends IntersectType<CodecAny>>
+export class IntersectCodec<T extends IntersectCodecType>
   implements
     Codec<
       IntersectSchema<SchemaOfMap<T>>,
