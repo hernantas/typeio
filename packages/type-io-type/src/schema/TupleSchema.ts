@@ -1,3 +1,4 @@
+import { SchemaAny } from './alias/SchemaAny'
 import { TupleSchemaType } from './alias/TupleSchemaType'
 import { BaseSchema } from './BaseSchema'
 import { TupleDefinition } from './definition/TupleDefinition'
@@ -15,6 +16,10 @@ export class TupleSchema<T extends TupleSchemaType> extends BaseSchema<
       name: `[${items.map((v) => v.name).join(', ')}]`,
       items,
     })
+  }
+
+  static is(input: SchemaAny): input is TupleSchema<TupleSchemaType> {
+    return input._kind === 'tuple'
   }
 
   get items(): T {

@@ -14,6 +14,10 @@ export class NullableSchema<T extends SchemaAny> extends BaseSchema<
     return new NullableSchema({ name: `Nullable<${type.name}>`, type })
   }
 
+  static is(input: SchemaAny): input is NullableSchema<SchemaAny> {
+    return input._kind === 'nullable'
+  }
+
   get type(): T {
     return this.definition.type
   }

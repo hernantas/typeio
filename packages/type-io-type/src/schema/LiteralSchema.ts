@@ -1,4 +1,5 @@
 import { LiteralType } from '../alias/LiteralType'
+import { SchemaAny } from './alias/SchemaAny'
 import { BaseSchema } from './BaseSchema'
 import { LiteralDefinition } from './definition/LiteralDefinition'
 
@@ -10,6 +11,10 @@ export class LiteralSchema<T extends LiteralType> extends BaseSchema<
 
   static create<T extends LiteralType>(value: T): LiteralSchema<T> {
     return new LiteralSchema({ name: `'${value.toString()}'`, value })
+  }
+
+  static is(input: SchemaAny): input is LiteralSchema<LiteralType> {
+    return input._kind === 'literal'
   }
 
   get value(): T {

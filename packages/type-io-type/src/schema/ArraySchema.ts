@@ -14,6 +14,10 @@ export class ArraySchema<T extends SchemaAny> extends BaseSchema<
     return new ArraySchema({ name: `Array<${type.name}>`, type })
   }
 
+  static is(input: SchemaAny): input is ArraySchema<SchemaAny> {
+    return input._kind === 'array'
+  }
+
   get type(): T {
     return this.definition.type
   }

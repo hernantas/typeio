@@ -1,5 +1,6 @@
 import { ConstructorType } from '../alias/ConstructorType'
 import { getMetadata } from '../decorator/metadata'
+import { SchemaAny } from './alias/SchemaAny'
 import { BaseSchema } from './BaseSchema'
 import { TypeDefinition } from './definition/TypeDefinition'
 import { SchemaMap } from './helper/SchemaMap'
@@ -14,6 +15,10 @@ export class TypeSchema<T> extends BaseSchema<T, TypeDefinition<T>> {
       type: constructor,
       properties: getMetadata(constructor),
     })
+  }
+
+  static is(input: SchemaAny): input is TypeSchema<unknown> {
+    return input._kind === 'type'
   }
 
   get type(): ConstructorType<T> {

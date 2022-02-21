@@ -1,5 +1,6 @@
 import { IntersectMap } from '../alias/helper/IntersectMap'
 import { IntersectSchemaType } from './alias/IntersectSchemaType'
+import { SchemaAny } from './alias/SchemaAny'
 import { BaseSchema } from './BaseSchema'
 import { IntersectDefinition } from './definition/IntersectDefinition'
 import { TypeOfMap } from './helper/TypeOfMap'
@@ -16,6 +17,10 @@ export class IntersectSchema<T extends IntersectSchemaType> extends BaseSchema<
       name: items.map((v) => v.name).join(' & '),
       items,
     })
+  }
+
+  static is(input: SchemaAny): input is IntersectSchema<IntersectSchemaType> {
+    return input._kind === 'intersect'
   }
 
   get items(): T {

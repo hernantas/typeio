@@ -1,4 +1,5 @@
 import { UnionMap } from '../alias/helper/UnionMap'
+import { SchemaAny } from './alias/SchemaAny'
 import { UnionSchemaType } from './alias/UnionSchemaType'
 import { BaseSchema } from './BaseSchema'
 import { UnionDefinition } from './definition/UnionDefinition'
@@ -16,6 +17,10 @@ export class UnionSchema<T extends UnionSchemaType> extends BaseSchema<
       name: items.map((v) => v.name).join(' | '),
       items,
     })
+  }
+
+  static is(input: SchemaAny): input is UnionSchema<UnionSchemaType> {
+    return input._kind === 'union'
   }
 
   get items(): T {

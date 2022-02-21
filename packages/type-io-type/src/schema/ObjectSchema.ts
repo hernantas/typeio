@@ -1,5 +1,6 @@
 import { ObjectType } from '../alias/ObjectType'
 import { ObjectSchemaType } from './alias/ObjectSchemaType'
+import { SchemaAny } from './alias/SchemaAny'
 import { BaseSchema } from './BaseSchema'
 import { ObjectDefinition } from './definition/ObjectDefinition'
 import { OptionalSchemaMap } from './helper/OptionalSchemaMap'
@@ -23,6 +24,10 @@ export class ObjectSchema<T extends ObjectSchemaType> extends BaseSchema<
         .join(', ')}}`,
       properties,
     })
+  }
+
+  static is(input: SchemaAny): input is ObjectSchema<ObjectSchemaType> {
+    return input._kind === 'object'
   }
 
   get properties(): T {
