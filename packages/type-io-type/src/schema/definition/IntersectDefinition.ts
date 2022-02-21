@@ -1,8 +1,7 @@
-import { IntersectType } from '../../alias/IntersectType'
-import { SchemaAny } from '../alias/SchemaAny'
+import { IntersectSchemaType } from '../alias/IntersectSchemaType'
 import { BaseDefinition } from './BaseDefinition'
 
-export interface IntersectDefinition<T extends IntersectType<SchemaAny>>
+export interface IntersectDefinition<T extends IntersectSchemaType>
   extends BaseDefinition {
   readonly items: T
 }

@@ -1,8 +1,7 @@
-import { IntersectType } from '../../alias/IntersectType'
-import { SchemaAny } from '../alias/SchemaAny'
+import { IntersectSchemaType } from '../alias/IntersectSchemaType'
 import { IntersectSchema } from '../IntersectSchema'
 
-export function intersect<T extends IntersectType<SchemaAny>>(
+export function intersect<T extends IntersectSchemaType>(
   items: T
 ): IntersectSchema<T> {
   return new IntersectSchema({

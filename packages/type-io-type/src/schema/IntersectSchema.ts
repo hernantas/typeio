@@ -1,19 +1,17 @@
 import { IntersectMap } from '../alias/helper/IntersectMap'
-import { IntersectType } from '../alias/IntersectType'
-import { SchemaAny } from './alias/SchemaAny'
+import { IntersectSchemaType } from './alias/IntersectSchemaType'
 import { BaseSchema } from './BaseSchema'
 import { IntersectDefinition } from './definition/IntersectDefinition'
 import { TypeOfMap } from './helper/TypeOfMap'
 import { ValidationError } from './validation/ValidationError'
 
-export class IntersectSchema<
-  T extends IntersectType<SchemaAny>
-> extends BaseSchema<IntersectMap<TypeOfMap<T>>, IntersectDefinition<T>> {
+export class IntersectSchema<T extends IntersectSchemaType> extends BaseSchema<
+  IntersectMap<TypeOfMap<T>>,
+  IntersectDefinition<T>
+> {
   readonly _kind: string = 'intersect'
 
-  static create<T extends IntersectType<SchemaAny>>(
-    items: T
-  ): IntersectSchema<T> {
+  static create<T extends IntersectSchemaType>(items: T): IntersectSchema<T> {
     return new IntersectSchema({
       name: items.map((v) => v.name).join(' & '),
       items,
