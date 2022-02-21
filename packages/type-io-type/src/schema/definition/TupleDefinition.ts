@@ -1,8 +1,7 @@
-import { TupleType } from '../../alias/TupleType'
-import { SchemaAny } from '../alias/SchemaAny'
+import { TupleSchemaType } from '../alias/TupleSchemaType'
 import { BaseDefinition } from './BaseDefinition'
 
-export interface TupleDefinition<T extends TupleType<SchemaAny>>
+export interface TupleDefinition<T extends TupleSchemaType>
   extends BaseDefinition {
   readonly items: T
 }
