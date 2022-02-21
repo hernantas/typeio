@@ -1,9 +1,6 @@
-import { UnionType } from '../../alias/UnionType'
-import { SchemaAny } from '../alias/SchemaAny'
+import { UnionSchemaType } from '../alias/UnionSchemaType'
 import { UnionSchema } from '../UnionSchema'
 
-export function union<T extends UnionType<SchemaAny>>(
-  items: T
-): UnionSchema<T> {
+export function union<T extends UnionSchemaType>(items: T): UnionSchema<T> {
   return UnionSchema.create(items)
 }
