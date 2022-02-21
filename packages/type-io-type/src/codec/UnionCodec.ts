@@ -1,9 +1,8 @@
 import { UnionMap } from '../alias/helper/UnionMap'
-import { UnionType } from '../alias/UnionType'
 import { union } from '../schema/builder/union'
 import { TypeOfMap } from '../schema/helper/TypeOfMap'
 import { UnionSchema } from '../schema/UnionSchema'
-import { CodecAny } from './alias/CodecAny'
+import { UnionCodecType } from './alias/UnionCodecType'
 import { DecodeError } from './error/DecodeError'
 import { EncodeError } from './error/EncodeError'
 import { InputOfMap } from './helper/InputOfMap'
@@ -11,7 +10,7 @@ import { OutputOfMap } from './helper/OutputOfMap'
 import { SchemaOfMap } from './helper/SchemaOfMap'
 import { Codec } from './interface/Codec'
 
-export class UnionCodec<T extends UnionType<CodecAny>>
+export class UnionCodec<T extends UnionCodecType>
   implements
     Codec<
       UnionSchema<SchemaOfMap<T>>,
