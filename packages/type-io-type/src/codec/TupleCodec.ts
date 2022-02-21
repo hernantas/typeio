@@ -1,14 +1,13 @@
-import { TupleType } from '../alias/TupleType'
 import { tuple } from '../schema/builder/tuple'
 import { TypeOfMap } from '../schema/helper/TypeOfMap'
 import { TupleSchema } from '../schema/TupleSchema'
-import { CodecAny } from './alias/CodecAny'
+import { TupleCodecType } from './alias/TupleCodecType'
 import { DecodeError } from './error/DecodeError'
 import { OutputOfMap } from './helper/OutputOfMap'
 import { SchemaOfMap } from './helper/SchemaOfMap'
 import { Codec } from './interface/Codec'
 
-export class TupleCodec<T extends TupleType<CodecAny>>
+export class TupleCodec<T extends TupleCodecType>
   implements Codec<TupleSchema<SchemaOfMap<T>>, OutputOfMap<T>>
 {
   readonly schema: TupleSchema<SchemaOfMap<T>>
