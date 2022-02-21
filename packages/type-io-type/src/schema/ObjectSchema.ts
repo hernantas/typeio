@@ -1,5 +1,5 @@
 import { ObjectType } from '../alias/ObjectType'
-import { SchemaAny } from './alias/SchemaAny'
+import { ObjectSchemaType } from './alias/ObjectSchemaType'
 import { BaseSchema } from './BaseSchema'
 import { ObjectDefinition } from './definition/ObjectDefinition'
 import { OptionalSchemaMap } from './helper/OptionalSchemaMap'
@@ -7,15 +7,13 @@ import { TypeOfMap } from './helper/TypeOfMap'
 import { OptionalSchema } from './OptionalSchema'
 import { ValidationError } from './validation/ValidationError'
 
-export class ObjectSchema<T extends ObjectType<SchemaAny>> extends BaseSchema<
+export class ObjectSchema<T extends ObjectSchemaType> extends BaseSchema<
   TypeOfMap<T>,
   ObjectDefinition<T>
 > {
   readonly _kind: string = 'object'
 
-  static create<T extends ObjectType<SchemaAny>>(
-    properties: T
-  ): ObjectSchema<T> {
+  static create<T extends ObjectSchemaType>(properties: T): ObjectSchema<T> {
     return new ObjectSchema({
       name: `{${Object.keys(properties)
         .map((key) => {

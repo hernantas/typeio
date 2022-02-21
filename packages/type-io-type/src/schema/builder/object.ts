@@ -1,8 +1,7 @@
-import { ObjectType } from '../../alias/ObjectType'
-import { SchemaAny } from '../alias/SchemaAny'
+import { ObjectSchemaType } from '../alias/ObjectSchemaType'
 import { ObjectSchema } from '../ObjectSchema'
 
-export function object<T extends ObjectType<SchemaAny>>(
+export function object<T extends ObjectSchemaType>(
   properties: T
 ): ObjectSchema<T> {
   return ObjectSchema.create(properties)
