@@ -2,14 +2,14 @@ import { ObjectType } from '../alias/ObjectType'
 import { object } from '../schema/builder/object'
 import { TypeOfMap } from '../schema/helper/TypeOfMap'
 import { ObjectSchema } from '../schema/ObjectSchema'
-import { CodecAny } from './alias/CodecAny'
+import { ObjectCodecType } from './alias/ObjectCodecType'
 import { DecodeError } from './error/DecodeError'
 import { InputOfMap } from './helper/InputOfMap'
 import { OutputOfMap } from './helper/OutputOfMap'
 import { SchemaOfMap } from './helper/SchemaOfMap'
 import { Codec } from './interface/Codec'
 
-export class ObjectCodec<T extends ObjectType<CodecAny>>
+export class ObjectCodec<T extends ObjectCodecType>
   implements
     Codec<
       ObjectSchema<SchemaOfMap<T>>,
