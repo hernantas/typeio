@@ -4,8 +4,8 @@ import { SchemaAny } from '../../../schema/alias/SchemaAny'
 import { OptionalSchema } from '../../../schema/OptionalSchema'
 import { CodecResolverFallback } from './CodecResolverFallback'
 
-export function optionalResolver<S extends OptionalSchema<SchemaAny>>(
-  schema: S,
+export function optionalResolver<S extends SchemaAny>(
+  schema: OptionalSchema<SchemaAny>,
   fallback: CodecResolverFallback
 ): CodecAny<S> {
   return new OptionalCodec(fallback(schema.type)) as unknown as CodecAny<S>

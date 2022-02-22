@@ -4,8 +4,8 @@ import { SchemaAny } from '../../../schema/alias/SchemaAny'
 import { NullableSchema } from '../../../schema/NullableSchema'
 import { CodecResolverFallback } from './CodecResolverFallback'
 
-export function nullableResolver<S extends NullableSchema<SchemaAny>>(
-  schema: S,
+export function nullableResolver<S extends SchemaAny>(
+  schema: NullableSchema<SchemaAny>,
   fallback: CodecResolverFallback
 ): CodecAny<S> {
   return new NullableCodec(fallback(schema.type)) as unknown as CodecAny<S>

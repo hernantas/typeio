@@ -4,8 +4,8 @@ import { SchemaAny } from '../../../schema/alias/SchemaAny'
 import { ArraySchema } from '../../../schema/ArraySchema'
 import { CodecResolverFallback } from './CodecResolverFallback'
 
-export function arrayResolver<S extends ArraySchema<SchemaAny>>(
-  schema: S,
+export function arrayResolver<S extends SchemaAny>(
+  schema: ArraySchema<SchemaAny>,
   fallback: CodecResolverFallback
 ): CodecAny<S> {
   return new ArrayCodec(fallback(schema.type)) as unknown as CodecAny<S>

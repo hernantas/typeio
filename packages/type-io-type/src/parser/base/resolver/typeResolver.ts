@@ -5,9 +5,9 @@ import { SchemaAny } from '../../../schema/alias/SchemaAny'
 import { TypeSchema } from '../../../schema/TypeSchema'
 import { CodecResolverFallback } from './CodecResolverFallback'
 
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
-export function typeResolver<S extends TypeSchema<any>>(
-  schema: S,
+export function typeResolver<S extends SchemaAny>(
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  schema: TypeSchema<any>,
   fallback: CodecResolverFallback
 ): CodecAny<S> {
   return new TypeCodec(
