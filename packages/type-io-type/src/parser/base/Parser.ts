@@ -22,7 +22,7 @@ export class Parser {
       (codec) => codec.schema.name === schema.name
     )
     if (result.length > 0) {
-      return result[0] as CodecAny<S>
+      return result[result.length - 1] as CodecAny<S>
     }
 
     const codec = this.resolver(schema, (s) => this.find(s))
