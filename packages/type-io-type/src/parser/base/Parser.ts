@@ -60,7 +60,7 @@ export class Parser {
     return this.find(schema).decode(value)
   }
 
-  encode<S extends SchemaAny>(value: unknown, schema: S): unknown {
+  encode<S extends SchemaAny>(value: TypeOf<S>, schema: S): unknown {
     return this.find(schema).encode(value)
   }
 }
