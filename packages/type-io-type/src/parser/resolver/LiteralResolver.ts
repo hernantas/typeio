@@ -1,8 +1,8 @@
-import { LiteralType } from '../../../alias/LiteralType'
-import { CodecAny } from '../../../codec/alias/CodecAny'
-import { LiteralCodec } from '../../../codec/LiteralCodec'
-import { SchemaAny } from '../../../schema/alias/SchemaAny'
-import { LiteralSchema } from '../../../schema/LiteralSchema'
+import { LiteralType } from '../../alias/LiteralType'
+import { CodecAny } from '../../codec/alias/CodecAny'
+import { LiteralCodec } from '../../codec/LiteralCodec'
+import { SchemaAny } from '../../schema/alias/SchemaAny'
+import { LiteralSchema } from '../../schema/LiteralSchema'
 import { CodecResolver } from './CodecResolver'
 
 export class LiteralResolver

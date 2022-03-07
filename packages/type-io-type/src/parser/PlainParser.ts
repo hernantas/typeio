@@ -1,10 +1,10 @@
-import { TypeOf } from '../..'
-import { ConstructorType } from '../../alias/ConstructorType'
-import { CodecAny } from '../../codec/alias/CodecAny'
-import { BooleanCodec } from '../../codec/BooleanCodec'
-import { NumberCodec } from '../../codec/NumberCodec'
-import { StringCodec } from '../../codec/StringCodec'
-import { SchemaAny } from '../../schema/alias/SchemaAny'
+import { TypeOf } from '..'
+import { ConstructorType } from '../alias/ConstructorType'
+import { CodecAny } from '../codec/alias/CodecAny'
+import { BooleanCodec } from '../codec/BooleanCodec'
+import { NumberCodec } from '../codec/NumberCodec'
+import { StringCodec } from '../codec/StringCodec'
+import { SchemaAny } from '../schema/alias/SchemaAny'
 import { Parser } from './Parser'
 
 export class PlainParser extends Parser {

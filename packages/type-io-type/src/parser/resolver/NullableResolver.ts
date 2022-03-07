@@ -1,7 +1,7 @@
-import { CodecAny } from '../../../codec/alias/CodecAny'
-import { NullableCodec } from '../../../codec/NullableCodec'
-import { SchemaAny } from '../../../schema/alias/SchemaAny'
-import { NullableSchema } from '../../../schema/NullableSchema'
+import { CodecAny } from '../../codec/alias/CodecAny'
+import { NullableCodec } from '../../codec/NullableCodec'
+import { SchemaAny } from '../../schema/alias/SchemaAny'
+import { NullableSchema } from '../../schema/NullableSchema'
 import { CodecResolver } from './CodecResolver'
 import { CodecResolverFallback } from './CodecResolverFallback'
 

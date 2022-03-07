@@ -1,8 +1,8 @@
-import { CodecAny } from '../../../codec/alias/CodecAny'
-import { CodecMap } from '../../../codec/helper/CodecMap'
-import { TypeCodec } from '../../../codec/TypeCodec'
-import { SchemaAny } from '../../../schema/alias/SchemaAny'
-import { TypeSchema } from '../../../schema/TypeSchema'
+import { CodecAny } from '../../codec/alias/CodecAny'
+import { CodecMap } from '../../codec/helper/CodecMap'
+import { TypeCodec } from '../../codec/TypeCodec'
+import { SchemaAny } from '../../schema/alias/SchemaAny'
+import { TypeSchema } from '../../schema/TypeSchema'
 import { CodecResolver } from './CodecResolver'
 import { CodecResolverFallback } from './CodecResolverFallback'
 
