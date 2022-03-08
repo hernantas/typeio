@@ -16,7 +16,7 @@ export class TupleCodec<T extends TupleCodecType>
 
   constructor(codecs: T) {
     this.codecs = codecs
-    this.schema = tuple(codecs.map((c) => c.schema) as SchemaOfMap<T>)
+    this.schema = tuple(...(codecs.map((c) => c.schema) as SchemaOfMap<T>))
   }
 
   decode(value: unknown): TypeOfMap<SchemaOfMap<T>> {

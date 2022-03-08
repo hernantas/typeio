@@ -3,24 +3,24 @@ import { boolean, number, string, tuple } from '../../src'
 import { createSuite } from '../util/createSuite'
 
 describe('Schema: TupleSchema', () => {
-  const schema = tuple([
+  const schema = tuple(
     string(),
     string(),
     number(),
     number(),
     boolean(),
-    boolean(),
-  ])
+    boolean()
+  )
 
   it('Name compare', () => {
-    const comparator = tuple([
+    const comparator = tuple(
       string(),
       string(),
       number(),
       number(),
       boolean(),
-      boolean(),
-    ])
+      boolean()
+    )
     expect(schema.name).to.be.equal(comparator.name)
   })
 
@@ -43,7 +43,7 @@ describe('Schema: TupleSchema', () => {
 
   describe('Validation', () => {
     it('Inner type', () => {
-      const validator = tuple([string().notEmpty(), number().greater(0)])
+      const validator = tuple(string().notEmpty(), number().greater(0))
       expect(validator.validate(['string', 80])).to.have.length(0)
       expect(validator.validate(['string', 0])).to.have.length.greaterThan(0)
       expect(validator.validate(['', 80])).to.have.length.greaterThan(0)

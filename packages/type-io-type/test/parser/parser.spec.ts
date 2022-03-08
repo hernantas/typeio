@@ -99,7 +99,7 @@ describe('Parser', () => {
   it('TupleSchema', () => {
     expect(
       parser.find(
-        tuple([string(), string(), number(), number(), boolean(), boolean()])
+        tuple(string(), string(), number(), number(), boolean(), boolean())
       )
     ).to.be.instanceOf(TupleCodec)
   })
