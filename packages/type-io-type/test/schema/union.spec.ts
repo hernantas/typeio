@@ -3,10 +3,10 @@ import { boolean, number, string, union } from '../../src'
 import { createSuite } from '../util/createSuite'
 
 describe('Schema: UnionSchema', () => {
-  const schema = union([string(), number(), boolean()])
+  const schema = union(string(), number(), boolean())
 
   it('Name compare', () => {
-    const comparator = union([string(), number(), boolean()])
+    const comparator = union(string(), number(), boolean())
     expect(schema.name).to.be.equal(comparator.name)
   })
 
@@ -29,7 +29,7 @@ describe('Schema: UnionSchema', () => {
 
   describe('Validation', () => {
     it('Inner type', () => {
-      const validator = union([string().notEmpty(), number().greater(0)])
+      const validator = union(string().notEmpty(), number().greater(0))
       expect(validator.validate('string')).to.have.length(0)
       expect(validator.validate('')).to.have.length.greaterThan(0)
       expect(validator.validate(80)).to.have.length(0)

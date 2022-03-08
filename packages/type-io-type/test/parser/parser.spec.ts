@@ -111,9 +111,9 @@ describe('Parser', () => {
     expect(parser.find(_undefined())).to.be.instanceOf(DefaultCodec)
   })
   it('UnionSchema', () => {
-    expect(
-      parser.find(union([string(), number(), boolean()]))
-    ).to.be.instanceOf(UnionCodec)
+    expect(parser.find(union(string(), number(), boolean()))).to.be.instanceOf(
+      UnionCodec
+    )
   })
   it('UnknownSchema', () => {
     expect(parser.find(unknown())).to.be.instanceOf(DefaultCodec)

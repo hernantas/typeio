@@ -24,7 +24,7 @@ export class UnionCodec<T extends UnionCodecType>
 
   constructor(codecs: T) {
     this.codecs = codecs
-    this.schema = union(codecs.map((c) => c.schema) as SchemaOfMap<T>)
+    this.schema = union(...(codecs.map((c) => c.schema) as SchemaOfMap<T>))
   }
 
   decode(value: UnionMap<InputOfMap<T>>): UnionMap<TypeOfMap<SchemaOfMap<T>>> {
