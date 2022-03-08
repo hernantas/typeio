@@ -4,18 +4,18 @@ import { createSuite } from '../util/createSuite'
 
 describe('Schema: IntersectSchema', () => {
   {
-    const schema = intersect([
+    const schema = intersect(
       object({ _string: string() }),
       object({ _number: number() }),
-      object({ _boolean: boolean() }),
-    ])
+      object({ _boolean: boolean() })
+    )
 
     it('Name compare', () => {
-      const comparator = intersect([
+      const comparator = intersect(
         object({ _string: string() }),
         object({ _number: number() }),
-        object({ _boolean: boolean() }),
-      ])
+        object({ _boolean: boolean() })
+      )
       expect(schema.name).to.be.equal(comparator.name)
     })
 
@@ -38,7 +38,7 @@ describe('Schema: IntersectSchema', () => {
   }
 
   describe('Type check (never)', () => {
-    const schema = intersect([string(), number(), boolean()])
+    const schema = intersect(string(), number(), boolean())
     const suite = createSuite((v) => schema.is(v))
     suite.array.string.isFalse()
     suite.boolean.isFalse()
@@ -57,10 +57,10 @@ describe('Schema: IntersectSchema', () => {
 
   describe('Validation', () => {
     it('Inner type', () => {
-      const validator = intersect([
+      const validator = intersect(
         object({ _string: string().notEmpty() }),
-        object({ _number: number().greater(0) }),
-      ])
+        object({ _number: number().greater(0) })
+      )
       expect(
         validator.validate({ _string: 'string', _number: 80 })
       ).to.have.length(0)

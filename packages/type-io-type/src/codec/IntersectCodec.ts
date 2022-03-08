@@ -23,7 +23,9 @@ export class IntersectCodec<T extends IntersectCodecType>
 
   constructor(codecs: T) {
     this.codecs = codecs
-    this.schema = intersect(this.codecs.map((c) => c.schema) as SchemaOfMap<T>)
+    this.schema = intersect(
+      ...(this.codecs.map((c) => c.schema) as SchemaOfMap<T>)
+    )
   }
 
   decode(

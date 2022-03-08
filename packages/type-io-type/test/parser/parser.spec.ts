@@ -51,11 +51,11 @@ describe('Parser', () => {
   it('IntersectSchema', () => {
     expect(
       parser.find(
-        intersect([
+        intersect(
           object({ _string: string() }),
           object({ _number: number() }),
-          object({ _boolean: boolean() }),
-        ])
+          object({ _boolean: boolean() })
+        )
       )
     ).to.be.instanceOf(IntersectCodec)
   })
