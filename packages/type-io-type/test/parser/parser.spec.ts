@@ -105,6 +105,7 @@ describe('Parser', () => {
   })
   it('TypeSchema', () => {
     expect(parser.find(type(User))).to.be.instanceOf(TypeCodec)
+    expect(parser.find(User)).to.be.instanceOf(TypeCodec)
   })
   it('UndefinedSchema', () => {
     expect(parser.find(_undefined())).to.be.instanceOf(DefaultCodec)

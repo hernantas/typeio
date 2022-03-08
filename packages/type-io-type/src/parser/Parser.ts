@@ -1,7 +1,9 @@
 import { ConstructorType } from '../alias/ConstructorType'
 import { CodecAny } from '../codec/alias/CodecAny'
 import { SchemaAny } from '../schema/alias/SchemaAny'
-import { TypeOf } from '../schema/helper/TypeOf'
+import { BaseSchema } from '../schema/BaseSchema'
+import { type } from '../schema/builder/type'
+import { TypeSchema } from '../schema/TypeSchema'
 import { ArrayResolver } from './resolver/ArrayResolver'
 import { CodecResolver } from './resolver/CodecResolver'
 import { CodecResolverFallback } from './resolver/CodecResolverFallback'
@@ -38,7 +40,16 @@ export class Parser {
     this.resolvers = resolvers.map((Ctor) => new Ctor())
   }
 
-  find<S extends SchemaAny>(schema: S): CodecAny<S> {
+  find<T>(schemaOrCtor: ConstructorType<T>): CodecAny<TypeSchema<T>>
+  find<S extends SchemaAny>(schemaOrCtor: S): CodecAny<S>
+  find<T, S extends BaseSchema<T>>(
+    schemaOrCtor: S | ConstructorType<T>
+  ): CodecAny<S>
+  find<T, S extends BaseSchema<T>>(
+    schemaOrCtor: S | ConstructorType<T>
+  ): CodecAny<S> {
+    const schema =
+      typeof schemaOrCtor === 'object' ? schemaOrCtor : type(schemaOrCtor)
     const result = this.codecs.filter(
       (codec) => codec.schema.name === schema.name
     )
@@ -56,11 +67,11 @@ export class Parser {
     ) as CodecAny<S>
   }
 
-  decode<S extends SchemaAny>(value: unknown, schema: S): TypeOf<S> {
+  decode<T>(value: unknown, schema: BaseSchema<T> | ConstructorType<T>): T {
     return this.find(schema).decode(value)
   }
 
-  encode<S extends SchemaAny>(value: TypeOf<S>, schema: S): unknown {
+  encode<T>(value: T, schema: BaseSchema<T> | ConstructorType<T>): unknown {
     return this.find(schema).encode(value)
   }
 }
