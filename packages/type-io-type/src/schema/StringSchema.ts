@@ -1,5 +1,8 @@
 import { BaseSchema } from './BaseSchema'
 
+const regexEmail =
+  /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
+
 export class StringSchema extends BaseSchema<string> {
   readonly _kind: string = 'string'
 
@@ -52,5 +55,13 @@ export class StringSchema extends BaseSchema<string> {
 
   alphanumeric(): this {
     return this.pattern(/^[a-zA-Z0-9]+$/)
+  }
+
+  email(): this {
+    return this.check({
+      name: 'STRING_PATTERN_EMAIL',
+      args: { pattern: regexEmail },
+      validate: (v) => regexEmail.test(v),
+    })
   }
 }
