@@ -1,5 +1,6 @@
 import { BaseSchema } from './BaseSchema'
 
+const regexAlphanumeric = /^[a-zA-Z0-9]+$/
 const regexEmail =
   /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
 
@@ -54,7 +55,11 @@ export class StringSchema extends BaseSchema<string> {
   }
 
   alphanumeric(): this {
-    return this.pattern(/^[a-zA-Z0-9]+$/)
+    return this.check({
+      name: 'STRING_PATTERN_ALPHANUMERIC',
+      args: { pattern: regexAlphanumeric },
+      validate: (v) => regexAlphanumeric.test(v),
+    })
   }
 
   email(): this {
