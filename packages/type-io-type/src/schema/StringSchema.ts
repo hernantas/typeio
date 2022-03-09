@@ -4,6 +4,8 @@ const regexAlphanumeric = /^[a-zA-Z0-9]+$/
 const regexEmail =
   // eslint-disable-next-line no-useless-escape
   /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
+const regexIp =
+  /^(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)$/
 const regexUuid =
   /^[0-9a-fA-F]{8}\b-[0-9a-fA-F]{4}\b-[0-9a-fA-F]{4}\b-[0-9a-fA-F]{4}\b-[0-9a-fA-F]{12}$/
 const regexUrl =
@@ -73,6 +75,14 @@ export class StringSchema extends BaseSchema<string> {
       name: 'STRING_PATTERN_EMAIL',
       args: { pattern: regexEmail },
       validate: (v) => regexEmail.test(v),
+    })
+  }
+
+  ip(): this {
+    return this.check({
+      name: 'STRING_PATTERN_IP',
+      args: { pattern: regexIp },
+      validate: (v) => regexIp.test(v),
     })
   }
 
