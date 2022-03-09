@@ -2,7 +2,10 @@ import { BaseSchema } from './BaseSchema'
 
 const regexAlphanumeric = /^[a-zA-Z0-9]+$/
 const regexEmail =
+  // eslint-disable-next-line no-useless-escape
   /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
+const regexUuid =
+  /^[0-9a-fA-F]{8}\b-[0-9a-fA-F]{4}\b-[0-9a-fA-F]{4}\b-[0-9a-fA-F]{4}\b-[0-9a-fA-F]{12}$/
 
 export class StringSchema extends BaseSchema<string> {
   readonly _kind: string = 'string'
@@ -67,6 +70,14 @@ export class StringSchema extends BaseSchema<string> {
       name: 'STRING_PATTERN_EMAIL',
       args: { pattern: regexEmail },
       validate: (v) => regexEmail.test(v),
+    })
+  }
+
+  uuid(): this {
+    return this.check({
+      name: 'STRING_PATTERN_UUID',
+      args: { pattern: regexUuid },
+      validate: (v) => regexUuid.test(v),
     })
   }
 }
