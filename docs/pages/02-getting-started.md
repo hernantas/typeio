@@ -88,5 +88,15 @@ const parser = new PlainParser()
 const user = parser.decode(fetchedData, UserSchema)
 
 // encode instance of `User` back to plain object
-const plain = parser.encode(fetchedData, UserSchema)
+const plain = parser.encode(user, UserSchema)
+```
+
+or if json were used
+
+```ts
+// decode it to `User` class
+const user = parser.decodeJson(fetchedJson, UserSchema)
+
+// encode instance of `User` back to plain object
+const json = parser.encodeJson(user, UserSchema)
 ```
