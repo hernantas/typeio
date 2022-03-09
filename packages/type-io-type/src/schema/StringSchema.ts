@@ -6,6 +6,7 @@ const regexEmail =
   /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
 const regexIp =
   /^(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)$/
+const regexNumeric = /^[0-9]+$/
 const regexUuid =
   /^[0-9a-fA-F]{8}\b-[0-9a-fA-F]{4}\b-[0-9a-fA-F]{4}\b-[0-9a-fA-F]{4}\b-[0-9a-fA-F]{12}$/
 const regexUrl =
@@ -83,6 +84,14 @@ export class StringSchema extends BaseSchema<string> {
       name: 'STRING_PATTERN_IP',
       args: { pattern: regexIp },
       validate: (v) => regexIp.test(v),
+    })
+  }
+
+  numeric(): this {
+    return this.check({
+      name: 'STRING_PATTERN_NUMERIC',
+      args: { pattern: regexNumeric },
+      validate: (v) => regexNumeric.test(v),
     })
   }
 
