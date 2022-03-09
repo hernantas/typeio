@@ -25,5 +25,5 @@ Please see the [documentation](#docs) for more details.
   - [Basic Usage](../../docs/pages/02-getting-started.md#basic-usage)
 - [Schema-based declaration](../../docs/pages/03-schema.md)
 - [Class-based declaration](../../docs/pages/04-class.md)
-- [Codec](../../docs/pages/05-codec.md)
-- [Parser](../../docs/pages/06-parser.md)
+- [Parser](../../docs/pages/05-parser.md)
+- [Codec](../../docs/pages/06-codec.md)

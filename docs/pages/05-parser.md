@@ -1,6 +1,6 @@
 # Parser
 
-Since [codec](05-codec.md) can automatically transform the input data to the data type we want, we still need to choose which `codec` to use so we can get the data we want.
+Since [codec](06-codec.md) can automatically transform the input data to the data type we want, we still need to choose which `codec` to use so we can get the data we want.
 
 For example, if we want `string` data then we need to use `StringCodec`. If we want `number` then we need to use `NumberCodec`. And so on.
 
