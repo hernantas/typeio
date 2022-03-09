@@ -1,6 +1,8 @@
 import { BaseSchema } from './BaseSchema'
 
 const regexAlphanumeric = /^[a-zA-Z0-9]+$/
+const regexBase64 =
+  /^(?:[A-Za-z0-9+/]{4})*(?:[A-Za-z0-9+/]{2}==|[A-Za-z0-9+/]{3}=)?$/
 const regexEmail =
   // eslint-disable-next-line no-useless-escape
   /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
@@ -68,6 +70,14 @@ export class StringSchema extends BaseSchema<string> {
       name: 'STRING_PATTERN_ALPHANUMERIC',
       args: { pattern: regexAlphanumeric },
       validate: (v) => regexAlphanumeric.test(v),
+    })
+  }
+
+  base64(): this {
+    return this.check({
+      name: 'STRING_PATTERN_BASE64',
+      args: { pattern: regexBase64 },
+      validate: (v) => regexBase64.test(v),
     })
   }
 
