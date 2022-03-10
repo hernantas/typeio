@@ -42,16 +42,22 @@ Ensure these options are enabled in `tsconfig.json`
 First is to define your data model. There are 2 ways to do that.
 
 - schema-based ([see details](03-schema.md))
-- class-based ([see details](04-class.md))
 
 ```ts
 // schema-based
-const User = t.object({
+const UserSchema = t.object({
   name: t.string(),
   age: t.number(),
   active: t.boolean(),
 })
 
+// you can get the type using `TypeOf`
+type User = TypeOf<typeof UserSchema>
+```
+
+- class-based ([see details](04-class.md))
+
+```ts
 // class-based
 class User {
   @Property() name: string
