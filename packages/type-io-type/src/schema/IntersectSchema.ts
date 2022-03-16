@@ -14,9 +14,13 @@ export class IntersectSchema<T extends IntersectSchemaType> extends BaseSchema<
 
   static create<T extends IntersectSchemaType>(items: T): IntersectSchema<T> {
     return new IntersectSchema({
-      name: items.map((v) => v.name).join(' & '),
+      name: this.createName(items.map((i) => i.name)),
       items,
     })
+  }
+
+  static createName(itemsName: string[]): string {
+    return itemsName.join(' & ')
   }
 
   static is(input: SchemaAny): input is IntersectSchema<IntersectSchemaType> {

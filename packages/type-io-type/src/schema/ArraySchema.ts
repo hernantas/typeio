@@ -11,7 +11,11 @@ export class ArraySchema<T extends SchemaAny> extends BaseSchema<
   readonly _kind: string = 'array'
 
   static create<T extends SchemaAny>(type: T): ArraySchema<T> {
-    return new ArraySchema({ name: `Array<${type.name}>`, type })
+    return new ArraySchema({ name: this.createName(type.name), type })
+  }
+
+  static createName(name: string): string {
+    return `Array<${name}>`
   }
 
   static is(input: SchemaAny): input is ArraySchema<SchemaAny> {

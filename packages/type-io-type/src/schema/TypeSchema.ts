@@ -11,10 +11,14 @@ export class TypeSchema<T> extends BaseSchema<T, TypeDefinition<T>> {
 
   static create<T>(constructor: ConstructorType<T>): TypeSchema<T> {
     return new TypeSchema({
-      name: constructor.name,
+      name: this.createName(constructor.name),
       type: constructor,
       properties: getMetadata(constructor),
     })
+  }
+
+  static createName(ctorName: string): string {
+    return ctorName
   }
 
   static is(input: SchemaAny): input is TypeSchema<unknown> {

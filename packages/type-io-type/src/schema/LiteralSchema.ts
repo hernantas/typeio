@@ -10,7 +10,11 @@ export class LiteralSchema<T extends LiteralType> extends BaseSchema<
   readonly _kind: string = 'literal'
 
   static create<T extends LiteralType>(value: T): LiteralSchema<T> {
-    return new LiteralSchema({ name: `'${value.toString()}'`, value })
+    return new LiteralSchema({ name: this.createName(value.toString()), value })
+  }
+
+  static createName(name: string): string {
+    return `'${name.toString()}'`
   }
 
   static is(input: SchemaAny): input is LiteralSchema<LiteralType> {

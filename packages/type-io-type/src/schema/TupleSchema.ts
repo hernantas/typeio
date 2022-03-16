@@ -13,9 +13,13 @@ export class TupleSchema<T extends TupleSchemaType> extends BaseSchema<
 
   static create<T extends TupleSchemaType>(items: T): TupleSchema<T> {
     return new TupleSchema({
-      name: `[${items.map((v) => v.name).join(', ')}]`,
+      name: this.createName(items.map((i) => i.name)),
       items,
     })
+  }
+
+  static createName(itemsName: string[]): string {
+    return `[${itemsName.join(', ')}]`
   }
 
   static is(input: SchemaAny): input is TupleSchema<TupleSchemaType> {

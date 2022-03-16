@@ -19,7 +19,11 @@ export class StringSchema extends BaseSchema<string> {
   readonly _kind: string = 'string'
 
   static create(): StringSchema {
-    return new StringSchema({ name: 'String' })
+    return new StringSchema({ name: this.createName() })
+  }
+
+  static createName(): string {
+    return 'String'
   }
 
   override is(input: unknown): input is string {

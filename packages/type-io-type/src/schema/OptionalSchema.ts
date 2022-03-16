@@ -11,7 +11,11 @@ export class OptionalSchema<T extends SchemaAny> extends BaseSchema<
   readonly _kind: string = 'optional'
 
   static create<T extends SchemaAny>(type: T): OptionalSchema<T> {
-    return new OptionalSchema({ name: `Optional<${type.name}>`, type })
+    return new OptionalSchema({ name: this.createName(type.name), type })
+  }
+
+  static createName(name: string): string {
+    return `Optional<${name}>`
   }
 
   static is(input: SchemaAny): input is OptionalSchema<SchemaAny> {

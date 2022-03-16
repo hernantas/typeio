@@ -4,7 +4,11 @@ export class UnknownSchema extends BaseSchema<unknown> {
   readonly _kind: string = 'unknown'
 
   static create(): UnknownSchema {
-    return new UnknownSchema({ name: 'Unknown' })
+    return new UnknownSchema({ name: this.createName() })
+  }
+
+  static createName(): string {
+    return 'Unknown'
   }
 
   override is(_input: unknown): _input is unknown {

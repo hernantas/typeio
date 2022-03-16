@@ -14,9 +14,13 @@ export class UnionSchema<T extends UnionSchemaType> extends BaseSchema<
 
   static create<T extends UnionSchemaType>(items: T): UnionSchema<T> {
     return new UnionSchema({
-      name: items.map((v) => v.name).join(' | '),
+      name: this.createName(items.map((i) => i.name)),
       items,
     })
+  }
+
+  static createName(itemsName: string[]): string {
+    return itemsName.join(' | ')
   }
 
   static is(input: SchemaAny): input is UnionSchema<UnionSchemaType> {

@@ -16,14 +16,17 @@ export class ObjectSchema<T extends ObjectSchemaType> extends BaseSchema<
 
   static create<T extends ObjectSchemaType>(properties: T): ObjectSchema<T> {
     return new ObjectSchema({
-      name: `{${Object.keys(properties)
-        .map((key) => {
-          const value = properties[key]
-          return `${key}: ${value !== undefined ? value.name : ''}`
-        })
-        .join(', ')}}`,
+      name: this.createName(
+        Object.entries(properties).map((prop) => [prop[0], prop[1].name])
+      ),
       properties,
     })
+  }
+
+  static createName(propertiesName: [string, string][]): string {
+    return `{${propertiesName
+      .map((names) => `${names[0]}: ${names[1]}`)
+      .join(', ')}}`
   }
 
   static is(input: SchemaAny): input is ObjectSchema<ObjectSchemaType> {

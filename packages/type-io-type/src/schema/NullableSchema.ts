@@ -11,7 +11,11 @@ export class NullableSchema<T extends SchemaAny> extends BaseSchema<
   readonly _kind: string = 'nullable'
 
   static create<T extends SchemaAny>(type: T): NullableSchema<T> {
-    return new NullableSchema({ name: `Nullable<${type.name}>`, type })
+    return new NullableSchema({ name: this.createName(type.name), type })
+  }
+
+  static createName(name: string): string {
+    return `Nullable<${name}>`
   }
 
   static is(input: SchemaAny): input is NullableSchema<SchemaAny> {
