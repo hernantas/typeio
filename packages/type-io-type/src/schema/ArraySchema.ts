@@ -44,27 +44,30 @@ export class ArraySchema<T extends SchemaAny> extends BaseSchema<
     )
   }
 
-  min(limit: number): this {
+  min(limit: number, message?: string): this {
     return this.check({
       name: 'ARRAY_LENGTH_MIN',
       args: { limit },
       validate: (value) => value.length >= limit,
+      message,
     })
   }
 
-  max(limit: number): this {
+  max(limit: number, message?: string): this {
     return this.check({
       name: 'ARRAY_LENGTH_MAX',
       args: { limit },
       validate: (value) => value.length <= limit,
+      message,
     })
   }
 
-  length(limit: number): this {
+  length(limit: number, message?: string): this {
     return this.check({
       name: 'ARRAY_LENGTH',
       args: { limit },
       validate: (value) => value.length === limit,
+      message,
     })
   }
 }
