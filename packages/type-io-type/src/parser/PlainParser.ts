@@ -1,17 +1,8 @@
-import { TypeOf } from '..'
-import { ConstructorType } from '../alias/ConstructorType'
-import { CodecAny } from '../codec/alias/CodecAny'
-import { BooleanCodec } from '../codec/BooleanCodec'
-import { NumberCodec } from '../codec/NumberCodec'
-import { StringCodec } from '../codec/StringCodec'
 import { SchemaAny } from '../schema/alias/SchemaAny'
-import { Parser } from './Parser'
+import { TypeOf } from '../schema/helper/TypeOf'
+import { DefaultParser } from './DefaultParser'
 
-export class PlainParser extends Parser {
-  constructor(codecs: ConstructorType<CodecAny>[] = []) {
-    super([StringCodec, NumberCodec, BooleanCodec, ...codecs])
-  }
-
+export class PlainParser extends DefaultParser {
   decodeJson<S extends SchemaAny>(value: string, schema: S): TypeOf<S> {
     return this.decode(JSON.parse(value), schema)
   }
