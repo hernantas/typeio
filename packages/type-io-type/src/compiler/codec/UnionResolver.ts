@@ -11,7 +11,7 @@ export class UnionResolver
   implements CodecResolver<UnionSchema<UnionSchemaType>>
 {
   is(schema: SchemaAny): schema is UnionSchema<UnionSchemaType> {
-    return UnionSchema.is(schema)
+    return UnionSchema.isInstance(schema)
   }
 
   resolve(

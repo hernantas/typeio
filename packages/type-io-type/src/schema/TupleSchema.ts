@@ -22,7 +22,7 @@ export class TupleSchema<T extends TupleSchemaType> extends BaseSchema<
     return `[${itemsName.join(', ')}]`
   }
 
-  static is(input: SchemaAny): input is TupleSchema<TupleSchemaType> {
+  static isInstance(input: SchemaAny): input is TupleSchema<TupleSchemaType> {
     return input._kind === 'tuple'
   }
 

@@ -9,7 +9,7 @@ export class LiteralResolver
   implements CodecResolver<LiteralSchema<LiteralType>>
 {
   is(schema: SchemaAny): schema is LiteralSchema<LiteralType> {
-    return LiteralSchema.is(schema)
+    return LiteralSchema.isInstance(schema)
   }
 
   resolve(

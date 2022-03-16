@@ -18,7 +18,7 @@ export class OptionalSchema<T extends SchemaAny> extends BaseSchema<
     return `Optional<${name}>`
   }
 
-  static is(input: SchemaAny): input is OptionalSchema<SchemaAny> {
+  static isInstance(input: SchemaAny): input is OptionalSchema<SchemaAny> {
     return input._kind === 'optional'
   }
 

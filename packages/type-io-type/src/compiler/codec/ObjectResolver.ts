@@ -11,7 +11,7 @@ export class ObjectResolver
   implements CodecResolver<ObjectSchema<ObjectSchemaType>>
 {
   is(schema: SchemaAny): schema is ObjectSchema<ObjectSchemaType> {
-    return ObjectSchema.is(schema)
+    return ObjectSchema.isInstance(schema)
   }
 
   resolve(

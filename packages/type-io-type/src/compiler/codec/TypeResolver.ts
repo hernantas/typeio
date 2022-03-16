@@ -11,7 +11,7 @@ type TypeSchemaAny = TypeSchema<any>
 
 export class TypeResolver implements CodecResolver<TypeSchemaAny> {
   is(schema: SchemaAny): schema is TypeSchemaAny {
-    return TypeSchema.is(schema)
+    return TypeSchema.isInstance(schema)
   }
 
   resolve(

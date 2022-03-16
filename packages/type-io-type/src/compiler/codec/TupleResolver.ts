@@ -11,7 +11,7 @@ export class TupleResolver
   implements CodecResolver<TupleSchema<TupleSchemaType>>
 {
   is(schema: SchemaAny): schema is TupleSchema<TupleSchemaType> {
-    return TupleSchema.is(schema)
+    return TupleSchema.isInstance(schema)
   }
 
   resolve(

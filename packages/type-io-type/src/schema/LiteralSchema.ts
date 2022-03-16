@@ -17,7 +17,7 @@ export class LiteralSchema<T extends LiteralType> extends BaseSchema<
     return `'${name.toString()}'`
   }
 
-  static is(input: SchemaAny): input is LiteralSchema<LiteralType> {
+  static isInstance(input: SchemaAny): input is LiteralSchema<LiteralType> {
     return input._kind === 'literal'
   }
 

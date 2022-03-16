@@ -9,7 +9,7 @@ export class NullableResolver
   implements CodecResolver<NullableSchema<SchemaAny>>
 {
   is(schema: SchemaAny): schema is NullableSchema<SchemaAny> {
-    return NullableSchema.is(schema)
+    return NullableSchema.isInstance(schema)
   }
 
   resolve(

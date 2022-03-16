@@ -21,7 +21,7 @@ export class TypeSchema<T> extends BaseSchema<T, TypeDefinition<T>> {
     return ctorName
   }
 
-  static is(input: SchemaAny): input is TypeSchema<unknown> {
+  static isInstance(input: SchemaAny): input is TypeSchema<unknown> {
     return input._kind === 'type'
   }
 

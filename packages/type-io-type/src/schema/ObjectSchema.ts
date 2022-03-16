@@ -29,7 +29,7 @@ export class ObjectSchema<T extends ObjectSchemaType> extends BaseSchema<
       .join(', ')}}`
   }
 
-  static is(input: SchemaAny): input is ObjectSchema<ObjectSchemaType> {
+  static isInstance(input: SchemaAny): input is ObjectSchema<ObjectSchemaType> {
     return input._kind === 'object'
   }
 

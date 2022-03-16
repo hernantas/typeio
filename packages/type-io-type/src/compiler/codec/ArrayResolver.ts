@@ -7,7 +7,7 @@ import { CodecResolverFallback } from './CodecResolverFallback'
 
 export class ArrayResolver implements CodecResolver<ArraySchema<SchemaAny>> {
   is(schema: SchemaAny): schema is ArraySchema<SchemaAny> {
-    return ArraySchema.is(schema)
+    return ArraySchema.isInstance(schema)
   }
 
   resolve(

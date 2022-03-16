@@ -23,7 +23,7 @@ export class UnionSchema<T extends UnionSchemaType> extends BaseSchema<
     return itemsName.join(' | ')
   }
 
-  static is(input: SchemaAny): input is UnionSchema<UnionSchemaType> {
+  static isInstance(input: SchemaAny): input is UnionSchema<UnionSchemaType> {
     return input._kind === 'union'
   }
 

@@ -18,7 +18,7 @@ export class ArraySchema<T extends SchemaAny> extends BaseSchema<
     return `Array<${name}>`
   }
 
-  static is(input: SchemaAny): input is ArraySchema<SchemaAny> {
+  static isInstance(input: SchemaAny): input is ArraySchema<SchemaAny> {
     return input._kind === 'array'
   }
 

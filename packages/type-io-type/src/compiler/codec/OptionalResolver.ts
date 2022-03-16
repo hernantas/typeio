@@ -9,7 +9,7 @@ export class OptionalResolver
   implements CodecResolver<OptionalSchema<SchemaAny>>
 {
   is(schema: SchemaAny): schema is OptionalSchema<SchemaAny> {
-    return OptionalSchema.is(schema)
+    return OptionalSchema.isInstance(schema)
   }
 
   resolve(
