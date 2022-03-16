@@ -1,4 +1,3 @@
-import { optional } from '../schema/builder/optional'
 import { TypeOf } from '../schema/helper/TypeOf'
 import { OptionalSchema } from '../schema/OptionalSchema'
 import { CodecAny } from './alias/CodecAny'
@@ -15,13 +14,13 @@ export class OptionalCodec<T extends CodecAny>
       InputOf<T> | undefined
     >
 {
-  readonly schema: OptionalSchema<T['schema']>
+  readonly name: string
 
   readonly codec: T
 
   constructor(codec: T) {
+    this.name = OptionalSchema.createName(codec.name)
     this.codec = codec
-    this.schema = optional(codec.schema)
   }
 
   decode(value: InputOf<T> | undefined): TypeOf<SchemaOf<T>> | undefined {

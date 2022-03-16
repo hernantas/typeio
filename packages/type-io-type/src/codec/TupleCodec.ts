@@ -1,4 +1,3 @@
-import { tuple } from '../schema/builder/tuple'
 import { TypeOfMap } from '../schema/helper/TypeOfMap'
 import { TupleSchema } from '../schema/TupleSchema'
 import { TupleCodecType } from './alias/TupleCodecType'
@@ -10,13 +9,13 @@ import { Codec } from './interface/Codec'
 export class TupleCodec<T extends TupleCodecType>
   implements Codec<TupleSchema<SchemaOfMap<T>>, OutputOfMap<T>>
 {
-  readonly schema: TupleSchema<SchemaOfMap<T>>
+  readonly name: string
 
   readonly codecs: T
 
   constructor(codecs: T) {
+    this.name = TupleSchema.createName(codecs.map((codec) => codec.name))
     this.codecs = codecs
-    this.schema = tuple(...(codecs.map((c) => c.schema) as SchemaOfMap<T>))
   }
 
   decode(value: unknown): TypeOfMap<SchemaOfMap<T>> {
@@ -26,7 +25,7 @@ export class TupleCodec<T extends TupleCodecType>
       ) as TypeOfMap<SchemaOfMap<T>>
     }
 
-    throw new DecodeError(this.schema.name)
+    throw new DecodeError(this.name)
   }
 
   encode(value: TypeOfMap<SchemaOfMap<T>>): OutputOfMap<T> {

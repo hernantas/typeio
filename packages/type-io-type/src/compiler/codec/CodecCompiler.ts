@@ -31,7 +31,7 @@ export class CodecCompiler extends Compiler {
     resolverFallback: CodecResolverFallback = defaultResolver
   ) {
     super(
-      new Map(codecs.map((codec) => [codec.schema.name, codec])),
+      new Map(codecs.map((codec) => [codec.name, codec])),
       resolvers,
       resolverFallback
     )

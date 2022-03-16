@@ -9,6 +9,5 @@ export interface Codec<
   I = unknown
 > extends Decoder<TypeOf<T>, I>,
     Encoder<TypeOf<T>, O> {
-  /** Supported schema type */
-  readonly schema: T
+  readonly name: string
 }

@@ -1,4 +1,3 @@
-import { nullable } from '../schema/builder/nullable'
 import { TypeOf } from '../schema/helper/TypeOf'
 import { NullableSchema } from '../schema/NullableSchema'
 import { CodecAny } from './alias/CodecAny'
@@ -11,13 +10,13 @@ export class NullableCodec<T extends CodecAny>
   implements
     Codec<NullableSchema<SchemaOf<T>>, OutputOf<T> | null, InputOf<T> | null>
 {
-  readonly schema: NullableSchema<T['schema']>
+  readonly name: string
 
   readonly codec: T
 
   constructor(codec: T) {
+    this.name = NullableSchema.createName(codec.name)
     this.codec = codec
-    this.schema = nullable(codec.schema)
   }
 
   decode(value: InputOf<T>): TypeOf<SchemaOf<T>> | null {

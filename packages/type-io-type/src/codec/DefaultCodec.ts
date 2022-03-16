@@ -8,9 +8,11 @@ import { Codec } from './interface/Codec'
  * schema to decode/encode
  */
 export class DefaultCodec<T extends SchemaAny> implements Codec<T> {
+  readonly name: string
   readonly schema: T
 
   constructor(schema: T) {
+    this.name = schema.name
     this.schema = schema
   }
 

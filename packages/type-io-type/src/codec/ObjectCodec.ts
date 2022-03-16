@@ -1,5 +1,4 @@
 import { ObjectType } from '../alias/ObjectType'
-import { object } from '../schema/builder/object'
 import { TypeOfMap } from '../schema/helper/TypeOfMap'
 import { ObjectSchema } from '../schema/ObjectSchema'
 import { ObjectCodecType } from './alias/ObjectCodecType'
@@ -17,21 +16,15 @@ export class ObjectCodec<T extends ObjectCodecType>
       InputOfMap<T> | unknown
     >
 {
-  readonly schema: ObjectSchema<SchemaOfMap<T>>
+  readonly name: string
 
   readonly codecs: T
 
   constructor(codecs: T) {
-    this.codecs = codecs
-    this.schema = object(
-      Object.keys(codecs).reduce(
-        (prev, key) => ({
-          ...prev,
-          [key]: codecs[key]?.schema,
-        }),
-        {} as SchemaOfMap<T>
-      )
+    this.name = ObjectSchema.createName(
+      Object.entries(codecs).map((props) => [props[0], props[1].name])
     )
+    this.codecs = codecs
   }
 
   decode(value: InputOfMap<T> | unknown): TypeOfMap<SchemaOfMap<T>> {
@@ -46,7 +39,7 @@ export class ObjectCodec<T extends ObjectCodecType>
       )
     }
 
-    throw new DecodeError(this.schema.name)
+    throw new DecodeError(this.name)
   }
 
   encode(value: TypeOfMap<SchemaOfMap<T>>): OutputOfMap<T> {

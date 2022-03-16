@@ -1,5 +1,4 @@
 import { ArraySchema } from '../schema/ArraySchema'
-import { array } from '../schema/builder/array'
 import { TypeOf } from '../schema/helper/TypeOf'
 import { CodecAny } from './alias/CodecAny'
 import { InputOf } from './helper/InputOf'
@@ -11,13 +10,13 @@ export class ArrayCodec<T extends CodecAny>
   implements
     Codec<ArraySchema<SchemaOf<T>>, OutputOf<T>[], InputOf<T>[] | InputOf<T>>
 {
-  readonly schema: ArraySchema<SchemaOf<T>>
+  readonly name: string
 
   readonly codec: T
 
   constructor(codec: T) {
+    this.name = ArraySchema.createName(codec.name)
     this.codec = codec
-    this.schema = array(codec.schema)
   }
 
   decode(value: InputOf<T>[] | InputOf<T>): TypeOf<SchemaOf<T>>[] {

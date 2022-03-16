@@ -1,13 +1,12 @@
 import { NumberSchema } from '../schema/NumberSchema'
-import { Codec } from './interface/Codec'
 import { DecodeError } from './error/DecodeError'
-import { number } from '../schema/builder/number'
+import { Codec } from './interface/Codec'
 
 export class NumberCodec implements Codec<NumberSchema> {
-  readonly schema = number()
+  readonly name: string = NumberSchema.createName()
 
   decode(value: unknown): number {
-    if (this.schema.is(value)) {
+    if (typeof value === 'number') {
       return value
     }
 
@@ -16,7 +15,7 @@ export class NumberCodec implements Codec<NumberSchema> {
       return result
     }
 
-    throw new DecodeError(this.schema.name)
+    throw new DecodeError(this.name)
   }
 
   encode(value: number): number {

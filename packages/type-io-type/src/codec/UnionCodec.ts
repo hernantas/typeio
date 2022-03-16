@@ -1,5 +1,4 @@
 import { UnionMap } from '../alias/helper/UnionMap'
-import { union } from '../schema/builder/union'
 import { TypeOfMap } from '../schema/helper/TypeOfMap'
 import { UnionSchema } from '../schema/UnionSchema'
 import { UnionCodecType } from './alias/UnionCodecType'
@@ -18,13 +17,13 @@ export class UnionCodec<T extends UnionCodecType>
       UnionMap<InputOfMap<T>>
     >
 {
-  readonly schema: UnionSchema<SchemaOfMap<T>>
+  readonly name: string
 
   readonly codecs: T
 
   constructor(codecs: T) {
+    this.name = UnionSchema.createName(codecs.map((codec) => codec.name))
     this.codecs = codecs
-    this.schema = union(...(codecs.map((c) => c.schema) as SchemaOfMap<T>))
   }
 
   decode(value: UnionMap<InputOfMap<T>>): UnionMap<TypeOfMap<SchemaOfMap<T>>> {
@@ -34,7 +33,7 @@ export class UnionCodec<T extends UnionCodecType>
         // eslint-disable-next-line no-empty
       } catch (e) {}
     }
-    throw new DecodeError(this.schema.name)
+    throw new DecodeError(this.name)
   }
 
   encode(value: UnionMap<TypeOfMap<SchemaOfMap<T>>>): UnionMap<OutputOfMap<T>> {
@@ -44,6 +43,6 @@ export class UnionCodec<T extends UnionCodecType>
         // eslint-disable-next-line no-empty
       } catch (e) {}
     }
-    throw new EncodeError(this.schema.name)
+    throw new EncodeError(this.name)
   }
 }

@@ -1,21 +1,20 @@
 import { ConstructorType } from '../alias/ConstructorType'
 import { ObjectMap } from '../alias/helper/ObjectMap'
 import { ObjectType } from '../alias/ObjectType'
-import { type } from '../schema/builder/type'
 import { TypeSchema } from '../schema/TypeSchema'
 import { DecodeError } from './error/DecodeError'
 import { CodecMap } from './helper/CodecMap'
 import { Codec } from './interface/Codec'
 
 export class TypeCodec<T> implements Codec<TypeSchema<T>, ObjectMap<T>> {
-  readonly schema: TypeSchema<T>
+  readonly name: string
 
   readonly Ctor: ConstructorType<T>
 
   readonly properties: Partial<CodecMap<T>>
 
   constructor(Ctor: ConstructorType<T>, properties: Partial<CodecMap<T>>) {
-    this.schema = type(Ctor)
+    this.name = TypeSchema.createName(Ctor.name)
     this.Ctor = Ctor
     this.properties = properties
   }
@@ -35,7 +34,7 @@ export class TypeCodec<T> implements Codec<TypeSchema<T>, ObjectMap<T>> {
       return instance
     }
 
-    throw new DecodeError(this.schema.name)
+    throw new DecodeError(this.name)
   }
 
   encode(value: T): ObjectMap<T> {
