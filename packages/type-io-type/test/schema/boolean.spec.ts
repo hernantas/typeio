@@ -14,6 +14,7 @@ describe('Schema: BooleanSchema', () => {
     const suite = createSuite((v) => schema.is(v))
     suite.array.string.isFalse()
     suite.boolean.isTrue()
+    suite.date.isFalse()
     suite.literal.boolean.isTrue()
     suite.literal.number.isFalse()
     suite.literal.string.isFalse()

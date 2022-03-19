@@ -25,6 +25,8 @@ export const cases = {
 
   boolean: [true, false],
 
+  date: [new Date()],
+
   literal: {
     boolean: [true],
     number: [0],

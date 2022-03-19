@@ -1,6 +1,7 @@
 import { any } from './schema/builder/any'
 import { array } from './schema/builder/array'
 import { boolean } from './schema/builder/boolean'
+import { date } from './schema/builder/date'
 import { intersect } from './schema/builder/intersect'
 import { literal } from './schema/builder/literal'
 import { _null } from './schema/builder/null'
@@ -19,6 +20,7 @@ export const t = {
   any,
   array,
   boolean,
+  date,
   intersect,
   literal,
   null: _null,

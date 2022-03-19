@@ -14,6 +14,7 @@ describe('Schema: UnionSchema', () => {
     const suite = createSuite((v) => schema.is(v))
     suite.array.string.isFalse()
     suite.boolean.isTrue()
+    suite.date.isFalse()
     suite.literal.boolean.isTrue()
     suite.literal.number.isTrue()
     suite.literal.string.isTrue()
