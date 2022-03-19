@@ -3,10 +3,16 @@
 To define our data using schema, use default `t` object to build your schema.
 
 ```ts
+// import default schema builder
+
 import t from '@type-io/type'
+
+// or individual function
+
+import { string, number, boolean } from '@type-io/type'
 ```
 
-The schema can be as simple as simple `string`
+The schema can be declared as simple as simple `string`
 
 ```ts
 const StringSchema = t.string()

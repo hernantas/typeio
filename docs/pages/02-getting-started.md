@@ -64,10 +64,15 @@ class User {
   @Property() age: number
   @Property() active: boolean
 }
+```
 
-// or both, by convert class to schema
+Or both, by converting class to schema using `type` function
+
+```ts
 const UserSchema = t.type(User)
 ```
+
+_See [Schema declaration](03-schema.md) or [Class declaration](04-class.md) for more details._
 
 Then we can use our schema to type-guard and validate our data
 
@@ -84,11 +89,11 @@ function process(data: unknown) {
 }
 ```
 
-Finally, by using `PlainParser`, we can start using decoding or encoding our data based on given model.
+Finally, by using `DefaultParser`, we can start using decoding or encoding our data based on given model.
 
 ```ts
 // create new parser
-const parser = new PlainParser()
+const parser = new DefaultParser()
 
 // decode it to `User` class
 const user = parser.decode(fetchedData, UserSchema)
@@ -100,9 +105,13 @@ const plain = parser.encode(user, UserSchema)
 or if json were used
 
 ```ts
+const parser = new JsonParser()
+
 // decode it to `User` class
-const user = parser.decodeJson(fetchedJson, UserSchema)
+const user = parser.decode(fetchedJson, UserSchema)
 
 // encode instance of `User` back to plain object
-const json = parser.encodeJson(user, UserSchema)
+const json = parser.encode(user, UserSchema)
 ```
+
+_See each package to learn more_

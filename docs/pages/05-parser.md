@@ -1,6 +1,6 @@
 # Parser
 
-While schema is powerful, schema main purpose is to check if the data is valid or not. That's why the schema contain type-guard (`is`) and data validation (`validate`) method but not transformation method.
+While schema is powerful, schema main purpose is to describe the data and check if the data is valid or not. That's why the schema contain type-guard (`is`) and data validation (`validate`) method but not transformation method.
 
 Its not always ideal since the data received especially from third-party can have different type from what we declare on schema.
 
@@ -36,9 +36,13 @@ But, data like this should be acceptable
 
 Notice how `createdAt` at json is `string` but in our schema we declare it as `Date`.
 
-In addition, what if we receive data not using `json` but using `bson`.
+For complex object such as `Date` or `BigInteger` (or `BigDecimal` for `bson`) that represent single value will expect single string as input/output value which require data transformation.
 
-This is what `Parser` is for.
+In addition, some library incorporate the transformation logic on schema. This makes the schema reuse difficult. For example receiving data not only using `json` from client but using `bson` from database.
+
+One straight naive solution is to declare schema for each use case, one for `json`, one for `bson`.
+
+Fortunately, you don't have to. This is what `Parser` is for.
 
 ## Decode or Encode from/to unknown type
 
@@ -52,13 +56,11 @@ This is what `Parser` is for.
 For example:
 
 ```ts
-const parser = new PlainParser()
-const StringSchema = string()
-const NumberSchema = number()
+const parser = new DefaultParser()
 
-console.log(parser.decode(240, stringSchema))
-console.log(parser.decode(true, stringSchema))
-console.log(parser.decode(240, numberSchema))
+console.log(parser.decode(240, string()))
+console.log(parser.decode(true, string()))
+console.log(parser.decode(240, number()))
 
 // output:
 // "240" <-- This is a string, notice the double quote
@@ -81,7 +83,7 @@ This is the primary reason why this library exists. Oftentimes, when working on 
 }
 ```
 
-But we also need to interact with the databases which produce data such as:
+But we also need to interact with the databases which produce or accept data such as:
 
 ```bson
 {
@@ -118,13 +120,15 @@ const bsonObject = parser.encode(myObject, schema)
 
 Extending `Parser` should be very easy. If you want to add your own `Codec` then you can just put it to the constructor.
 
-In fact, the default `Parser` is a `Parser` with some built in `Codec`
+In fact, the `DefaultParser` is `Parser` that comes with built in `Codec`
 
 ```ts
-const parser = new Parser([StringCodec, NumberCodec, BooleanCodec])
+class DefaultParser extends Parser {
+  constructor(codecs: CodecAny[] = []) {
+    super([new StringCodec(), new NumberCodec(), new BooleanCodec(), ...codecs])
+  }
+}
 ```
-
-See the documentation for more details
 
 ## Modular
 

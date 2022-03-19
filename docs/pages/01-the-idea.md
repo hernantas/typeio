@@ -2,9 +2,7 @@
 
 While data in Javascript/Typescript/JSON can be very flexible, it still need to be verified so we can use or manipulate the data safely. Especially data from untrusted source such as client or third-party.
 
-That's why projects such as [jsonschema](https://www.npmjs.com/package/jsonschema) or [ajv](https://www.npmjs.com/package/ajv) exists.
-
-Usually, these projects use schema declaration to validate the data.
+That's why projects such as [jsonschema](https://www.npmjs.com/package/jsonschema) or [ajv](https://www.npmjs.com/package/ajv) exists. Usually, these projects use schema declaration or decorator to validate the data.
 
 For example, schema such as
 
@@ -59,7 +57,7 @@ const schema = schema({
 })
 ```
 
-However, most library only offer either class-based or schema-based to define your data model.
+Most library only offer either class-based or schema-based to define your data model.
 
 ## Problem #2: Multiple Data Model Declaration
 

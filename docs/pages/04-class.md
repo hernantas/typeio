@@ -2,6 +2,11 @@
 
 **_Make sure decorator is enabled in `tsconfig.json`_**
 
+```json
+"experimentalDecorators": true,
+"emitDecoratorMetadata": true,
+```
+
 To define our data using class, we can use `@Property` decorator. **Note:** properties that aren't decorated will be ignored
 
 ```ts
@@ -45,4 +50,4 @@ Here are some types that need to be declared in the arguments:
 - Any (`any`)
 - Unknown (`unknown`)
 
-Or in short, any type that is not class or primitives type.
+Or in short, any type that is not class or primitives type must be specified in `@Property` to get accurate result.
