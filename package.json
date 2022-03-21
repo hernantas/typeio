@@ -9,6 +9,7 @@
     "packages/*"
   ],
   "scripts": {
+    "clean": "rimraf **/*.tsbuildinfo **/dist",
     "lint": "eslint .",
     "lint:fix": "eslint --fix .",
     "format": "prettier -w .",
