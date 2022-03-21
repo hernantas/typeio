@@ -9,5 +9,9 @@ export interface BaseDefinition {
   /** Label for this definition */
   readonly label?: string
 
+  readonly inName?: string
+
+  readonly outName?: string
+
   readonly [key: string]: unknown
 }

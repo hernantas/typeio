@@ -46,4 +46,16 @@ export abstract class BaseSchema<
   label(value: string): this {
     return this.assign('label', value)
   }
+
+  field(value: string): this {
+    return this.inName(value).outName(value)
+  }
+
+  inName(value: string): this {
+    return this.assign('inName', value)
+  }
+
+  outName(value: string): this {
+    return this.assign('outName', value)
+  }
 }
