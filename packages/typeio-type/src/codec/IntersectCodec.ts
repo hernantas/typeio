@@ -6,7 +6,7 @@ import { IntersectCodecType } from './alias/IntersectCodecType'
 import { InputOfMap } from './helper/InputOfMap'
 import { OutputOfMap } from './helper/OutputOfMap'
 import { SchemaOfMap } from './helper/SchemaOfMap'
-import { Codec } from './interface/Codec'
+import { Codec } from './Codec'
 
 export class IntersectCodec<T extends IntersectCodecType>
   implements

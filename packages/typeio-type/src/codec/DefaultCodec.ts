@@ -1,7 +1,7 @@
 import { SchemaAny } from '../schema/alias/SchemaAny'
 import { TypeOf } from '../schema/helper/TypeOf'
 import { DecodeError } from './error/DecodeError'
-import { Codec } from './interface/Codec'
+import { Codec } from './Codec'
 
 /**
  * Fallback codec. If codec is not found for particular schema, use its own

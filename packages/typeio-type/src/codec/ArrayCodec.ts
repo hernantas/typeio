@@ -4,7 +4,7 @@ import { CodecAny } from './alias/CodecAny'
 import { InputOf } from './helper/InputOf'
 import { OutputOf } from './helper/OutputOf'
 import { SchemaOf } from './helper/SchemaOf'
-import { Codec } from './interface/Codec'
+import { Codec } from './Codec'
 
 export class ArrayCodec<T extends CodecAny>
   implements

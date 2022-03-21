@@ -7,7 +7,7 @@ import { EncodeError } from './error/EncodeError'
 import { InputOfMap } from './helper/InputOfMap'
 import { OutputOfMap } from './helper/OutputOfMap'
 import { SchemaOfMap } from './helper/SchemaOfMap'
-import { Codec } from './interface/Codec'
+import { Codec } from './Codec'
 
 export class UnionCodec<T extends UnionCodecType>
   implements

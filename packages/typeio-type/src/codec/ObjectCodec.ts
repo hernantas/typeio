@@ -6,7 +6,7 @@ import { DecodeError } from './error/DecodeError'
 import { InputOfMap } from './helper/InputOfMap'
 import { OutputOfMap } from './helper/OutputOfMap'
 import { SchemaOfMap } from './helper/SchemaOfMap'
-import { Codec } from './interface/Codec'
+import { Codec } from './Codec'
 
 export class ObjectCodec<T extends ObjectCodecType>
   implements

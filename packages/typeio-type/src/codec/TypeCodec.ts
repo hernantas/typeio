@@ -4,7 +4,7 @@ import { ObjectType } from '../alias/ObjectType'
 import { TypeSchema } from '../schema/TypeSchema'
 import { DecodeError } from './error/DecodeError'
 import { CodecMap } from './helper/CodecMap'
-import { Codec } from './interface/Codec'
+import { Codec } from './Codec'
 
 export class TypeCodec<T> implements Codec<TypeSchema<T>, ObjectMap<T>> {
   readonly name: string

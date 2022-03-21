@@ -1,6 +1,6 @@
 import { DateSchema } from '../schema/DateSchema'
 import { DecodeError } from './error/DecodeError'
-import { Codec } from './interface/Codec'
+import { Codec } from './Codec'
 
 export class DateCodec implements Codec<DateSchema, string> {
   readonly name: string = DateSchema.createName()

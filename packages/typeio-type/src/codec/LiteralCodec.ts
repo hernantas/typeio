@@ -7,7 +7,7 @@ import { StringSchema } from '../schema/StringSchema'
 import { CodecAny } from './alias/CodecAny'
 import { BooleanCodec } from './BooleanCodec'
 import { DecodeError } from './error/DecodeError'
-import { Codec } from './interface/Codec'
+import { Codec } from './Codec'
 import { NumberCodec } from './NumberCodec'
 import { StringCodec } from './StringCodec'
 

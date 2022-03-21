@@ -4,7 +4,7 @@ import { TupleCodecType } from './alias/TupleCodecType'
 import { DecodeError } from './error/DecodeError'
 import { OutputOfMap } from './helper/OutputOfMap'
 import { SchemaOfMap } from './helper/SchemaOfMap'
-import { Codec } from './interface/Codec'
+import { Codec } from './Codec'
 
 export class TupleCodec<T extends TupleCodecType>
   implements Codec<TupleSchema<SchemaOfMap<T>>, OutputOfMap<T>>

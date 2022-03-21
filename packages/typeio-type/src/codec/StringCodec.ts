@@ -1,5 +1,5 @@
 import { StringSchema } from '../schema/StringSchema'
-import { Codec } from './interface/Codec'
+import { Codec } from './Codec'
 
 export class StringCodec implements Codec<StringSchema> {
   readonly name: string = StringSchema.createName()
