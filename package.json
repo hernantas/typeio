@@ -10,7 +10,7 @@
   ],
   "scripts": {
     "build": "tsc --build tsconfig.build.json",
-    "clean": "rimraf **/*.tsbuildinfo **/dist",
+    "clean": "rimraf packages/**/*.tsbuildinfo packages/**/dist",
     "lint": "eslint .",
     "lint:fix": "eslint --fix .",
     "format": "prettier -w .",
