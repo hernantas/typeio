@@ -2,6 +2,11 @@
   "name": "@type-io/type",
   "description": "Typescript-first schema declaration and validation library",
   "version": "0.1.0",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "files": [
+    "dist/**/*"
+  ],
   "dependencies": {
     "reflect-metadata": "^0.1.13"
   }
