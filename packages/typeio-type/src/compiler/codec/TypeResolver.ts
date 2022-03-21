@@ -1,3 +1,4 @@
+import { KeyMap } from '../../alias/KeyMap'
 import { CodecAny } from '../../codec/alias/CodecAny'
 import { CodecMap } from '../../codec/helper/CodecMap'
 import { TypeCodec } from '../../codec/TypeCodec'
@@ -26,6 +27,20 @@ export class TypeResolver implements CodecResolver<TypeSchemaAny> {
           [key]: fallback(schema.properties[key] as SchemaAny),
         }),
         {} as CodecMap<unknown>
+      ),
+      Object.keys(schema.properties).reduce(
+        (prev, key) => ({
+          ...prev,
+          [key]: schema.properties[key]?.definition.inName,
+        }),
+        {} as KeyMap<CodecMap<unknown>>
+      ),
+      Object.keys(schema.properties).reduce(
+        (prev, key) => ({
+          ...prev,
+          [key]: schema.properties[key]?.definition.outName,
+        }),
+        {} as KeyMap<CodecMap<unknown>>
       )
     )
   }

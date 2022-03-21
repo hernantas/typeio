@@ -33,5 +33,37 @@ describe('Codec', () => {
       suite.type.isDeepEqual()
       suite.undefined.isThrow()
     })
+
+    describe('In/Out Name', () => {
+      const codec = new ObjectCodec(
+        {
+          _string_: new StringCodec(),
+          _number_: new NumberCodec(),
+          _boolean_: new BooleanCodec(),
+        },
+        {
+          _string_: '_string',
+          _number_: '_number',
+          _boolean_: '_boolean',
+        },
+        {
+          _string_: '_string',
+          _number_: '_number',
+          _boolean_: '_boolean',
+        }
+      )
+      const suite = createSuite((v) => codec.decode(v))
+
+      suite.object.simple.each((c) => {
+        c.expect().to.have.property('_string_', c.value._string)
+        c.expect().to.have.property('_number_', c.value._number)
+        c.expect().to.have.property('_boolean_', c.value._boolean)
+      })
+      suite.object.nested.each((c) => {
+        c.expect().to.have.property('_string_', c.value._string)
+        c.expect().to.have.property('_number_', c.value._number)
+        c.expect().to.have.property('_boolean_', c.value._boolean)
+      })
+    })
   })
 })
