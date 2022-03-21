@@ -39,7 +39,11 @@ describe('Codec', () => {
         suite.object.simple.isTrue()
         suite.object.nested.isTrue()
         suite.string.each((c) =>
-          ['', '0'].includes(c.value) ? c.is(0) : c.isTrue()
+          ['', '0'].includes(c.value)
+            ? c.is(0)
+            : c.value && c.value !== 'false'
+            ? c.isTrue()
+            : c.isFalse()
         )
         suite.tuple.isTrue()
         suite.type.isTrue()

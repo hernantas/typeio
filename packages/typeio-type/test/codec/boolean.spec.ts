@@ -7,7 +7,7 @@ describe('Codec', () => {
     const codec = new BooleanCodec()
 
     describe('Decode', () => {
-      const falseValues = [false, 0, -0, '', null, undefined, NaN]
+      const falseValues = [false, 0, -0, '', null, undefined, NaN, 'false']
       // eslint-disable-next-line @typescript-eslint/no-explicit-any
       const fn = (c: TestSuiteCase<any>): any =>
         // eslint-disable-next-line @typescript-eslint/no-unsafe-argument

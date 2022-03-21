@@ -9,6 +9,10 @@ export class BooleanCodec implements Codec<BooleanSchema> {
       return value
     }
 
+    if (typeof value === 'string' && value === 'false') {
+      return false
+    }
+
     return Boolean(value)
   }
 

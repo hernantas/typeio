@@ -63,7 +63,9 @@ describe('Codec', () => {
         suite.number.each((c) => (c.value > 0 ? c.isTrue() : c.isThrow()))
         suite.object.simple.isTrue()
         suite.object.nested.isTrue()
-        suite.string.each((c) => (c.value ? c.isTrue() : c.isThrow()))
+        suite.string.each((c) =>
+          c.value && c.value !== 'false' ? c.isTrue() : c.isThrow()
+        )
         suite.tuple.isTrue()
         suite.type.isTrue()
         suite.undefined.isThrow()
