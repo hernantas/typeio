@@ -13,13 +13,17 @@ export class Extendable<T> {
   }
 
   /**
-   * Create a new instance of current object
+   * Create new instance of current object with given attribute of `<T>`
    *
-   * @param definition New definition
-   * @returns Instance of current object
+   * @param key Key of `<T>`
+   * @param value New value
+   * @returns New instance of current object
    */
-  newInstance(definition: T): this {
+  assign<K extends keyof T>(key: K, value: T[K]): this {
     const Constructor = this.constructor as ConstructorType<this>
-    return new Constructor(definition)
+    return new Constructor({
+      ...this.definition,
+      [key]: value,
+    })
   }
 }

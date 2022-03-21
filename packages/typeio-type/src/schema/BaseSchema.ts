@@ -40,16 +40,10 @@ export abstract class BaseSchema<
    * @returns A new instance with additional rule
    */
   check(rule: ValidationRule<T>): this {
-    return this.newInstance({
-      ...this.definition,
-      rules: this.rules.concat(rule),
-    })
+    return this.assign('rules', this.rules.concat(rule))
   }
 
   label(value: string): this {
-    return this.newInstance({
-      ...this.definition,
-      label: value,
-    })
+    return this.assign('label', value)
   }
 }
