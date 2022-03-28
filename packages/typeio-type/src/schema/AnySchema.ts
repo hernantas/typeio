@@ -1,7 +1,7 @@
-import { BaseSchema } from './BaseSchema'
+import { Schema } from './Schema'
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
-export class AnySchema extends BaseSchema<any> {
+export class AnySchema extends Schema<any> {
   readonly _kind: string = 'any'
 
   static create(): AnySchema {

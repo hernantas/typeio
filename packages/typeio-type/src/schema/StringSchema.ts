@@ -1,4 +1,4 @@
-import { BaseSchema } from './BaseSchema'
+import { Schema } from './Schema'
 
 const regexAlphanumeric = /^[a-zA-Z0-9]+$/
 const regexBase64 =
@@ -15,7 +15,7 @@ const regexUrl =
   // eslint-disable-next-line no-useless-escape
   /((([A-Za-z]{3,9}:(?:\/\/)?)(?:[\-;:&=\+\$,\w]+@)?[A-Za-z0-9\.\-]+|(?:www\.|[\-;:&=\+\$,\w]+@)[A-Za-z0-9\.\-]+)((?:\/[\+~%\/\.\w\-_]*)?\??(?:[\-\+=&;%@\.\w_]*)#?(?:[\.\!\/\\\w]*))?)/
 
-export class StringSchema extends BaseSchema<string> {
+export class StringSchema extends Schema<string> {
   readonly _kind: string = 'string'
 
   static create(): StringSchema {

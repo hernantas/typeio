@@ -1,10 +1,10 @@
 import { SchemaAny } from './alias/SchemaAny'
-import { BaseSchema } from './BaseSchema'
+import { Schema } from './Schema'
 import { ArrayDefinition } from './definition/ArrayDefinition'
 import { TypeOf } from './helper/TypeOf'
 import { ValidationError } from './validation/ValidationError'
 
-export class ArraySchema<T extends SchemaAny> extends BaseSchema<
+export class ArraySchema<T extends SchemaAny> extends Schema<
   Array<TypeOf<T>>,
   ArrayDefinition<T>
 > {

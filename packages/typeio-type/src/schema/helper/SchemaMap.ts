@@ -1,5 +1,5 @@
-import { BaseSchema } from '../BaseSchema'
+import { Schema } from '../Schema'
 
 export type SchemaMap<T> = {
-  [K in keyof T]: BaseSchema<T[K]>
+  [K in keyof T]: Schema<T[K]>
 }

@@ -4,7 +4,7 @@ import { BooleanCodec } from '../codec/BooleanCodec'
 import { NumberCodec } from '../codec/NumberCodec'
 import { StringCodec } from '../codec/StringCodec'
 import { CodecCompiler } from '../compiler/codec/CodecCompiler'
-import { BaseSchema } from '../schema/BaseSchema'
+import { Schema } from '../schema/Schema'
 import { type } from '../schema/builder/type'
 
 export class Parser {
@@ -20,13 +20,13 @@ export class Parser {
     this.compiler = new CodecCompiler(codecs)
   }
 
-  decode<T>(value: unknown, schema: BaseSchema<T> | ConstructorType<T>): T {
+  decode<T>(value: unknown, schema: Schema<T> | ConstructorType<T>): T {
     return this.compiler
       .compile(typeof schema === 'function' ? type(schema) : schema)
       .decode(value)
   }
 
-  encode<T>(value: T, schema: BaseSchema<T> | ConstructorType<T>): unknown {
+  encode<T>(value: T, schema: Schema<T> | ConstructorType<T>): unknown {
     return this.compiler
       .compile(typeof schema === 'function' ? type(schema) : schema)
       .encode(value)

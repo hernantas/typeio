@@ -1,5 +1,5 @@
 import { expect } from 'chai'
-import { TypeSchema, Property, StringSchema, string } from '../../src'
+import { Property, StringSchema, TypeSchema, string } from '../../src'
 import { getMetadata } from '../../src/decorator/metadata'
 
 class MyClass {

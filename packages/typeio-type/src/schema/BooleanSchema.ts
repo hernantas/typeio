@@ -1,6 +1,6 @@
-import { BaseSchema } from './BaseSchema'
+import { Schema } from './Schema'
 
-export class BooleanSchema extends BaseSchema<boolean> {
+export class BooleanSchema extends Schema<boolean> {
   readonly _kind: string = 'boolean'
 
   static create(): BooleanSchema {

@@ -1,5 +1,5 @@
 import { expect } from 'chai'
-import { boolean, number, object, PlainParser, string } from '../../src'
+import { PlainParser, boolean, number, object, string } from '../../src'
 
 describe('Parser (Plain)', () => {
   const parser = new PlainParser()

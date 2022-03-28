@@ -1,14 +1,14 @@
 import { ObjectType } from '../alias/ObjectType'
 import { ObjectSchemaType } from './alias/ObjectSchemaType'
 import { SchemaAny } from './alias/SchemaAny'
-import { BaseSchema } from './BaseSchema'
+import { Schema } from './Schema'
 import { ObjectDefinition } from './definition/ObjectDefinition'
 import { OptionalSchemaMap } from './helper/OptionalSchemaMap'
 import { TypeOfMap } from './helper/TypeOfMap'
 import { OptionalSchema } from './OptionalSchema'
 import { ValidationError } from './validation/ValidationError'
 
-export class ObjectSchema<T extends ObjectSchemaType> extends BaseSchema<
+export class ObjectSchema<T extends ObjectSchemaType> extends Schema<
   TypeOfMap<T>,
   ObjectDefinition<T>
 > {

@@ -3,7 +3,7 @@ import { BaseDefinition } from './definition/BaseDefinition'
 import { ValidationError } from './validation/ValidationError'
 import { ValidationRule } from './validation/ValidationRule'
 
-export abstract class BaseSchema<
+export abstract class Schema<
   T,
   D extends BaseDefinition = BaseDefinition
 > extends Extendable<D> {

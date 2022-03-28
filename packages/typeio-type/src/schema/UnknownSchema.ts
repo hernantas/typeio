@@ -1,6 +1,6 @@
-import { BaseSchema } from './BaseSchema'
+import { Schema } from './Schema'
 
-export class UnknownSchema extends BaseSchema<unknown> {
+export class UnknownSchema extends Schema<unknown> {
   readonly _kind: string = 'unknown'
 
   static create(): UnknownSchema {

@@ -1,10 +1,10 @@
 import { SchemaAny } from './alias/SchemaAny'
-import { BaseSchema } from './BaseSchema'
+import { Schema } from './Schema'
 import { OptionalDefinition } from './definition/OptionalDefinition'
 import { TypeOf } from './helper/TypeOf'
 import { ValidationError } from './validation/ValidationError'
 
-export class OptionalSchema<T extends SchemaAny> extends BaseSchema<
+export class OptionalSchema<T extends SchemaAny> extends Schema<
   TypeOf<T> | undefined,
   OptionalDefinition<T>
 > {

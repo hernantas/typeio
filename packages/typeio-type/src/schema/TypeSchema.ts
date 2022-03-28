@@ -1,12 +1,12 @@
 import { ConstructorType } from '../alias/ConstructorType'
 import { getMetadata } from '../decorator/metadata'
 import { SchemaAny } from './alias/SchemaAny'
-import { BaseSchema } from './BaseSchema'
+import { Schema } from './Schema'
 import { TypeDefinition } from './definition/TypeDefinition'
 import { SchemaMap } from './helper/SchemaMap'
 import { ValidationError } from './validation/ValidationError'
 
-export class TypeSchema<T> extends BaseSchema<T, TypeDefinition<T>> {
+export class TypeSchema<T> extends Schema<T, TypeDefinition<T>> {
   readonly _kind: string = 'type'
 
   static create<T>(constructor: ConstructorType<T>): TypeSchema<T> {
@@ -39,15 +39,14 @@ export class TypeSchema<T> extends BaseSchema<T, TypeDefinition<T>> {
 
   override validate(input: T): ValidationError[] {
     return super.validate(input).concat(
-      Object.entries<BaseSchema<T[keyof T]> | undefined>(
-        this.properties
-      ).flatMap(([key, schema]) =>
-        schema !== undefined
-          ? schema.validate(input[key as keyof T]).map((error) => ({
-              ...error,
-              path: [key].concat(error.path ?? []),
-            }))
-          : []
+      Object.entries<Schema<T[keyof T]> | undefined>(this.properties).flatMap(
+        ([key, schema]) =>
+          schema !== undefined
+            ? schema.validate(input[key as keyof T]).map((error) => ({
+                ...error,
+                path: [key].concat(error.path ?? []),
+              }))
+            : []
       )
     )
   }

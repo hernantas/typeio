@@ -1,6 +1,6 @@
-import { BaseSchema } from './BaseSchema'
+import { Schema } from './Schema'
 
-export class NumberSchema extends BaseSchema<number> {
+export class NumberSchema extends Schema<number> {
   readonly _kind: string = 'number'
 
   static create(): NumberSchema {

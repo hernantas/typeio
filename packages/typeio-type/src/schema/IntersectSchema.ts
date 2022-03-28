@@ -1,12 +1,12 @@
 import { IntersectMap } from '../alias/helper/IntersectMap'
 import { IntersectSchemaType } from './alias/IntersectSchemaType'
 import { SchemaAny } from './alias/SchemaAny'
-import { BaseSchema } from './BaseSchema'
+import { Schema } from './Schema'
 import { IntersectDefinition } from './definition/IntersectDefinition'
 import { TypeOfMap } from './helper/TypeOfMap'
 import { ValidationError } from './validation/ValidationError'
 
-export class IntersectSchema<T extends IntersectSchemaType> extends BaseSchema<
+export class IntersectSchema<T extends IntersectSchemaType> extends Schema<
   IntersectMap<TypeOfMap<T>>,
   IntersectDefinition<T>
 > {

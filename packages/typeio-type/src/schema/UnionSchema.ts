@@ -1,12 +1,12 @@
 import { UnionMap } from '../alias/helper/UnionMap'
 import { SchemaAny } from './alias/SchemaAny'
 import { UnionSchemaType } from './alias/UnionSchemaType'
-import { BaseSchema } from './BaseSchema'
+import { Schema } from './Schema'
 import { UnionDefinition } from './definition/UnionDefinition'
 import { TypeOfMap } from './helper/TypeOfMap'
 import { ValidationError } from './validation/ValidationError'
 
-export class UnionSchema<T extends UnionSchemaType> extends BaseSchema<
+export class UnionSchema<T extends UnionSchemaType> extends Schema<
   UnionMap<TypeOfMap<T>>,
   UnionDefinition<T>
 > {

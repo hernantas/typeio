@@ -2,7 +2,7 @@ import { ConstructorType } from '../alias/ConstructorType'
 import { ObjectMap } from '../alias/helper/ObjectMap'
 import { KeyMap } from '../alias/KeyMap'
 import { ObjectType } from '../alias/ObjectType'
-import { BaseSchema } from '../schema/BaseSchema'
+import { Schema } from '../schema/Schema'
 import { TypeSchema } from '../schema/TypeSchema'
 import { CodecAny } from './alias/CodecAny'
 import { Codec } from './Codec'
@@ -43,7 +43,7 @@ export class TypeCodec<T> implements Codec<TypeSchema<T>, ObjectMap<T>> {
 
   encode(value: T): ObjectMap<T> {
     return Object.fromEntries(
-      Object.entries<CodecAny<BaseSchema<T[keyof T]>> | undefined>(
+      Object.entries<CodecAny<Schema<T[keyof T]>> | undefined>(
         this.properties
       ).map(([key, codec]) => [
         key,

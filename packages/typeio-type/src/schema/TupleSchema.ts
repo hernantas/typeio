@@ -1,11 +1,11 @@
 import { SchemaAny } from './alias/SchemaAny'
 import { TupleSchemaType } from './alias/TupleSchemaType'
-import { BaseSchema } from './BaseSchema'
+import { Schema } from './Schema'
 import { TupleDefinition } from './definition/TupleDefinition'
 import { TypeOfMap } from './helper/TypeOfMap'
 import { ValidationError } from './validation/ValidationError'
 
-export class TupleSchema<T extends TupleSchemaType> extends BaseSchema<
+export class TupleSchema<T extends TupleSchemaType> extends Schema<
   TypeOfMap<T>,
   TupleDefinition<T>
 > {

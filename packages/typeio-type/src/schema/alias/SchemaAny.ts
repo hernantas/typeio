@@ -1,3 +1,3 @@
-import { BaseSchema } from '../BaseSchema'
+import { Schema } from '../Schema'
 
-export type SchemaAny = BaseSchema<unknown>
+export type SchemaAny = Schema<unknown>

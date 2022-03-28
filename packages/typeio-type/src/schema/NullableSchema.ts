@@ -1,10 +1,10 @@
 import { SchemaAny } from './alias/SchemaAny'
-import { BaseSchema } from './BaseSchema'
+import { Schema } from './Schema'
 import { NullableDefinition } from './definition/NullableDefinition'
 import { TypeOf } from './helper/TypeOf'
 import { ValidationError } from './validation/ValidationError'
 
-export class NullableSchema<T extends SchemaAny> extends BaseSchema<
+export class NullableSchema<T extends SchemaAny> extends Schema<
   TypeOf<T> | null,
   NullableDefinition<T>
 > {

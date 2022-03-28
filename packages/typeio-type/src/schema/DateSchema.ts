@@ -1,6 +1,6 @@
-import { BaseSchema } from './BaseSchema'
+import { Schema } from './Schema'
 
-export class DateSchema extends BaseSchema<Date> {
+export class DateSchema extends Schema<Date> {
   readonly _kind: string = 'date'
 
   static create(): DateSchema {
