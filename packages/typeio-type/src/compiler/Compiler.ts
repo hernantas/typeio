@@ -17,8 +17,11 @@ export class Compiler {
     const resolvers = this.resolvers.filter((resolver) => resolver.is(schema))
     const resolver =
       resolvers.length > 0 ? resolvers[resolvers.length - 1] : undefined
-    return resolver !== undefined
-      ? resolver.resolve(schema, (s) => this.compile(s))
-      : this.resolverFallback(schema)
+    const compiled =
+      resolver !== undefined
+        ? resolver.resolve(schema, (s) => this.compile(s))
+        : this.resolverFallback(schema)
+    this.caches.set(schema.name, compiled)
+    return compiled
   }
 }
