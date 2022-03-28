@@ -10,31 +10,13 @@ import { KeyMap } from '../alias/KeyMap'
 export class TypeCodec<T> implements Codec<TypeSchema<T>, ObjectMap<T>> {
   readonly name: string
 
-  readonly inKey: KeyMap<T>
-
-  readonly outKey: KeyMap<T>
-
   constructor(
     readonly Ctor: ConstructorType<T>,
     readonly properties: Partial<CodecMap<T>>,
-    inKey: Partial<KeyMap<T>> = {},
-    outKey: Partial<KeyMap<T>> = {}
+    readonly inKey: Partial<KeyMap<T>> = {},
+    readonly outKey: Partial<KeyMap<T>> = {}
   ) {
     this.name = TypeSchema.createName(Ctor.name)
-    this.inKey = Object.keys(properties).reduce(
-      (prev, key) => ({
-        ...prev,
-        [key]: inKey[key as keyof T] ?? key,
-      }),
-      {} as KeyMap<T>
-    )
-    this.outKey = Object.keys(properties).reduce(
-      (prev, key) => ({
-        ...prev,
-        [key]: outKey[key as keyof T] ?? key,
-      }),
-      {} as KeyMap<T>
-    )
   }
 
   decode(value: unknown): T {
