@@ -6,6 +6,7 @@ import { StringCodec } from '../codec/StringCodec'
 import { CodecCompiler } from '../compiler/codec/CodecCompiler'
 import { Schema } from '../schema/Schema'
 import { type } from '../schema/builder/type'
+import { SchemaAny } from '../schema/alias/SchemaAny'
 
 export class Parser {
   private readonly compiler: CodecCompiler
@@ -18,6 +19,14 @@ export class Parser {
     ]
   ) {
     this.compiler = new CodecCompiler(codecs)
+  }
+
+  prepare(schema: SchemaAny | SchemaAny[]): void {
+    if (Array.isArray(schema)) {
+      schema.forEach((s) => this.compiler.compile(s))
+    } else {
+      this.compiler.compile(schema)
+    }
   }
 
   decode<T>(value: unknown, schema: Schema<T> | ConstructorType<T>): T {
