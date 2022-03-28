@@ -10,12 +10,7 @@ import { OutputOfMap } from './helper/OutputOfMap'
 import { SchemaOfMap } from './helper/SchemaOfMap'
 
 export class ObjectCodec<T extends ObjectCodecType>
-  implements
-    Codec<
-      ObjectSchema<SchemaOfMap<T>>,
-      OutputOfMap<T>,
-      InputOfMap<T> | unknown
-    >
+  implements Codec<ObjectSchema<SchemaOfMap<T>>, OutputOfMap<T>, InputOfMap<T>>
 {
   readonly name: string
 
