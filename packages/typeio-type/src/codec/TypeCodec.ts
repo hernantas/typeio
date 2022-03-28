@@ -1,11 +1,13 @@
 import { ConstructorType } from '../alias/ConstructorType'
 import { ObjectMap } from '../alias/helper/ObjectMap'
+import { KeyMap } from '../alias/KeyMap'
 import { ObjectType } from '../alias/ObjectType'
+import { BaseSchema } from '../schema/BaseSchema'
 import { TypeSchema } from '../schema/TypeSchema'
+import { CodecAny } from './alias/CodecAny'
+import { Codec } from './Codec'
 import { DecodeError } from './error/DecodeError'
 import { CodecMap } from './helper/CodecMap'
-import { Codec } from './Codec'
-import { KeyMap } from '../alias/KeyMap'
 
 export class TypeCodec<T> implements Codec<TypeSchema<T>, ObjectMap<T>> {
   readonly name: string
@@ -21,13 +23,15 @@ export class TypeCodec<T> implements Codec<TypeSchema<T>, ObjectMap<T>> {
 
   decode(value: unknown): T {
     if (typeof value === 'object' && value !== null) {
+      const tValue = value as ObjectType
       const instance = new this.Ctor()
 
       Object.keys(this.properties).forEach((key) => {
         const tKey = key as keyof T
+        const inKey = this.inKey[tKey] ?? tKey
         const codec = this.properties[tKey]
         if (codec !== undefined) {
-          instance[tKey] = codec.decode((value as ObjectType)[this.inKey[tKey]])
+          instance[tKey] = codec.decode(tValue[inKey])
         }
       })
 
@@ -38,15 +42,13 @@ export class TypeCodec<T> implements Codec<TypeSchema<T>, ObjectMap<T>> {
   }
 
   encode(value: T): ObjectMap<T> {
-    return Object.keys(this.properties).reduce((prev, key) => {
-      const tKey = key as keyof T
-      const codec = this.properties[tKey]
-      return codec !== undefined
-        ? {
-            ...prev,
-            [this.outKey[tKey]]: codec.encode(value[tKey]),
-          }
-        : prev
-    }, {} as ObjectMap<T>)
+    return Object.fromEntries(
+      Object.entries<CodecAny<BaseSchema<T[keyof T]>> | undefined>(
+        this.properties
+      ).map(([key, codec]) => [
+        key,
+        codec !== undefined ? codec.encode(value[key as keyof T]) : undefined,
+      ])
+    ) as ObjectMap<T>
   }
 }

@@ -1,4 +1,3 @@
-import { ObjectType } from '../../src/alias/ObjectType'
 import { TestSuite } from './TestSuite'
 import { TestSuiteMap } from './TestSuiteMap'
 import { TransformFn } from './TransformFn'
@@ -12,11 +11,10 @@ export function createCase<T>(
     return new TestSuite(path.join(' '), fn, value) as TestSuiteMap<T>
   }
 
-  return Object.keys(value).reduce(
-    (prev, key) => ({
-      ...prev,
-      [key]: createCase(fn, (value as ObjectType)[key], [...path, key]),
-    }),
-    {} as ObjectType
+  return Object.fromEntries(
+    Object.entries(value).map(([key, value]) => [
+      key,
+      createCase(fn, value, [...path, key]),
+    ])
   ) as TestSuiteMap<T>
 }

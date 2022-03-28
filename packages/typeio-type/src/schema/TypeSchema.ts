@@ -39,16 +39,16 @@ export class TypeSchema<T> extends BaseSchema<T, TypeDefinition<T>> {
 
   override validate(input: T): ValidationError[] {
     return super.validate(input).concat(
-      Object.keys(this.properties).flatMap((key) => {
-        const tKey = key as keyof T
-        const schema = this.properties[tKey]
-        return schema !== undefined
-          ? schema.validate(input[tKey]).map((error) => ({
+      Object.entries<BaseSchema<T[keyof T]> | undefined>(
+        this.properties
+      ).flatMap(([key, schema]) =>
+        schema !== undefined
+          ? schema.validate(input[key as keyof T]).map((error) => ({
               ...error,
               path: [key].concat(error.path ?? []),
             }))
           : []
-      })
+      )
     )
   }
 }

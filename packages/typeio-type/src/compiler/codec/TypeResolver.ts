@@ -1,6 +1,4 @@
-import { KeyMap } from '../../alias/KeyMap'
 import { CodecAny } from '../../codec/alias/CodecAny'
-import { CodecMap } from '../../codec/helper/CodecMap'
 import { TypeCodec } from '../../codec/TypeCodec'
 import { SchemaAny } from '../../schema/alias/SchemaAny'
 import { TypeSchema } from '../../schema/TypeSchema'
@@ -21,26 +19,23 @@ export class TypeResolver implements CodecResolver<TypeSchemaAny> {
   ): CodecAny<TypeSchemaAny> {
     return new TypeCodec(
       schema.type,
-      Object.keys(schema.properties).reduce(
-        (prev, key) => ({
-          ...prev,
-          [key]: fallback(schema.properties[key] as SchemaAny),
-        }),
-        {} as CodecMap<unknown>
+      Object.fromEntries(
+        Object.entries(schema.properties).map(([key, property]) => [
+          key,
+          property !== undefined ? fallback(property) : undefined,
+        ])
       ),
-      Object.keys(schema.properties).reduce(
-        (prev, key) => ({
-          ...prev,
-          [key]: schema.properties[key]?.definition.inName,
-        }),
-        {} as KeyMap<CodecMap<unknown>>
+      Object.fromEntries(
+        Object.entries(schema.properties).map(([key, property]) => [
+          key,
+          property !== undefined ? property.definition.inName : undefined,
+        ])
       ),
-      Object.keys(schema.properties).reduce(
-        (prev, key) => ({
-          ...prev,
-          [key]: schema.properties[key]?.definition.outName,
-        }),
-        {} as KeyMap<CodecMap<unknown>>
+      Object.fromEntries(
+        Object.entries(schema.properties).map(([key, property]) => [
+          key,
+          property !== undefined ? property.definition.outName : undefined,
+        ])
       )
     )
   }

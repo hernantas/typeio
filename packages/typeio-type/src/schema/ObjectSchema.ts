@@ -17,7 +17,7 @@ export class ObjectSchema<T extends ObjectSchemaType> extends BaseSchema<
   static create<T extends ObjectSchemaType>(properties: T): ObjectSchema<T> {
     return new ObjectSchema({
       name: this.createName(
-        Object.entries(properties).map((prop) => [prop[0], prop[1].name])
+        Object.entries(properties).map(([key, schema]) => [key, schema.name])
       ),
       properties,
     })
@@ -38,44 +38,36 @@ export class ObjectSchema<T extends ObjectSchemaType> extends BaseSchema<
   }
 
   override is(input: unknown): input is TypeOfMap<T> {
-    const tInput = input as ObjectType<T>
     return (
       typeof input === 'object' &&
       input !== null &&
-      Object.keys(this.properties)
-        .map((key) => {
-          const tKey = key as keyof T
-          const schema = this.properties[tKey]
-          return schema !== undefined ? schema.is(tInput[tKey]) : false
-        })
+      Object.entries(this.properties)
+        .map(([key, schema]) => schema.is((input as ObjectType<T>)[key]))
         .filter((b) => !b).length === 0
     )
   }
 
   override validate(input: TypeOfMap<T>): ValidationError[] {
     return super.validate(input).concat(
-      Object.keys(this.properties).flatMap((key) => {
-        const tKey = key as keyof T
-        const schema = this.properties[tKey]
-        return schema !== undefined
-          ? schema.validate(input[tKey]).map((error) => ({
-              ...error,
-              path: [key].concat(error.path ?? []),
-            }))
-          : []
-      })
+      Object.entries(this.properties)
+        .map(([key, schema]) =>
+          schema.validate(input[key]).map((error) => ({
+            ...error,
+            path: [key].concat(error.path ?? []),
+          }))
+        )
+        .flatMap((errors) => errors)
     )
   }
 
   partial(): ObjectSchema<OptionalSchemaMap<T>> {
     return ObjectSchema.create(
-      Object.keys(this.properties).reduce(
-        (prev, key) => ({
-          ...prev,
-          [key]: OptionalSchema.create(this.properties[key as keyof T]),
-        }),
-        {} as OptionalSchemaMap<T>
-      )
+      Object.fromEntries(
+        Object.entries(this.properties).map(([key, schema]) => [
+          key,
+          OptionalSchema.create(schema),
+        ])
+      ) as OptionalSchemaMap<T>
     )
   }
 }
