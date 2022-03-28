@@ -1,11 +1,11 @@
 import { Extendable } from '../Extendable'
-import { BaseDefinition } from './definition/BaseDefinition'
+import { Definition } from './definition/Definition'
 import { ValidationError } from './validation/ValidationError'
 import { ValidationRule } from './validation/ValidationRule'
 
 export abstract class Schema<
   T,
-  D extends BaseDefinition = BaseDefinition
+  D extends Definition = Definition
 > extends Extendable<D> {
   /** Ignore this. Used to prevent typescript infer the type to `unknown` */
   readonly _type!: T

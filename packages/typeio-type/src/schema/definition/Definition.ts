@@ -1,6 +1,6 @@
 import { ValidationRule } from '../validation/ValidationRule'
 
-export interface BaseDefinition {
+export interface Definition {
   /** Schema unique name to describe schema type */
   readonly name: string
 

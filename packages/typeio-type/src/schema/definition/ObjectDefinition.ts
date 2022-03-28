@@ -1,7 +1,7 @@
 import { ObjectSchemaType } from '../alias/ObjectSchemaType'
-import { BaseDefinition } from './BaseDefinition'
+import { Definition } from './Definition'
 
 export interface ObjectDefinition<T extends ObjectSchemaType>
-  extends BaseDefinition {
+  extends Definition {
   readonly properties: T
 }

@@ -1,7 +1,6 @@
 import { UnionSchemaType } from '../alias/UnionSchemaType'
-import { BaseDefinition } from './BaseDefinition'
+import { Definition } from './Definition'
 
-export interface UnionDefinition<T extends UnionSchemaType>
-  extends BaseDefinition {
+export interface UnionDefinition<T extends UnionSchemaType> extends Definition {
   readonly items: T
 }

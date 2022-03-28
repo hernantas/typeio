@@ -1,7 +1,7 @@
 import { SchemaAny } from '../alias/SchemaAny'
-import { BaseDefinition } from './BaseDefinition'
+import { Definition } from './Definition'
 
-export interface ArrayDefinition<T extends SchemaAny> extends BaseDefinition {
+export interface ArrayDefinition<T extends SchemaAny> extends Definition {
   /** Inner type */
   readonly type: T
 }
