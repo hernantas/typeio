@@ -5,11 +5,11 @@ To define our data using schema, use default `t` object to build your schema.
 ```ts
 // import default schema builder
 
-import t from '@typeio/type'
+import t from '@type-io/type'
 
 // or individual function
 
-import { string, number, boolean } from '@typeio/type'
+import { string, number, boolean } from '@type-io/type'
 ```
 
 The schema can be declared as simple as simple `string`

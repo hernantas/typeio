@@ -7,13 +7,13 @@ To start using, install the packages via NPM/Yarn:
 Node:
 
 ```
-npm install @typeio/type --save
+npm install @type-io/type --save
 ```
 
 Yarn:
 
 ```
-yarn add @typeio/type
+yarn add @type-io/type
 ```
 
 Then install `reflect-metadata` if we want to use class

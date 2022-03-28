@@ -1,8 +1,8 @@
-# typeio
+# type-io
 
 Typescript-first schema declaration, validation library and contextual transformation. Inspired from [io-ts](https://www.npmjs.com/package/io-ts) and [joi](https://www.npmjs.com/package/joi).
 
-**`typeio` is still in alpha. Expect bugs and api changes!**
+**`type-io` is still in alpha. Expect bugs and api changes!**
 
 ## Features
 
