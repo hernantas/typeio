@@ -1,10 +1,12 @@
 import { SchemaAny } from './alias/SchemaAny'
-import { Schema } from './Schema'
+import { BaseSchema } from './BaseSchema'
 import { ArrayDefinition } from './definition/ArrayDefinition'
 import { TypeOf } from './helper/TypeOf'
+import { NullableSchema } from './NullableSchema'
+import { OptionalSchema } from './OptionalSchema'
 import { ValidationError } from './validation/ValidationError'
 
-export class ArraySchema<T extends SchemaAny> extends Schema<
+export class ArraySchema<T extends SchemaAny> extends BaseSchema<
   Array<TypeOf<T>>,
   ArrayDefinition<T>
 > {
@@ -69,5 +71,17 @@ export class ArraySchema<T extends SchemaAny> extends Schema<
       validate: (value) => value.length === limit,
       message,
     })
+  }
+
+  array(): ArraySchema<this> {
+    return ArraySchema.create(this)
+  }
+
+  nullable(): NullableSchema<this> {
+    return NullableSchema.create(this)
+  }
+
+  optional(): OptionalSchema<this> {
+    return OptionalSchema.create(this)
   }
 }

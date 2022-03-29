@@ -1,10 +1,12 @@
 import { SchemaAny } from './alias/SchemaAny'
-import { Schema } from './Schema'
+import { ArraySchema } from './ArraySchema'
+import { BaseSchema } from './BaseSchema'
 import { NullableDefinition } from './definition/NullableDefinition'
 import { TypeOf } from './helper/TypeOf'
+import { OptionalSchema } from './OptionalSchema'
 import { ValidationError } from './validation/ValidationError'
 
-export class NullableSchema<T extends SchemaAny> extends Schema<
+export class NullableSchema<T extends SchemaAny> extends BaseSchema<
   TypeOf<T> | null,
   NullableDefinition<T>
 > {
@@ -34,5 +36,13 @@ export class NullableSchema<T extends SchemaAny> extends Schema<
     return super
       .validate(input)
       .concat(this.type.is(input) ? this.type.validate(input) : [])
+  }
+
+  array(): ArraySchema<this> {
+    return ArraySchema.create(this)
+  }
+
+  optional(): OptionalSchema<this> {
+    return OptionalSchema.create(this)
   }
 }
