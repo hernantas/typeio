@@ -24,7 +24,7 @@ type Data = {
 }
 ```
 
-But, data like this should be acceptable
+But, in practice, data like this should be acceptable
 
 ```json
 {

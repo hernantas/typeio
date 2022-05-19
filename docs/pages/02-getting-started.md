@@ -16,7 +16,7 @@ Yarn:
 yarn add @type-io/type
 ```
 
-Then install `reflect-metadata` if we want to use class
+Then install `reflect-metadata` **only** if you want to use class
 
 Node:
 
@@ -102,16 +102,16 @@ const user = parser.decode(fetchedData, UserSchema)
 const plain = parser.encode(user, UserSchema)
 ```
 
-or if json were used
+or if `json` were used
 
 ```ts
-const parser = new JsonParser()
+const parser = new JSONParser()
 
 // decode it to `User` class
-const user = parser.decode(fetchedJson, UserSchema)
+const user = parser.decodeJSON(fetchedJson, UserSchema)
 
 // encode instance of `User` back to plain object
-const json = parser.encode(user, UserSchema)
+const json = parser.encodeJSON(user, UserSchema)
 ```
 
-_See each package to learn more_
+_See each packages to learn more_
