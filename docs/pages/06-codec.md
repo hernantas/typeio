@@ -53,3 +53,7 @@ class MyClassCodec implements Codec<TypeSchema<MyClass>> {
   }
 }
 ```
+
+## Built-in schema, codec, parser
+
+Each packages has it own built in schema, codec, and schema ready to be used. Please see each packages for more details.

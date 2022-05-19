@@ -27,3 +27,33 @@ Please see the [documentation](#docs) for more details.
 - [Class-based declaration](../../docs/pages/04-class.md)
 - [Parser](../../docs/pages/05-parser.md)
 - [Codec](../../docs/pages/06-codec.md)
+
+## Built-in
+
+### Schema
+
+| Type      | Typescript       | Builder                             |
+| --------- | ---------------- | ----------------------------------- |
+| string    | `string`         | `t.string()`                        |
+| number    | `number`         | `t.number()`                        |
+| boolean   | `boolean`        | `t.boolean()`                       |
+| literal   | `'A'`            | `t.literal('A')`                    |
+| unknown   | `unknown`        | `t.unknown()`                       |
+| any       | `any`            | `t.any()`                           |
+| null      | `null`           | `t.null()`                          |
+| nullable  | `A \| null`      | `t.nullable(t.type(A))`             |
+| undefined | `undefined`      | `t.undefined()`                     |
+| optional  | `A \| undefined` | `t.undefined(t.type(A))`            |
+| array     | `array`          | `t.array(T)`                        |
+| type      | `A`              | `t.type(A)`                         |
+| object    | `{a:A}`          | `t.object({a: t.type(A)})`          |
+| union     | `A \| B`         | `t.union(t.type(A), t.type(B))`     |
+| intersect | `A & B`          | `t.intersect(t.type(A), t.type(B))` |
+
+### Parser
+
+| Name          | Description                                                               |
+| ------------- | ------------------------------------------------------------------------- |
+| Parser        | Base parser that contain no codecs.                                       |
+| DefaultParser | Parser with some some built in primitive `Codec`.                         |
+| JSONParser    | Same with `DefaultParser` but have method to decode or encode from `json` |

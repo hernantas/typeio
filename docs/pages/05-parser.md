@@ -135,3 +135,7 @@ class DefaultParser extends Parser {
 Depend on the module you install, some `Parser` is only available on specific module. Please see each module to see what `Parser` and `Codec` is available.
 
 This should allow you to avoid unnecessary dependencies install.
+
+## Built-in schema, codec, parser
+
+Each packages has it own built in schema, codec, and schema ready to be used. Please see each packages for more details.

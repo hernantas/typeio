@@ -87,22 +87,6 @@ Then validate the data using
 const errors = UsernameSchema.validate(data)
 ```
 
-## Built-in schema
+## Built-in schema, codec, parser
 
-| Type      | Typescript       | Builder                             |
-| --------- | ---------------- | ----------------------------------- |
-| string    | `string`         | `t.string()`                        |
-| number    | `number`         | `t.number()`                        |
-| boolean   | `boolean`        | `t.boolean()`                       |
-| literal   | `'A'`            | `t.literal('A')`                    |
-| unknown   | `unknown`        | `t.unknown()`                       |
-| any       | `any`            | `t.any()`                           |
-| null      | `null`           | `t.null()`                          |
-| nullable  | `A \| null`      | `t.nullable(t.type(A))`             |
-| undefined | `undefined`      | `t.undefined()`                     |
-| optional  | `A \| undefined` | `t.undefined(t.type(A))`            |
-| array     | `array`          | `t.array(T)`                        |
-| type      | `A`              | `t.type(A)`                         |
-| object    | `{a:A}`          | `t.object({a: t.type(A)})`          |
-| union     | `A \| B`         | `t.union(t.type(A), t.type(B))`     |
-| intersect | `A & B`          | `t.intersect(t.type(A), t.type(B))` |
+Each packages has it own built in schema, codec, and schema ready to be used. Please see each packages for more details.
