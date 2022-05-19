@@ -83,7 +83,7 @@ This is the primary reason why this library exists. Oftentimes, when working on 
 }
 ```
 
-But we also need to interact with the databases which produce or accept data such as:
+But we also need to interact with the databases which produce or accept data using `bson` such as:
 
 ```bson
 {
@@ -96,24 +96,24 @@ But we also need to interact with the databases which produce or accept data suc
 
 This is the primary reason why data transformation is not on the schemas but using `Parser` instead.
 
-When working with `json` we can use `JsonParser` to receive or produce `json` from our data
+When working with `json` we can use `JSONParser` to receive or produce `json` from our data
 
 ```ts
-const parser = new JsonParser()
+const parser = new JSONParser()
 // decode from JSON
-const myObject = parser.decode(json, schema)
+const myObject = parser.decodeJSON(json, schema)
 // or encode back to JSON
-const jsonString = parser.encode(myObject, schema)
+const jsonString = parser.encodeJSON(myObject, schema)
 ```
 
-But when working with `bson` from MongoDB, we can use `BsonParser` to receive or produce `bson` from our data
+But when working with `bson` from MongoDB, we can use `BSONParser` to receive or produce `bson` from our data
 
 ```ts
-const parser = new BsonParser()
+const parser = new BSONParser()
 // decode from BSON
-const myObject = parser.decode(bson, schema)
+const myObject = parser.decodeBSON(bson, schema)
 // or encode back to BSON
-const bsonObject = parser.encode(myObject, schema)
+const bsonObject = parser.encodeBSON(myObject, schema)
 ```
 
 ## Extendable

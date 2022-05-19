@@ -1,8 +1,8 @@
 import { expect } from 'chai'
-import { PlainParser, boolean, number, object, string } from '../../src'
+import { JSONParser, boolean, number, object, string } from '../../src'
 
 describe('Parser (Plain)', () => {
-  const parser = new PlainParser()
+  const parser = new JSONParser()
   const schema = object({
     _string: string(),
     _number: number(),
@@ -18,9 +18,9 @@ describe('Parser (Plain)', () => {
   const jsonInfer = '{"_string":"MyName","_number":"80","_boolean":"true"}'
 
   it('From JSON', () => {
-    expect(parser.decodeJson(jsonInfer, schema)).to.be.deep.equal(obj)
+    expect(parser.decodeJSON(jsonInfer, schema)).to.be.deep.equal(obj)
   })
   it('To JSON', () => {
-    expect(parser.encodeJson(obj, schema)).to.be.deep.equal(json)
+    expect(parser.encodeJSON(obj, schema)).to.be.deep.equal(json)
   })
 })
