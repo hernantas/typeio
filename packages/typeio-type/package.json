@@ -1,0 +1,29 @@
+{
+  "name": "@typeio/type",
+  "description": "Typescript-first schema declaration and validation library",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/hernantas/typeio.git",
+    "directory": "packages/typeio-type"
+  },
+  "author": "Zulfikar Raditya Hernanta <hernantas@gmail.com>",
+  "license": "MIT",
+  "keywords": [
+    "typescript",
+    "runtime",
+    "schema",
+    "type",
+    "validate",
+    "validation"
+  ],
+  "version": "0.1.0",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "files": [
+    "dist/**/*",
+    "README.md"
+  ],
+  "dependencies": {
+    "reflect-metadata": "^0.1.13"
+  }
+}

@@ -1,0 +1,5 @@
+{
+  "extends": "./tsconfig.json",
+  "references": [{ "path": "./packages/typeio-type/" }],
+  "files": []
+}
