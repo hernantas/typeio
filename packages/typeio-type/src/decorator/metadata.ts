@@ -4,7 +4,7 @@ import { SchemaMap } from '../schema/helper/SchemaMap'
 
 /** Key used in typescript decoration to type */
 const METADATA_KEY_DESIGN_TYPE = 'design:type'
-const METADATA_KEY_STORAGE = 'type-io:schema'
+const METADATA_KEY_STORAGE = 'typeio:schema'
 
 /**
  * Get design type of property for given object
