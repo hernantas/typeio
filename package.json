@@ -1,7 +1,10 @@
 {
   "name": "typeio",
   "description": "Typescript-first schema declaration and validation library",
-  "repository": "https://github.com/hernantas/type-io.git",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/hernantas/typeio.git"
+  },
   "author": "Zulfikar Raditya Hernanta <hernantas@gmail.com>",
   "license": "MIT",
   "packageManager": "yarn@3.1.1",
